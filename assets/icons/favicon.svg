@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .text-icon {
+      font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 900;
+      font-size: 17px;
+      fill: #1C4ED8;
+      letter-spacing: -0.06em;
+    }
+  </style>
+  <text x="16" y="22" class="text-icon" text-anchor="middle">NM</text>
+</svg>

@@ -186,6 +186,9 @@ function initSmoothScroll() {
                     top: targetElement.offsetTop - offset,
                     behavior: 'smooth'
                 });
+                
+                // Update URL to reflect the section for clean shareable links
+                history.pushState(null, null, targetId);
             }
         });
     });

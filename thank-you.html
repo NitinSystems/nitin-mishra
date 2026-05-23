@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Received - Nitin Mishra</title>
+    <meta name="description" content="Structured CRM systems, lead routing, and workflow automation consulting for businesses seeking operational clarity.">
+    
+    <!-- Favicon Matrix -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="assets/icons/favicon-32x32.png">
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Localized Premium Alignment & Styles -->
+    <style>
+        .thank-you-main {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 140px;
+            padding-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            background: 
+                radial-gradient(circle at 50% 40%, rgba(28, 78, 216, 0.08) 0%, rgba(2, 3, 7, 0) 65%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 1.5px, transparent 1.5px),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                var(--bg-primary);
+            background-size: 100% 100%, 48px 48px, 48px 48px, 48px 48px, 100% 100%;
+            background-position: center center, center center, center center, center center, center center;
+        }
+
+        .thank-you-content {
+            max-width: 650px;
+            text-align: center;
+            margin: 0 auto;
+            padding: 0 24px;
+            z-index: 10;
+        }
+
+        .thank-you-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(28, 78, 216, 0.08);
+            border: 1px solid rgba(28, 78, 216, 0.25);
+            color: var(--system-blue);
+            font-family: 'Outfit', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+        }
+
+        .thank-you-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            font-weight: 800;
+            color: var(--text-pure);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .thank-you-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .thank-you-timing {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            color: var(--text-silver);
+            opacity: 0.75;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-dim);
+            padding: 8px 16px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
+
+        .thank-you-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .thank-you-note {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-weight: 600;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 600px) {
+            .thank-you-actions {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+            .thank-you-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Navigation: Floating Architectural Shell -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
+                    <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+                </div>
+                Nitin Mishra
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">
+                <span class="icon-menu">☰</span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#capabilities">Capabilities</a></li>
+                <li><a href="index.html#systems">Showcase</a></li>
+                <li><a href="index.html#process">Process</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="mobile-only"><a href="index.html#contact" class="btn btn-primary" style="width: 100%;">Book Audit</a></li>
+            </ul>
+            <a href="index.html#contact" class="btn btn-primary nav-cta">Book Audit</a>
+        </div>
+    </nav>
+
+    <!-- 2. Main Centered Thank You Canvas -->
+    <main class="thank-you-main">
+        <div class="thank-you-content reveal-on-load">
+            <div class="thank-you-badge">
+                <span class="pulse-dot"></span> Verification Success
+            </div>
+            
+            <h1 class="thank-you-title">Thanks - Your Request<br>Has Been Received</h1>
+            
+            <p class="thank-you-desc">
+                Your details have been submitted successfully. I’ll review your operational challenges and CRM infrastructure requirements to prepare for the next step.
+            </p>
+            
+            <div class="thank-you-timing">
+                Response typically within 24–48 hours.
+            </div>
+            
+            <div class="thank-you-actions">
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
+                <a href="https://linkedin.com/in/nitin-mishra1" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visit LinkedIn &rarr;</a>
+            </div>
+            
+            <div class="thank-you-note">
+                Structured systems start with clear communication.
+            </div>
+        </div>
+    </main>
+
+    <!-- 3. Standardized Consistent Footer -->
+    <footer class="section border-top" style="padding: 56px 0 48px;">
+        <div class="container-nav-align footer-responsive">
+            <a href="index.html" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
+                <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
+                    <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+                </div>
+                Nitin Mishra
+            </a>
+            <p class="footer-desc" style="color: var(--text-muted); font-size: 14px; max-width: 400px; margin-bottom: 1rem;">Structured workflow systems for operational clarity and scalable lead management.</p>
+            <div class="footer-copyright" style="margin-top: 2rem;">
+                <p style="color: var(--text-muted); font-size: 13px;">&copy; 2026 Nitin Mishra. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

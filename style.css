@@ -3491,6 +3491,11 @@ div.hero-visual-area.reveal-on-load {
         padding-top: 104px !important;
         padding-bottom: 64px !important;
     }
+    .hero-label {
+        font-size: 11px;
+        padding: 4px 10px;
+        margin-bottom: 12px;
+    }
 }
 @media (min-width: 768px) {
     .hero {

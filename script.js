@@ -310,7 +310,7 @@ function initIntakeForm() {
     const feedback = document.getElementById('formFeedback');
     
     // Configurable Make.com webhook URL - easily replaceable by the user
-    const webhookUrl = 'https://hook.us2.make.com/6xtp7y6q4t6x8q0f8m5m9r0q6j8k6y2w'; // Standard webhook URL format (this can also be a dummy/placeholder or any user-defined webhook)
+    const webhookUrl = 'https://hook.eu1.make.com/f94swjs7bo3239k6bszr9e5x7uorhepc';
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();

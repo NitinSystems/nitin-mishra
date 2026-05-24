@@ -1951,12 +1951,17 @@ h1, h2, h3 {
 
 @media (max-width: 1024px) {
     .faq-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 64px;
     }
-    
+    .faq-panel {
+        order: -1;
+        width: 100%;
+    }
     .intake-panel {
         align-self: stretch;
+        width: 100%;
     }
     
     .intake-heading {
@@ -2611,17 +2616,19 @@ textarea.input-premium {
 
 @media (max-width: 768px) {
     .system-modal {
-        padding: 16px;
+        padding: 24px 16px 16px;
     }
     .system-modal-container {
-        height: 95vh;
+        height: 90dvh;
         max-width: 100%;
     }
     .system-modal-header {
-        padding: 16px 20px;
+        padding: 20px 20px;
+        align-items: center;
     }
     .system-modal-title-group h2 {
         font-size: 1.15rem;
+        margin-bottom: 4px;
     }
     .system-modal-content {
         flex-direction: column;
@@ -3047,9 +3054,13 @@ textarea.input-premium {
     }
     
     .about-hero-img-wrap {
-        aspect-ratio: 16/10;
-        max-width: 500px;
+        aspect-ratio: 4/4.5;
+        max-width: 380px;
         margin: 0 auto;
+    }
+    
+    .about-hero-img {
+        object-position: center 8%;
     }
 }
 
@@ -3064,6 +3075,16 @@ textarea.input-premium {
     
     .about-highlight-list {
         grid-template-columns: 1fr;
+    }
+    
+    .about-friction-node {
+        min-width: 0;
+        padding: 12px 6px;
+        width: 31%;
+    }
+    
+    .about-friction-node .node-title-micro {
+        font-size: 9px !important;
     }
 }
 
@@ -3467,8 +3488,8 @@ div.hero-visual-area.reveal-on-load {
 
 @media (max-width: 767px) {
     .hero {
-        padding-top: 128px !important;
-        padding-bottom: 80px !important;
+        padding-top: 104px !important;
+        padding-bottom: 64px !important;
     }
 }
 @media (min-width: 768px) {
@@ -3490,6 +3511,8 @@ div.hero-visual-area.reveal-on-load {
 @media (max-width: 767px) {
     .hero h1 {
         letter-spacing: -0.02em !important;
+        font-size: clamp(2.35rem, 6.5vw, 3rem) !important;
+        line-height: 1.05 !important;
     }
 }
 @media (min-width: 768px) {

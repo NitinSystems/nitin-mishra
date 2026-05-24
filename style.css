@@ -3086,6 +3086,10 @@ textarea.input-premium {
     .about-friction-node .node-title-micro {
         font-size: 9px !important;
     }
+    
+    #about-hero.about-section {
+        padding-top: 16px !important;
+    }
 }
 
 /* ==========================================
@@ -3490,11 +3494,6 @@ div.hero-visual-area.reveal-on-load {
     .hero {
         padding-top: 104px !important;
         padding-bottom: 64px !important;
-    }
-    .hero-label {
-        font-size: 11px;
-        padding: 4px 10px;
-        margin-bottom: 12px;
     }
 }
 @media (min-width: 768px) {

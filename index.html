@@ -249,6 +249,78 @@
         </div>
     </section>
 
+    <!-- Operational Gaps We Solve -->
+    <section class="section" id="operational-gaps">
+        <div class="container-standard">
+            <div class="section-header reveal-on-scroll">
+                <span class="section-badge">System Analysis</span>
+                <h2>Operational Gaps We Solve</h2>
+                <p>The hidden operational gaps that cause missed leads, broken handoffs, and silent revenue leakage.</p>
+            </div>
+
+            <div class="pipeline-container reveal-on-scroll">
+                
+                <!-- Node 1: Lead Visibility -->
+                <div class="pipeline-node node-stage-1">
+                    <div class="node-header">
+                        <h3 class="node-title">Lead Visibility</h3>
+                        <div class="micro-status status-red"><span class="status-dot dot-red"></span>FRAGMENTED</div>
+                    </div>
+                    <ul class="node-list">
+                        <li class="node-list-item">Fragmented lead history across tools</li>
+                        <li class="node-list-item">Handoff gaps create lost context</li>
+                        <li class="node-list-item">No centralized visibility of active leads</li>
+                        <li class="node-list-item">Manual tracking creates reporting blind spots</li>
+                        <li class="node-list-item">Lead continuity breaks before follow-up</li>
+                    </ul>
+                </div>
+
+                <!-- Connector 1 -->
+                <div class="pipeline-connector">
+                    <div class="connector-line"></div>
+                    <div class="connector-dot"></div>
+                </div>
+
+                <!-- Node 2: Workflow Continuity -->
+                <div class="pipeline-node node-stage-2">
+                    <div class="node-header">
+                        <h3 class="node-title">Workflow Continuity</h3>
+                        <div class="micro-status status-amber-strong"><span class="status-dot dot-amber-strong"></span>UNSTABLE</div>
+                    </div>
+                    <ul class="node-list">
+                        <li class="node-list-item">Follow-ups get delayed or forgotten</li>
+                        <li class="node-list-item">Handoffs break between sales and ops</li>
+                        <li class="node-list-item">Repetitive tasks slow response time</li>
+                        <li class="node-list-item">Team actions depend on manual reminders</li>
+                        <li class="node-list-item">Workflow gaps create inconsistent execution</li>
+                    </ul>
+                </div>
+
+                <!-- Connector 2 -->
+                <div class="pipeline-connector">
+                    <div class="connector-line"></div>
+                    <div class="connector-dot"></div>
+                </div>
+
+                <!-- Node 3: System Reliability -->
+                <div class="pipeline-node node-stage-3">
+                    <div class="node-header">
+                        <h3 class="node-title">System Reliability</h3>
+                        <div class="micro-status status-green"><span class="status-dot dot-green"></span>VERIFIED</div>
+                    </div>
+                    <ul class="node-list">
+                        <li class="node-list-item">Leads tracked through a complete lifecycle</li>
+                        <li class="node-list-item">Clear team ownership at every stage</li>
+                        <li class="node-list-item">Automated triggers ensure reliable continuity</li>
+                        <li class="node-list-item">Connected CRM data for reliable execution</li>
+                        <li class="node-list-item">Reduced dependency on human memory</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- 4. Capabilities: Operational Architecture -->
     <section class="section" id="capabilities">
         <div class="container-standard">
@@ -735,8 +807,20 @@
                             <input type="text" id="intakeBusinessType" name="business_type" placeholder="Business / Project Type" required>
                         </div>
                         <div class="form-group">
-                            <label for="intakeChallenge" class="visually-hidden">Operational Challenge</label>
-                            <textarea id="intakeChallenge" name="operational_challenge" placeholder="What operational challenge are you currently facing?" rows="3" required></textarea>
+                            <label for="intakeHelp" class="visually-hidden">What do you need help with?</label>
+                            <select id="intakeHelp" name="help_type" required>
+                                <option value="" disabled selected>What do you need help with?</option>
+                                <option value="Lead capture & intake">Lead capture & intake</option>
+                                <option value="CRM setup & organization">CRM setup & organization</option>
+                                <option value="Follow-up automation">Follow-up automation</option>
+                                <option value="Lead routing & qualification">Lead routing & qualification</option>
+                                <option value="Booking & intake workflows">Booking & intake workflows</option>
+                                <option value="Not sure, need guidance">Not sure, need guidance</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="intakeChallenge" class="visually-hidden">What’s breaking right now?</label>
+                            <textarea id="intakeChallenge" name="operational_challenge" placeholder="What’s breaking right now?" rows="3" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="intakeTools" class="visually-hidden">Current Tools / CRM</label>

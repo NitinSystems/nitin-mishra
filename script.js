@@ -324,6 +324,7 @@ function initIntakeForm() {
         const nameInput = document.getElementById('intakeName');
         const emailInput = document.getElementById('intakeEmail');
         const businessTypeInput = document.getElementById('intakeBusinessType');
+        const helpInput = document.getElementById('intakeHelp');
         const challengeInput = document.getElementById('intakeChallenge');
         const toolsInput = document.getElementById('intakeTools');
 
@@ -338,7 +339,7 @@ function initIntakeForm() {
             el.style.backgroundColor = '';
         };
 
-        [nameInput, emailInput, businessTypeInput, challengeInput].forEach(resetValidationStyle);
+        [nameInput, emailInput, businessTypeInput, helpInput, challengeInput].forEach(resetValidationStyle);
 
         if (!nameInput.value.trim()) {
             markInvalid(nameInput);
@@ -350,6 +351,10 @@ function initIntakeForm() {
         }
         if (!businessTypeInput.value.trim()) {
             markInvalid(businessTypeInput);
+            hasError = true;
+        }
+        if (!helpInput.value) {
+            markInvalid(helpInput);
             hasError = true;
         }
         if (!challengeInput.value.trim()) {
@@ -375,6 +380,7 @@ function initIntakeForm() {
             name: nameInput.value.trim(),
             email: emailInput.value.trim(),
             business_type: businessTypeInput.value.trim(),
+            help_type: helpInput.value,
             operational_challenge: challengeInput.value.trim(),
             current_tools: toolsInput.value.trim() || 'None Specified',
             submission_timestamp: new Date().toISOString(),

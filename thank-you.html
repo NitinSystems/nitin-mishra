@@ -170,9 +170,9 @@
                 Response typically within 24–48 hours.
             </div>
             
-            <div class="thank-you-actions">
-                <a href="./" class="btn btn-primary">Back to Home</a>
-                <a href="https://linkedin.com/in/nitin-mishra1" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Visit LinkedIn &rarr;</a>
+            <div class="thank-you-actions" id="dynamicCtaContainer">
+                <!-- CTAs will be injected here by intent logic -->
+                <a href="./" class="btn btn-secondary">Back to Home</a>
             </div>
             
             <div class="thank-you-note">
@@ -180,6 +180,59 @@
             </div>
         </div>
     </main>
+
+    <!-- Cal.com embed logic -->
+    <script>
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.cal = C.cal || function () { let p = C.cal.q = C.cal.q || []; p.push(arguments); }; let cal = C.cal; let ns = "cal"; cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; })(window, "https://app.cal.com/embed/embed.js", "init");
+      
+      cal("init", {origin:"https://cal.com"});
+      cal("ui", {"styles":{"branding":{"brandColor":"#2D5BFF"}},"hideEventTypeDetails":false,"layout":"month_view","theme":"dark"});
+    </script>
+
+    <!-- Intent Routing Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('dynamicCtaContainer');
+            if (!container) return;
+            
+            const serviceType = sessionStorage.getItem('submitted_service_type') || '';
+            
+            const highIntent = [
+                'CRM Setup & Structuring', 'Lead Routing Automation', 'Lifecycle Automation',
+                'Follow-Up Automation', 'Booking & Intake Workflow', 'Pipeline / Lead Management Setup',
+                'Workflow Automation', 'CRM Optimization', 'Client Onboarding Automation',
+                'Integration Setup', 'Form & Lead Capture Optimization', 'Email Workflow Setup'
+            ];
+            
+            const mediumIntent = [
+                'Funnel / Landing Page Systems', 'Process Optimization', 
+                'Reporting / Tracking Setup', 'Automation Audit'
+            ];
+            
+            let html = '';
+            
+            if (highIntent.includes(serviceType)) {
+                // High Intent
+                html += `<button data-cal-link="nitinmishra/30min" data-cal-config='{"theme":"dark"}' class="btn btn-primary">Book Discovery Call</button>`;
+                html += `<div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 12px; font-weight: 500;">I’ll Review & Email You First</div>`;
+            } else if (mediumIntent.includes(serviceType)) {
+                // Medium Intent
+                html += `<div style="color: var(--text-muted); font-size: 0.95rem; font-weight: 500; margin-bottom: 16px;">I’ll Review & Email You First</div>`;
+            } else {
+                // Low Intent / Fallback
+                html += `<div style="color: var(--text-muted); font-size: 0.95rem; font-weight: 500; margin-bottom: 16px;">I’ll Reach Out After Review</div>`;
+            }
+            
+            html += `<a href="./" class="btn btn-secondary" style="margin-top: ${highIntent.includes(serviceType) ? '12px' : '0'};">Back to Home</a>`;
+            
+            container.innerHTML = html;
+            container.style.flexDirection = 'column';
+            container.style.gap = '12px';
+            
+            // Cleanup
+            try { sessionStorage.removeItem('submitted_service_type'); } catch(e) {}
+        });
+    </script>
 
     <!-- 3. Standardized Consistent Footer -->
     <footer class="section border-top" style="padding: 56px 0 48px;">

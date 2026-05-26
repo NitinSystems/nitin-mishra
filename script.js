@@ -387,6 +387,9 @@ function initIntakeForm() {
             source_page: window.location.pathname || 'index.html'
         };
 
+        // Save service_type for thank-you page CTA logic
+        try { sessionStorage.setItem('submitted_service_type', payload.service_type); } catch(e) {}
+
         // Convert payload to URLSearchParams to bypass CORS preflight (OPTIONS) request
         const urlEncodedPayload = new URLSearchParams();
         Object.keys(payload).forEach(key => urlEncodedPayload.append(key, payload[key]));

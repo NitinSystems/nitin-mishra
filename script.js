@@ -380,7 +380,7 @@ function initIntakeForm() {
             name: nameInput.value.trim(),
             email: emailInput.value.trim(),
             business_type: businessTypeInput.value.trim(),
-            help_type: helpInput.value,
+            service_type: helpInput.value,
             operational_challenge: challengeInput.value.trim(),
             current_tools: toolsInput.value.trim() || 'None Specified',
             submission_timestamp: new Date().toISOString(),

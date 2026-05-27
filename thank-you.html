@@ -181,13 +181,20 @@
         </div>
     </main>
 
-    <!-- Cal.com embed logic -->
-    <script>
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.cal = C.cal || function () { let p = C.cal.q = C.cal.q || []; p.push(arguments); }; let cal = C.cal; let ns = "cal"; cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; })(window, "https://app.cal.com/embed/embed.js", "init");
-      
-      cal("init", {origin:"https://cal.com"});
-      cal("ui", {"styles":{"branding":{"brandColor":"#2D5BFF"}},"hideEventTypeDetails":false,"layout":"month_view","theme":"dark"});
-    </script>
+<!-- Cal element-click embed code begins -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "30min", {origin:"https://app.cal.com"});
+
+  
+  // Important: Please add the following attributes to the element that should trigger the calendar to open upon clicking.
+  // `data-cal-link="nitin-mishra/30min"`
+  // data-cal-namespace="30min"
+  // `data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'`
+
+  Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#1f1f1f"},"dark":{"cal-brand":"#3D82F6"}},"hideEventTypeDetails":false,"layout":"month_view"});
+  </script>
+  <!-- Cal element-click embed code ends -->
 
     <!-- Intent Routing Logic -->
     <script>
@@ -228,8 +235,8 @@
             }
             
             if (cohort === 'high') {
-                // High Intent
-                html += `<button data-cal-link="nitinmishra/30min" data-cal-config='{"theme":"dark"}' class="btn btn-primary">Book Discovery Call</button>`;
+                // High Intent - configured with exact Cal.com trigger attributes and namespace config
+                html += `<button data-cal-link="nitin-mishra/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="btn btn-primary">Book Discovery Call</button>`;
                 html += `<div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 12px; font-weight: 500;">I’ll Review & Email You First</div>`;
                 html += `<a href="./" class="btn btn-secondary" style="margin-top: 12px;">Back to Home</a>`;
             } else if (cohort === 'medium') {
@@ -246,6 +253,11 @@
             container.innerHTML = html;
             container.style.flexDirection = 'column';
             container.style.gap = '12px';
+            
+            // Programmatically trigger DOM rebinding for the dynamic button under Cal.ns['30min']
+            if (cohort === 'high' && typeof Cal === 'function' && Cal.ns && Cal.ns["30min"]) {
+                Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#1f1f1f"},"dark":{"cal-brand":"#3D82F6"}},"hideEventTypeDetails":false,"layout":"month_view"});
+            }
             
             // Cleanup session storage to prevent persistence on manual refresh
             try { sessionStorage.removeItem('submitted_service_type'); } catch(e) {}

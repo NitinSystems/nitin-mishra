@@ -198,38 +198,56 @@
             const serviceType = sessionStorage.getItem('submitted_service_type') || '';
             
             const highIntent = [
-                'CRM Setup & Structuring', 'Lead Routing Automation', 'Lifecycle Automation',
-                'Follow-Up Automation', 'Booking & Intake Workflow', 'Pipeline / Lead Management Setup',
-                'Workflow Automation', 'CRM Optimization', 'Client Onboarding Automation',
-                'Integration Setup', 'Form & Lead Capture Optimization', 'Email Workflow Setup'
+                'Lead Capture & Intake',
+                'CRM Setup & Organization',
+                'Follow-Up Automation',
+                'Lead Routing & Qualification',
+                'Booking & Intake Workflows',
+                'Integration / Workflow Support',
+                'Process Optimization'
             ];
             
             const mediumIntent = [
-                'Funnel / Landing Page Systems', 'Process Optimization', 
-                'Reporting / Tracking Setup', 'Automation Audit'
+                'Other Business System Need'
+            ];
+            
+            const lowIntent = [
+                'Not Sure, Need Guidance'
             ];
             
             let html = '';
             
+            // Fallback rule: null, empty, or unmatched serviceType defaults to medium intent
+            let cohort = 'medium'; 
             if (highIntent.includes(serviceType)) {
+                cohort = 'high';
+            } else if (lowIntent.includes(serviceType)) {
+                cohort = 'low';
+            } else if (mediumIntent.includes(serviceType)) {
+                cohort = 'medium';
+            }
+            
+            if (cohort === 'high') {
                 // High Intent
                 html += `<button data-cal-link="nitinmishra/30min" data-cal-config='{"theme":"dark"}' class="btn btn-primary">Book Discovery Call</button>`;
                 html += `<div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 12px; font-weight: 500;">I’ll Review & Email You First</div>`;
-            } else if (mediumIntent.includes(serviceType)) {
+                html += `<a href="./" class="btn btn-secondary" style="margin-top: 12px;">Back to Home</a>`;
+            } else if (cohort === 'medium') {
                 // Medium Intent
-                html += `<div style="color: var(--text-muted); font-size: 0.95rem; font-weight: 500; margin-bottom: 16px;">I’ll Review & Email You First</div>`;
+                html += `<a href="mailto:NitinMishra.me@outlook.com?subject=Additional%20System%20Details" class="btn btn-primary">Tell Me More About Your Need</a>`;
+                html += `<div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 12px; font-weight: 500;">I’ll Review & Reach Out First</div>`;
+                html += `<a href="./" class="btn btn-secondary" style="margin-top: 12px;">Back to Home</a>`;
             } else {
-                // Low Intent / Fallback
+                // Low Intent
                 html += `<div style="color: var(--text-muted); font-size: 0.95rem; font-weight: 500; margin-bottom: 16px;">I’ll Reach Out After Review</div>`;
+                html += `<a href="./" class="btn btn-secondary">Back to Home</a>`;
             }
-            
-            html += `<a href="./" class="btn btn-secondary" style="margin-top: ${highIntent.includes(serviceType) ? '12px' : '0'};">Back to Home</a>`;
             
             container.innerHTML = html;
             container.style.flexDirection = 'column';
             container.style.gap = '12px';
             
-            // Cleanup
+            // Cleanup session storage to prevent persistence on manual refresh
             try { sessionStorage.removeItem('submitted_service_type'); } catch(e) {}
         });
     </script>

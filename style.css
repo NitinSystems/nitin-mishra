@@ -2503,6 +2503,7 @@ textarea.input-premium {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 6px;
     transition: all 0.2s ease;
+    white-space: nowrap; /* Fixes broken multiline close button wrapping */
 }
 
 .system-modal-close:hover {
@@ -3941,3 +3942,109 @@ body {
         height: 32px;
     }
 }
+
+/* Credibility Fullscreen Certificate Viewer Modal */
+.cert-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(2, 3, 7, 0.95); /* ultra-dark overlay matching theme */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999; /* high z-index to sit on top of nav and everything else */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    padding: 32px;
+    box-sizing: border-box;
+}
+
+.cert-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cert-modal-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-modal-img {
+    max-width: 70vw; /* Absolutely locks certificate width to 70% of desktop viewport */
+    max-height: 80vh; /* Absolutely locks certificate height to 80% of desktop viewport */
+    width: auto;
+    height: auto;
+    object-fit: contain; /* Enforces proportional scaling and aspect ratio preservation */
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8); /* beautiful heavy premium shadow */
+    background: #020307; /* dark backing */
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.cert-modal-close {
+    position: fixed; /* anchor to screen to prevent contrast issues with bright certificate backgrounds */
+    top: 24px;
+    right: 24px;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #FFFFFF; /* High-contrast pure white */
+    background: rgba(2, 3, 7, 0.6); /* dark backing layer */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 8px 16px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    z-index: 100000;
+}
+
+.cert-modal-close:hover {
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Make cursor pointer and hover effects for credibility cert card triggers */
+.cert-card-mini .cert-preview {
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.cert-card-mini .cert-preview:hover {
+    transform: translateY(-2px);
+    border-color: rgba(43, 128, 235, 0.4);
+}
+
+@media (max-width: 600px) {
+    .cert-modal {
+        padding: 24px 16px;
+    }
+    .cert-modal-content {
+        width: 100%;
+        height: auto;
+    }
+    .cert-modal-img {
+        max-width: 90vw; /* Locks certificate width to 90% of mobile screen width */
+        max-height: 70vh; /* Safety limit for mobile height to prevent vertical overflow */
+        width: auto;
+        height: auto;
+    }
+    .cert-modal-close {
+        position: fixed;
+        top: auto;
+        bottom: 24px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+}
+

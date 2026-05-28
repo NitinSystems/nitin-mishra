@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticButtons();
     initSystemModal();
     initIntakeForm();
+    initCertModal();
 });
 
 /**
@@ -214,59 +215,127 @@ function initSystemModal() {
     
     triggerButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            const assets = JSON.parse(btn.getAttribute('data-assets') || '[]');
-            const titles = JSON.parse(btn.getAttribute('data-titles') || '[]');
-            const descriptions = JSON.parse(btn.getAttribute('data-descriptions') || '[]');
+            const isDev = btn.getAttribute('data-status') === 'in-development';
             const title = btn.getAttribute('data-title') || '';
             const desc = btn.getAttribute('data-desc') || '';
 
-            if (assets.length === 0) return;
+            // Clean any existing in-development wrapper from viewport
+            const oldDevWrapper = viewportImg.parentElement.querySelector('.dev-modal-wrapper');
+            if (oldDevWrapper) oldDevWrapper.remove();
 
-            // Populate title and description
-            modalTitle.textContent = title;
-            modalDesc.textContent = descriptions[0] || desc;
+            if (isDev) {
+                const statusText = btn.getAttribute('data-status-text') || 'In Development';
+                const roadmapItems = JSON.parse(btn.getAttribute('data-roadmap') || '[]');
 
-            // Clear thumbnails
-            thumbnailGrid.innerHTML = '';
+                // Inject animation keyframes for pulse if not already present
+                if (!document.getElementById('dev-modal-pulse-style')) {
+                    const style = document.createElement('style');
+                    style.id = 'dev-modal-pulse-style';
+                    style.textContent = `
+                        @keyframes bp-pulse {
+                            0% { transform: scale(0.95); opacity: 0.6; }
+                            50% { transform: scale(1.05); opacity: 1; }
+                            100% { transform: scale(0.95); opacity: 0.6; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
 
-            // Generate thumbnails
-            assets.forEach((assetPath, idx) => {
-                const titleStr = titles[idx] || `Asset 0${idx + 1}`;
+                // Create beautiful custom in-development info wrapper
+                const devWrapper = document.createElement('div');
+                devWrapper.className = 'dev-modal-wrapper';
+                devWrapper.style.cssText = "display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; padding: 40px 24px; text-align: center; background: rgba(4, 6, 18, 0.4); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 12px; margin: 0 auto; max-width: 520px; box-sizing: border-box;";
                 
-                const thumbItem = document.createElement('div');
-                thumbItem.className = `system-thumb-item${idx === 0 ? ' active' : ''}`;
-                thumbItem.innerHTML = `
-                    <div class="system-thumb-preview">
-                        <img src="${assetPath}" alt="${titleStr}">
+                devWrapper.innerHTML = `
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(59, 130, 246, 0.06); border: 1px solid rgba(59, 130, 246, 0.20); color: #3D82F6; font-family: monospace; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; padding: 6px 16px; border-radius: 100px; margin-bottom: 24px; box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);">
+                        <span style="width: 6px; height: 6px; background-color: #3D82F6; border-radius: 50%; display: inline-block; animation: bp-pulse 1.5s infinite ease-in-out;"></span>
+                        ${statusText}
                     </div>
-                    <div class="system-thumb-title">${titleStr}</div>
+                    
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: #ffffff; margin-bottom: 12px; letter-spacing: -0.01em; line-height: 1.3;">${title}</h2>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #a1a1aa; line-height: 1.5; margin-bottom: 24px;">${desc}</p>
+                    
+                    <div style="width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent); margin-bottom: 24px;"></div>
+                    
+                    <div style="width: 100%; text-align: left;">
+                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700; color: rgba(255, 255, 255, 0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px;">Planned System Modules</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                            ${roadmapItems.map(item => {
+                                const parts = item.split(': ');
+                                const term = parts[0] || '';
+                                const definition = parts.slice(1).join(': ') || '';
+                                return `
+                                    <li style="display: flex; align-items: flex-start; gap: 10px; font-family: 'Inter', sans-serif; font-size: 12px; color: #e4e4e7; line-height: 1.4;">
+                                        <span style="color: #3D82F6; font-weight: 700; margin-top: 1px;">✓</span>
+                                        <div>
+                                            <strong style="color: #ffffff; font-weight: 600;">${term}</strong>${definition ? ': ' + definition : ''}
+                                        </div>
+                                    </li>
+                                `;
+                            }).join('')}
+                        </ul>
+                    </div>
                 `;
 
-                thumbItem.addEventListener('click', () => {
-                    // Update active class
-                    thumbnailGrid.querySelectorAll('.system-thumb-item').forEach(item => {
-                        item.classList.remove('active');
+                // Set content and adjust view bounds (hide sidebar and borders)
+                modalTitle.textContent = title;
+                modalDesc.textContent = desc;
+                thumbnailGrid.parentElement.style.display = 'none';
+                viewportImg.parentElement.style.borderRight = 'none';
+                viewportImg.style.display = 'none';
+                viewportImg.parentElement.appendChild(devWrapper);
+            } else {
+                // Completed System - standard modal flow
+                const assets = JSON.parse(btn.getAttribute('data-assets') || '[]');
+                const titles = JSON.parse(btn.getAttribute('data-titles') || '[]');
+                const descriptions = JSON.parse(btn.getAttribute('data-descriptions') || '[]');
+
+                if (assets.length === 0) return;
+
+                // Reset standard view structures
+                thumbnailGrid.parentElement.style.display = '';
+                viewportImg.parentElement.style.borderRight = '';
+                viewportImg.style.display = '';
+
+                // Populate title and description
+                modalTitle.textContent = title;
+                modalDesc.textContent = descriptions[0] || desc;
+
+                // Clear and rebuild thumbnail grid
+                thumbnailGrid.innerHTML = '';
+                assets.forEach((assetPath, idx) => {
+                    const titleStr = titles[idx] || `Asset 0${idx + 1}`;
+                    const thumbItem = document.createElement('div');
+                    thumbItem.className = `system-thumb-item${idx === 0 ? ' active' : ''}`;
+                    thumbItem.innerHTML = `
+                        <div class="system-thumb-preview">
+                            <img src="${assetPath}" alt="${titleStr}">
+                        </div>
+                        <div class="system-thumb-title">${titleStr}</div>
+                    `;
+
+                    thumbItem.addEventListener('click', () => {
+                        thumbnailGrid.querySelectorAll('.system-thumb-item').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        thumbItem.classList.add('active');
+                        modalDesc.textContent = descriptions[idx] || desc;
+
+                        viewportImg.classList.remove('loaded');
+                        setTimeout(() => {
+                            viewportImg.src = assetPath;
+                            viewportImg.alt = titleStr;
+                        }, 50);
                     });
-                    thumbItem.classList.add('active');
 
-                    // Dynamic description update for active step
-                    modalDesc.textContent = descriptions[idx] || desc;
-
-                    // Smooth transition for viewport image load
-                    viewportImg.classList.remove('loaded');
-                    setTimeout(() => {
-                        viewportImg.src = assetPath;
-                        viewportImg.alt = titleStr;
-                    }, 50);
+                    thumbnailGrid.appendChild(thumbItem);
                 });
 
-                thumbnailGrid.appendChild(thumbItem);
-            });
-
-            // Set initial viewport image
-            viewportImg.classList.remove('loaded');
-            viewportImg.src = assets[0];
-            viewportImg.alt = titles[0] || 'System Asset';
+                // Set initial viewport image
+                viewportImg.classList.remove('loaded');
+                viewportImg.src = assets[0];
+                viewportImg.alt = titles[0] || 'System Asset';
+            }
 
             // Open modal
             modal.classList.add('active');
@@ -439,3 +508,66 @@ function initIntakeForm() {
         return re.test(email);
     }
 }
+
+/**
+ * Credibility Certification Fullscreen Modal Viewer
+ * Handles dynamic modal creation, keybind binds, and click-away triggers
+ */
+function initCertModal() {
+    const previews = document.querySelectorAll('.cert-card-mini .cert-preview');
+    if (previews.length === 0) return;
+
+    // Create the modal container dynamically
+    const modal = document.createElement('div');
+    modal.className = 'cert-modal';
+    modal.id = 'certModal';
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = `
+        <div class="cert-modal-content">
+            <button class="cert-modal-close" id="certModalClose" aria-label="Close Certificate">[ Close ]</button>
+            <img class="cert-modal-img" id="certModalImg" src="" alt="Fullscreen Certificate">
+        </div>
+    `;
+    document.body.appendChild(modal);
+
+    const modalImg = modal.querySelector('#certModalImg');
+    const closeBtn = modal.querySelector('#certModalClose');
+
+    const openModal = (imgSrc, imgAlt) => {
+        modalImg.src = imgSrc;
+        modalImg.alt = imgAlt;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden'; // prevent page scrolling
+    };
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = ''; // restore scrolling
+    };
+
+    previews.forEach(preview => {
+        preview.addEventListener('click', () => {
+            const img = preview.querySelector('img');
+            if (img) {
+                openModal(img.src, img.alt || 'Certificate View');
+            }
+        });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        // Close if click is outside the image
+        if (e.target === modal || e.target.classList.contains('cert-modal-content')) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+

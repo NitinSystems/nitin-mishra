@@ -7,6 +7,53 @@
     <meta name="description" content="Detailed case study of the AI Customer Journey Leak Recovery System. Explore the architecture, automation logic, and operational outcomes.">
     <link rel="canonical" href="https://nitin-mishra.netlify.app/ai-customer-journey-leak-recovery.html">
 
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://nitin-mishra.netlify.app/#person",
+          "name": "Nitin Mishra",
+          "jobTitle": "Marketing Systems & Automation Specialist",
+          "url": "https://nitin-mishra.netlify.app/",
+          "sameAs": ["https://www.linkedin.com/in/srnitinmishra/"]
+        },
+        {
+          "@type": "TechArticle",
+          "@id": "https://nitin-mishra.netlify.app/ai-customer-journey-leak-recovery.html#article",
+          "url": "https://nitin-mishra.netlify.app/ai-customer-journey-leak-recovery.html",
+          "name": "AI Customer Journey Leak Recovery System | Case Study",
+          "headline": "AI Customer Journey Leak Recovery System",
+          "description": "Detailed case study of the AI Customer Journey Leak Recovery System. Explore the architecture, automation logic, and operational outcomes.",
+          "image": "https://nitin-mishra.netlify.app/assets/workflows/full-systems-architecture-make.png",
+          "datePublished": "2026-05-23T08:00:00+05:30",
+          "dateModified": "2026-06-18T19:00:00+05:30",
+          "author": {"@id": "https://nitin-mishra.netlify.app/#person"},
+          "publisher": {"@id": "https://nitin-mishra.netlify.app/#person"},
+          "isPartOf": {
+            "@type": "CollectionPage",
+            "@id": "https://nitin-mishra.netlify.app/systems-library.html#collection",
+            "url": "https://nitin-mishra.netlify.app/systems-library.html",
+            "name": "Systems Library | Nitin Mishra"
+          },
+          "about": [
+            {
+              "@type": "SoftwareApplication",
+              "name": "AI Customer Journey Leak Recovery System",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "All",
+              "description": "AI-assisted lifecycle recovery platform designed to detect customer journey leakage, execute recovery actions, manage escalations, and maintain closed-loop operational visibility."
+            }
+          ],
+          "dependencies": "Make.com, GoHighLevel, HubSpot, Slack, Airtable, OpenAI API"
+        }
+      ]
+    }
+    </script>
+
+
     <!-- Social / Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nitin-mishra.netlify.app/ai-customer-journey-leak-recovery.html">
@@ -39,8 +86,12 @@
         }
 
         section.systems-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
             padding-top: 170px !important;
             padding-bottom: 96px;
+            box-sizing: border-box;
         }
 
         .systems-hero-content {
@@ -329,7 +380,9 @@
             }
             .pdf-action-buttons .btn {
                 width: 100% !important;
-                display: block !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
                 text-align: center !important;
             }
         }
@@ -831,7 +884,7 @@
         .flow-stepper {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 28px;
             margin-top: 32px;
         }
 

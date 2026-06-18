@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Customer Journey Leak Recovery System | Case Study | Nitin Mishra</title>
+    <meta name="description" content="Detailed case study of the AI Customer Journey Leak Recovery System. Explore the architecture, automation logic, and operational outcomes.">
+    <link rel="canonical" href="https://nitin-mishra.netlify.app/ai-customer-journey-leak-recovery.html">
+
+    <!-- Social / Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nitin-mishra.netlify.app/ai-customer-journey-leak-recovery.html">
+    <meta property="og:title" content="AI Customer Journey Leak Recovery System | Nitin Mishra">
+    <meta property="og:description" content="Portfolio-grade systems case study. Explore the operational data architecture and automation scenarios of the leak recovery platform.">
+    <meta property="og:image" content="https://nitin-mishra.netlify.app/assets/workflows/full-systems-architecture-make.png">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Customer Journey Leak Recovery System | Nitin Mishra">
+    <meta name="twitter:description" content="Explore the architecture, database blueprints, and modular automation scenarios of the operational leak recovery platform.">
+    <meta name="twitter:image" content="https://nitin-mishra.netlify.app/assets/workflows/full-systems-architecture-make.png">
+
+    <!-- Favicon Infrastructure -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+    <!-- Master Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Scoped Case Study Styling -->
+    <style>
+        /* Standalone Systems Library Scoped Styling */
+        .glow-background {
+            background-color: #020307;
+            background-image: 
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(28, 78, 216, 0.15), transparent 70%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+        }
+
+        section.systems-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 140px !important;
+            padding-bottom: 80px;
+            box-sizing: border-box;
+        }
+
+        section.systems-hero .container-standard {
+            width: 100%;
+        }
+
+        .systems-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Case Study Section Spacers */
+        .case-study-section {
+            padding-top: 80px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .case-study-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 960px) {
+            .case-study-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* Category Headings inside Case Study */
+        .category-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: var(--sp-16);
+        }
+
+        .category-heading::before {
+            content: '//';
+            color: var(--system-blue);
+            font-family: var(--font-mono, monospace);
+            font-weight: 700;
+        }
+
+        /* Why This Matters Callout Box */
+        .why-matters-box {
+            background: rgba(28, 78, 216, 0.06);
+            border-left: 3px solid var(--system-blue);
+            padding: var(--sp-24);
+            border-radius: 0 16px 16px 0;
+            margin-top: var(--sp-32);
+        }
+
+        .why-matters-box h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-pure);
+            margin-bottom: var(--sp-8);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .why-matters-box p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-silver);
+            margin: 0;
+        }
+
+        /* PDF Viewer Containers */
+        .diagram-container {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-top: var(--sp-24);
+        }
+
+        .diagram-card {
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(28, 78, 216, 0.15);
+            border-radius: 16px;
+            padding: var(--sp-24);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .architecture-card {
+            background: linear-gradient(135deg, rgba(6, 9, 24, 0.7) 0%, rgba(3, 4, 10, 0.5) 100%) !important;
+            border: 1px solid rgba(28, 78, 216, 0.38) !important;
+            border-radius: 16px;
+            padding: var(--sp-32) !important;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.6), 
+                0 0 40px rgba(28, 78, 216, 0.12),
+                inset 0 0 20px rgba(28, 78, 216, 0.05) !important;
+            transition: all 0.3s ease;
+        }
+
+        .architecture-card:hover {
+            border-color: rgba(28, 78, 216, 0.55) !important;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.7), 
+                0 0 50px rgba(28, 78, 216, 0.22),
+                inset 0 0 25px rgba(28, 78, 216, 0.08) !important;
+        }
+
+        @media (max-width: 767px) {
+            .architecture-card {
+                padding: var(--sp-24) !important;
+                gap: 16px;
+            }
+        }
+
+        .documentation-section {
+            background-color: #020307 !important;
+            background-image: 
+                radial-gradient(ellipse 125% 125% at 50% 10%, #000000 40%, #010133 100%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+            background-size: 100% 100%, 40px 40px, 40px 40px !important;
+            border-top: 1px solid transparent !important;
+            border-image: linear-gradient(90deg, transparent, rgba(28, 78, 216, 0.45) 50%, transparent) 1 !important;
+            border-bottom: none !important;
+            box-shadow: inset 0 0 60px rgba(28, 78, 216, 0.08) !important;
+        }
+
+        .documentation-card {
+            background: rgba(4, 6, 18, 0.6) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(28, 78, 216, 0.25) !important;
+            border-radius: 16px !important;
+            padding: var(--sp-32) !important;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(28, 78, 216, 0.1) !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .documentation-card:hover {
+            border-color: rgba(28, 78, 216, 0.5) !important;
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.7),
+                0 0 45px rgba(28, 78, 216, 0.18) !important;
+        }
+
+        @media (max-width: 767px) {
+            .documentation-card {
+                padding: var(--sp-24) !important;
+            }
+        }
+
+        .pdf-embed-wrapper {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            background: #020307;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pdf-fallback {
+            padding: var(--sp-48);
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .pdf-caption {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 12px;
+        }
+
+        /* Airtable Tabs Container */
+        .data-foundation-tabs {
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            margin-top: 32px;
+        }
+
+        .tab-list {
+            display: flex;
+            overflow-x: auto;
+            background: rgba(7, 9, 17, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 16px 0;
+            gap: 8px;
+            scrollbar-width: none;
+        }
+
+        .tab-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: var(--text-muted);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 12px 16px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-pure);
+        }
+
+        .tab-btn.active {
+            color: var(--text-pure);
+            border-bottom-color: var(--system-blue);
+        }
+
+        .tab-content-container {
+            padding: 32px;
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: var(--sp-24);
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        .tab-narrative {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tab-narrative h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            color: var(--text-pure);
+            margin: 0;
+        }
+
+        .tab-narrative p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-silver);
+            margin: 0;
+        }
+
+        .tab-bullets {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: var(--sp-16);
+            border-radius: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .tab-bullets {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bullet-item {
+            font-size: 0.85rem;
+            color: var(--text-silver);
+            line-height: 1.5;
+        }
+
+        .bullet-item strong {
+            color: var(--text-pure);
+        }
+
+        .tab-screenshot-wrapper {
+            background: #020307;
+            border: 1px solid rgba(28, 78, 216, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tab-screenshot-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Intake Pipeline Container */
+        .intake-pipeline-container {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 48px;
+            align-items: center;
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: var(--sp-32);
+            border-radius: var(--card-radius);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            margin-top: var(--sp-32);
+        }
+
+        @media (max-width: 960px) {
+            .intake-pipeline-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        .intake-pipeline-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .pipeline-step {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: var(--sp-16) var(--sp-24);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pipeline-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 3px;
+            background: transparent;
+            transition: background 0.25s ease;
+        }
+
+        .pipeline-step:hover {
+            background: rgba(28, 78, 216, 0.04);
+            border-color: rgba(28, 78, 216, 0.15);
+        }
+
+        .pipeline-step.active {
+            background: rgba(28, 78, 216, 0.08);
+            border-color: rgba(28, 78, 216, 0.3);
+            box-shadow: 0 5px 15px rgba(28, 78, 216, 0.05);
+        }
+
+        .pipeline-step.active::before {
+            background: var(--system-blue);
+        }
+
+        .step-num {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.75rem;
+            color: var(--system-blue);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .pipeline-step h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: var(--text-pure);
+            margin: 0 0 6px 0;
+        }
+
+        .pipeline-step p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .intake-pipeline-visual {
+            background: #020307;
+            border: 1px solid rgba(28, 78, 216, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 4/3;
+        }
+
+        .intake-visual-wrapper {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .intake-visual-wrapper.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intake-visual-wrapper img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Automation Scenarios Cards List */
+        .automation-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--sp-24);
+            margin-top: 32px;
+        }
+
+        .automation-card {
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .automation-card:hover {
+            border-color: rgba(28, 78, 216, 0.25);
+            box-shadow: 0 10px 25px rgba(28, 78, 216, 0.05);
+        }
+
+        .automation-card-header {
+            padding: var(--sp-24);
+            display: flex;
+            flex-direction: column;
+            gap: var(--sp-20);
+            cursor: pointer;
+            background: rgba(7, 9, 17, 0.8);
+            user-select: none;
+        }
+
+        .scenario-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .toggle-btn-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toggle-text {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.25s ease;
+        }
+
+        .automation-card:hover .toggle-text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .automation-card.expanded .toggle-text {
+            color: var(--text-pure);
+        }
+
+        .toggle-text::before {
+            content: "View Blueprint";
+        }
+
+        .automation-card.expanded .toggle-text::before {
+            content: "Hide Blueprint";
+        }
+
+        .scenario-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .scenario-number {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.75rem;
+            color: var(--system-blue);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        .scenario-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            color: var(--text-pure);
+            margin: 0;
+        }
+
+        .toggle-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .toggle-icon {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            line-height: 1;
+            font-weight: 300;
+            transition: transform 0.25s ease;
+        }
+
+        .automation-card:hover .toggle-btn {
+            border-color: rgba(28, 78, 216, 0.3);
+            background: rgba(28, 78, 216, 0.05);
+        }
+
+        .automation-card.expanded .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .automation-card.expanded .toggle-btn {
+            background: rgba(28, 78, 216, 0.1);
+            border-color: var(--system-blue);
+        }
+
+        .automation-card-body {
+            display: none;
+            padding: 0 var(--sp-24) var(--sp-24);
+            background: rgba(4, 6, 18, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .automation-card.expanded .automation-card-body {
+            display: block;
+        }
+
+        .scenario-info-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.05);
+            padding-top: var(--sp-20);
+            width: 100%;
+        }
+
+        @media (max-width: 767px) {
+            .scenario-info-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        .info-col {
+            display: flex;
+            flex-direction: column;
+            gap: var(--sp-16);
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-label {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .info-value {
+            font-size: 0.9rem;
+            color: var(--text-silver);
+            line-height: 1.5;
+        }
+
+        .scenario-expanded-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--sp-24);
+            margin-top: 0;
+            padding-top: var(--sp-20);
+            border-top: none;
+        }
+
+        .screenshot-wrapper {
+            background: #020307;
+            border: 1px solid rgba(28, 78, 216, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screenshot-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .scenario-notes {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-silver);
+            margin: 0;
+            background: rgba(28, 78, 216, 0.04);
+            padding: var(--sp-16) var(--sp-24);
+            border-radius: 8px;
+            border-left: 2px solid var(--system-blue);
+        }
+
+        /* End to End Flow steps */
+        .flow-stepper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .flow-step-item {
+            display: flex;
+            gap: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: var(--sp-20) var(--sp-24);
+            border-radius: var(--card-radius);
+            align-items: center;
+            transition: all 0.25s ease;
+        }
+
+        .flow-step-item:hover {
+            background: rgba(28, 78, 216, 0.04);
+            border-color: rgba(28, 78, 216, 0.15);
+        }
+
+        .flow-indicator-num {
+            font-family: var(--font-mono, monospace);
+            font-size: 1rem;
+            color: var(--system-blue);
+            font-weight: 700;
+            background: rgba(28, 78, 216, 0.15);
+            border: 1px solid rgba(28, 78, 216, 0.3);
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flow-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .flow-details h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            color: var(--text-pure);
+            margin: 0;
+        }
+
+        .flow-details p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Architectural Decisions Cards */
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .decision-card {
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: var(--sp-24) var(--sp-32);
+            border-radius: var(--card-radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.25s ease;
+        }
+
+        .decision-card:hover {
+            border-color: rgba(28, 78, 216, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .decision-card h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-pure);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .decision-card h5::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--system-blue);
+        }
+
+        .decision-card p {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-silver);
+            margin: 0;
+        }
+
+        /* Outcomes List */
+        .outcomes-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        @media (max-width: 767px) {
+            .outcomes-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .outcome-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: var(--sp-24);
+            border-radius: var(--card-radius);
+            display: flex;
+            gap: var(--sp-16);
+            align-items: flex-start;
+        }
+
+        .outcome-marker {
+            color: #10B981;
+            font-weight: 800;
+            font-size: 1.25rem;
+            line-height: 1;
+        }
+
+        .outcome-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .outcome-text h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            color: var(--text-pure);
+            margin: 0;
+        }
+
+        .outcome-text p {
+            font-size: 0.88rem;
+            line-height: 1.5;
+            color: var(--text-silver);
+            margin: 0;
+        }
+
+        /* Alternating Background Utilities with Branding Grid */
+        .section-gradient-a {
+            background-color: #020307 !important;
+            background-image: 
+                radial-gradient(ellipse 125% 125% at 50% 10%, #000000 40%, #0d1a36 100%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+            background-size: 100% 100%, 40px 40px, 40px 40px !important;
+        }
+
+        .section-gradient-b {
+            background-color: #020307 !important;
+            background-image: 
+                radial-gradient(ellipse 125% 125% at 50% 10%, #000000 40%, #010133 100%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+            background-size: 100% 100%, 40px 40px, 40px 40px !important;
+        }
+
+        .section-matte {
+            background-color: #020307 !important;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+            background-size: 40px 40px, 40px 40px !important;
+        }
+
+        .section-navy {
+            background-color: #040612 !important;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+            background-size: 40px 40px, 40px 40px !important;
+        }
+        
+        .section-glow-separator-top {
+            border-top: 1px solid transparent !important;
+            border-image: linear-gradient(90deg, transparent, rgba(28, 78, 216, 0.25) 50%, transparent) 1 !important;
+        }
+
+        .section-glow-separator-bottom {
+            border-bottom: 1px solid transparent !important;
+            border-image: linear-gradient(90deg, transparent, rgba(28, 78, 216, 0.25) 50%, transparent) 1 !important;
+        }
+
+        /* Override global case-study-section border to allow custom backgrounds to meet */
+        .case-study-section {
+            border-bottom: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Global Glow System -->
+    <div class="glow-background">
+        <div class="glow-orb glow-top-right"></div>
+        <div class="glow-orb glow-bottom-left"></div>
+    </div>
+
+    <!-- 1. Navigation: Floating Architectural Shell -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="./" class="nav-brand" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+                <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
+                    <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+                </div>
+                Nitin Mishra
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">
+                <span class="icon-menu">☰</span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="systems-library.html">Systems</a></li>
+                <li><a href="index.html#process">Process</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <a href="index.html#contact" class="btn btn-primary nav-cta">Book Audit</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main>
+        <!-- Hero Section -->
+        <section class="section systems-hero section-gradient-a section-glow-separator-bottom">
+            <div class="container-standard">
+                <div class="systems-hero-content reveal-on-load">
+                    <span class="section-badge" style="margin-bottom: var(--sp-16);">Completed System</span>
+                    <h1 style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15; margin-bottom: var(--sp-24); color: var(--text-pure); letter-spacing: -0.03em;">AI Customer Journey<br>Leak Recovery System</h1>
+                    <p style="font-size: clamp(1rem, 1.8vw, 1.15rem); line-height: 1.6; color: var(--text-muted); max-width: 760px; margin: 0 auto 32px;">AI-assisted lifecycle recovery platform designed to detect customer journey leakage, execute recovery actions, manage escalations, and maintain closed-loop operational visibility across the customer journey.</p>
+                    
+                    <!-- Meta specs row -->
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 40px; font-family: var(--font-mono, monospace); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.60);">
+                        <span>Status: <strong style="color: #10B981;">Completed</strong></span>
+                        <span style="color: rgba(255,255,255,0.15);">|</span>
+                        <span>Category: <strong>Revenue Operations Architecture</strong></span>
+                        <span style="color: rgba(255,255,255,0.15);">|</span>
+                        <span>Type: <strong>AI-Assisted Lifecycle Governance</strong></span>
+                    </div>
+
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
+                        <a href="#pdf-documentation" class="btn btn-primary">View Full Case Study</a>
+                        <a href="projects/ai-customer-journey-leak-recovery/case-study/ai-customer-journey-leak-recovery-system.pdf" target="_blank" class="btn btn-secondary">Download PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Summary Section -->
+        <section class="case-study-section section-matte">
+            <div class="container-standard">
+                <div class="case-study-grid">
+                    <div>
+                        <span class="category-heading">Executive Summary</span>
+                        <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 20px; color: var(--text-pure);">Operational Overview</h2>
+                        <p style="color: var(--text-silver); font-size: 0.98rem; line-height: 1.7; margin-bottom: 20px;">
+                            Modern pipeline operations struggle with stagewise lead progression. Leads drop between marketing, sales, and operations boundaries due to delayed follow-ups and system latency. 
+                        </p>
+                        <p style="color: var(--text-silver); font-size: 0.98rem; line-height: 1.7;">
+                            This platform resolves stagewise boundaries by introducing automated, SLA-driven leakage tracking. When an opportunity exceeds stage boundaries, the system immediately audits the customer journey record, determines recovery paths using AI reasoning, executes automated follow-ups, and manages human escalation when necessary.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="why-matters-box">
+                            <h5>Why This Matters</h5>
+                            <p>Business opportunities frequently stall between lifecycle stages. Without structured monitoring, recovery processes, and escalation governance, organizations lose visibility into customer progression and create preventable revenue leakage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Challenge Section -->
+        <section class="case-study-section section-matte">
+            <div class="container-standard">
+                <span class="category-heading">Business Challenge</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 24px; color: var(--text-pure);">The Operational Gaps</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 32px;">
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.03); padding: 24px; border-radius: 12px;">
+                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--text-pure); margin-bottom: 8px;">Revenue Leakage</h4>
+                        <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-silver);">Friction points and delayed outreach cause high-intent prospects to go cold, resulting in lost revenue that is difficult to audit or trace.</p>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.03); padding: 24px; border-radius: 12px;">
+                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--text-pure); margin-bottom: 8px;">Stalled Opportunities</h4>
+                        <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-silver);">Leads sit in mid-funnel stages indefinitely without triggers to re-engage, causing pipeline bloat and inaccurate forecasting.</p>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.03); padding: 24px; border-radius: 12px;">
+                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--text-pure); margin-bottom: 8px;">Lifecycle Visibility Gaps</h4>
+                        <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-silver);">Operations teams lack visual timelines indicating precisely where customer journeys stall or when SLAs are breached.</p>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.03); padding: 24px; border-radius: 12px;">
+                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--text-pure); margin-bottom: 8px;">Manual Recovery Processes</h4>
+                        <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-silver);">Outreach recovery relies on manual database checks and ad-hoc sales lists rather than instant, context-aware recovery automation.</p>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.03); padding: 24px; border-radius: 12px;">
+                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--text-pure); margin-bottom: 8px;">Escalation Bottlenecks</h4>
+                        <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-silver);">Breached wait states and ignored notifications sit unresolved without automatic, manager-level routing and oversight.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Architecture Section -->
+        <section class="case-study-section section-navy section-glow-separator-top">
+            <div class="container-standard">
+                <span class="category-heading">System Architecture</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Solution Layout</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    Below are the primary visual models defining the structural data flows and process separation parameters inside the platform. These architectural blueprints are embedded directly in PDF format.
+                </p>
+
+                <div class="diagram-container">
+                    <!-- Diagram 1: System Architecture -->
+                    <div class="architecture-card">
+                        <div style="margin-bottom: var(--sp-16);">
+                            <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); color: var(--text-pure); margin: 0 0 12px 0;">System Architecture Diagram</h2>
+                            <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; margin: 0 0 20px 0;">
+                                This diagram illustrates the complete operational architecture of the AI Customer Journey Leak Recovery System.<br><br>
+                                The architecture combines lifecycle monitoring, leakage detection, AI-assisted decisioning, recovery execution, escalation management, and outcome evaluation into a structured closed-loop recovery framework.<br><br>
+                                The purpose of the architecture is to identify customer journey leakage, coordinate recovery actions, maintain operational visibility, and ensure stalled opportunities receive appropriate intervention before revenue is lost.
+                            </p>
+                            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+                                <button onclick="togglePdfViewer('system-arch-wrapper', this)" class="btn btn-primary" style="font-size: 13px; padding: 8px 18px;">View Diagram</button>
+                                <a href="projects/ai-customer-journey-leak-recovery/architecture-diagrams/system-architecture-diagram.pdf" target="_blank" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Open PDF</a>
+                                <a href="projects/ai-customer-journey-leak-recovery/architecture-diagrams/system-architecture-diagram.pdf" download class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Download</a>
+                            </div>
+                        </div>
+                        <div class="pdf-embed-wrapper" id="system-arch-wrapper" style="display: none; margin-top: 20px;">
+                            <object data="projects/ai-customer-journey-leak-recovery/architecture-diagrams/system-architecture-diagram.pdf" type="application/pdf" width="100%" height="100%">
+                                <div class="pdf-fallback">
+                                    <p style="color: var(--text-silver); font-size: 0.9rem; margin-bottom: 12px;">Browser PDF preview is unavailable.</p>
+                                    <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
+                                        <a href="projects/ai-customer-journey-leak-recovery/architecture-diagrams/system-architecture-diagram.pdf" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 8px 16px;">Open PDF</a>
+                                        <a href="projects/ai-customer-journey-leak-recovery/architecture-diagrams/system-architecture-diagram.pdf" download class="btn btn-secondary" style="font-size: 12px; padding: 8px 16px;">Download PDF</a>
+                                    </div>
+                                </div>
+                            </object>
+                        </div>
+                        <p class="pdf-caption" style="margin-top: 16px;"><strong>Diagram Purpose:</strong> Outlines the end-to-end data pipelines running from webhook ingestion to AI-logic routing, SMS/email re-engagement modules, and automated closed-loop database status deactivation.</p>
+                    </div>
+
+                    <!-- Diagram 2: Operational Data Architecture -->
+                    <div class="architecture-card">
+                        <div style="margin-bottom: var(--sp-16);">
+                            <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); color: var(--text-pure); margin: 0 0 12px 0;">Operational Data Architecture Diagram</h2>
+                            <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; margin: 0 0 20px 0;">
+                                This diagram illustrates the underlying operational data structure supporting the system.<br><br>
+                                Customer Journey Records act as the system of record, while Leakage Events, Recovery Actions, Escalation Records, and Outcome Records provide visibility into every recovery decision and customer journey outcome.<br><br>
+                                The architecture ensures traceability, reporting visibility, auditability, and closed-loop synchronization across the entire customer lifecycle.
+                            </p>
+                            <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+                                <button onclick="togglePdfViewer('data-arch-wrapper', this)" class="btn btn-primary" style="font-size: 13px; padding: 8px 18px;">View Diagram</button>
+                                <a href="projects/ai-customer-journey-leak-recovery/architecture-diagrams/operational-data-architecture-diagram.pdf" target="_blank" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Open PDF</a>
+                                <a href="projects/ai-customer-journey-leak-recovery/architecture-diagrams/operational-data-architecture-diagram.pdf" download class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Download</a>
+                            </div>
+                        </div>
+                        <div class="pdf-embed-wrapper" id="data-arch-wrapper" style="display: none; margin-top: 20px;">
+                            <object data="projects/ai-customer-journey-leak-recovery/architecture-diagrams/operational-data-architecture-diagram.pdf" type="application/pdf" width="100%" height="100%">
+                                <div class="pdf-fallback">
+                                    <p style="color: var(--text-silver); font-size: 0.9rem; margin-bottom: 12px;">Browser PDF preview is unavailable.</p>
+                                    <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
+                                        <a href="projects/ai-customer-journey-leak-recovery/architecture-diagrams/operational-data-architecture-diagram.pdf" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 8px 16px;">Open PDF</a>
+                                        <a href="projects/ai-customer-journey-leak-recovery/architecture-diagrams/operational-data-architecture-diagram.pdf" download class="btn btn-secondary" style="font-size: 12px; padding: 8px 16px;">Download PDF</a>
+                                    </div>
+                                </div>
+                            </object>
+                        </div>
+                        <p class="pdf-caption" style="margin-top: 16px;"><strong>Diagram Purpose:</strong> Defines relational database structure and linkage keys mapping Customer Journeys, Stage Entries, Recovery Audits, Escalation Incidents, and Outcome evaluations.</p>
+                    </div>
+                </div>
+
+                <div class="why-matters-box" style="margin-top: 40px;">
+                    <h5>Why This Matters</h5>
+                    <p>A clear architecture creates operational visibility, separates responsibilities across system layers, and enables scalable lifecycle management.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Operational Data Foundation Section -->
+        <section class="case-study-section section-matte section-glow-separator-top">
+            <div class="container-standard">
+                <span class="category-heading">Operational Data Foundation</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Database Blueprints</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px;">
+                    The platform's relational database layout in Airtable structures historical context so that monitoring automation behaves reliably. Select below to review each database table.
+                </p>
+
+                <!-- Interactive Tabbed Airtable Viewer -->
+                <div class="data-foundation-tabs">
+                    <div class="tab-list" role="tablist">
+                        <button class="tab-btn active" role="tab" onclick="switchTableTab(0)">1. Journey Records</button>
+                        <button class="tab-btn" role="tab" onclick="switchTableTab(1)">2. Leakage Events</button>
+                        <button class="tab-btn" role="tab" onclick="switchTableTab(2)">3. Recovery Actions</button>
+                        <button class="tab-btn" role="tab" onclick="switchTableTab(3)">4. Escalation Records</button>
+                        <button class="tab-btn" role="tab" onclick="switchTableTab(4)">5. Outcome Records</button>
+                    </div>
+
+                    <div class="tab-content-container">
+                        <!-- Tab 1 -->
+                        <div class="tab-content active" id="tab-content-0">
+                            <div class="tab-narrative">
+                                <h4>Customer Journey Records Table</h4>
+                                <p>Captures all incoming lead details, profile metadata, stage timestamps, and active owner identifiers. Serves as the single system of record for active tracking.</p>
+                                <div class="tab-bullets">
+                                    <div class="bullet-item"><strong>Primary Key:</strong> Journey ID (Linked to Lead record)</div>
+                                    <div class="bullet-item"><strong>Critical Metric:</strong> Current Staged enters timeline (triggers SLA metrics)</div>
+                                </div>
+                            </div>
+                            <div class="tab-screenshot-wrapper">
+                                <img src="projects/ai-customer-journey-leak-recovery/airtable-screenshots/01-customer-journey-records.png" alt="Customer Journey Records Table View">
+                            </div>
+                        </div>
+
+                        <!-- Tab 2 -->
+                        <div class="tab-content" id="tab-content-1">
+                            <div class="tab-narrative">
+                                <h4>Leakage Events Table</h4>
+                                <p>Tracks stage boundaries breaches. If a record remains in a single funnel stage past its allowed SLA, a Leakage Event record is instantiated to log the violation.</p>
+                                <div class="tab-bullets">
+                                    <div class="bullet-item"><strong>Primary Key:</strong> Leakage ID (Linked to Journey ID)</div>
+                                    <div class="bullet-item"><strong>Trigger Logic:</strong> Entered automatically when Stage SLA exceeds limit</div>
+                                </div>
+                            </div>
+                            <div class="tab-screenshot-wrapper">
+                                <img src="projects/ai-customer-journey-leak-recovery/airtable-screenshots/02-leakage-events.png" alt="Leakage Events Table View">
+                            </div>
+                        </div>
+
+                        <!-- Tab 3 -->
+                        <div class="tab-content" id="tab-content-2">
+                            <div class="tab-narrative">
+                                <h4>Recovery Actions Table</h4>
+                                <p>Logs outreach events executed by automation engines, storing messaging copies generated by AI, outreach timestamps, and user interaction indicators.</p>
+                                <div class="tab-bullets">
+                                    <div class="bullet-item"><strong>Primary Key:</strong> Action ID (Linked to Leakage ID)</div>
+                                    <div class="bullet-item"><strong>Communication Channels:</strong> Email triggers and SMS outreach records</div>
+                                </div>
+                            </div>
+                            <div class="tab-screenshot-wrapper">
+                                <img src="projects/ai-customer-journey-leak-recovery/airtable-screenshots/03-recovery-actions.png" alt="Recovery Actions Table View">
+                            </div>
+                        </div>
+
+                        <!-- Tab 4 -->
+                        <div class="tab-content" id="tab-content-3">
+                            <div class="tab-narrative">
+                                <h4>Escalation Records Table</h4>
+                                <p>Registers exceptions and manages human review protocols when automated recovery actions fail to re-engage the customer within secondary SLA constraints. Escalations trigger dedicated communication channels and ownership updates to coordinate manual intervention.</p>
+                                <div class="tab-bullets">
+                                    <div class="bullet-item"><strong>Primary Key:</strong> Escalation ID (Linked to Action ID)</div>
+                                    <div class="bullet-item"><strong>Action Pathway:</strong> Escalation Notification Email, Human Review Escalation Process, and CRM Ownership Visibility</div>
+                                </div>
+                            </div>
+                            <div class="tab-screenshot-wrapper">
+                                <img src="projects/ai-customer-journey-leak-recovery/airtable-screenshots/04-escalation-records.png" alt="Escalation Records Table View">
+                            </div>
+                        </div>
+
+                        <!-- Tab 5 -->
+                        <div class="tab-content" id="tab-content-4">
+                            <div class="tab-narrative">
+                                <h4>Outcome Records Table</h4>
+                                <p>Logs resolution indicators (Lost, Recovered, Stalled) and closes active leakage alerts, syncing status updates back to source platforms.</p>
+                                <div class="tab-bullets">
+                                    <div class="bullet-item"><strong>Primary Key:</strong> Outcome ID (Linked to Journey ID)</div>
+                                    <div class="bullet-item"><strong>Closed Loop Sync:</strong> Closed records release timeline monitors</div>
+                                </div>
+                            </div>
+                            <div class="tab-screenshot-wrapper">
+                                <img src="projects/ai-customer-journey-leak-recovery/airtable-screenshots/05-outcome-records.png" alt="Outcome Records Table View">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="why-matters-box" style="margin-top: 40px;">
+                    <h5>Why This Matters</h5>
+                    <p>Operational systems depend on structured records. Consistent data architecture creates visibility, accountability, and reliable automation behavior.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Opportunity Intake Layer Section -->
+        <section class="case-study-section section-navy section-glow-separator-top">
+            <div class="container-standard">
+                <span class="category-heading">Opportunity Intake Layer</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Entry System Flow</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px;">
+                    Intake mechanics standardise customer profile data entering the tracking framework. Select each step inside the pipeline layout below to display the corresponding interface.
+                </p>
+
+                <!-- Interactive Intake Pipeline -->
+                <div class="intake-pipeline-container">
+                    <div class="intake-pipeline-steps">
+                        <!-- Step 1 -->
+                        <div class="pipeline-step active" onclick="switchIntakeStep(0)">
+                            <span class="step-num">Step 01</span>
+                            <h5>Intake Interface</h5>
+                            <p>Prospects submit requirements via structured forms, capturing validated lead profile attributes cleanly.</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="pipeline-step" onclick="switchIntakeStep(1)">
+                            <span class="step-num">Step 02</span>
+                            <h5>Ingestion Webhook</h5>
+                            <p>A Make.com webhook extracts the form payload, Normalizes formatting, and maps entry stages.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="pipeline-step" onclick="switchIntakeStep(2)">
+                            <span class="step-num">Step 03</span>
+                            <h5>Alert Notification</h5>
+                            <p>If critical boundary violations or intake anomalies occur, a formatted alert is sent to operations teams.</p>
+                        </div>
+                    </div>
+
+                    <div class="intake-pipeline-visual">
+                        <div class="intake-visual-wrapper active" id="intake-visual-0">
+                            <img src="projects/ai-customer-journey-leak-recovery/intake-layer/customer-journey-intake-form.png" alt="Customer Journey Intake Form Screenshot">
+                        </div>
+                        <div class="intake-visual-wrapper" id="intake-visual-1">
+                            <img src="projects/ai-customer-journey-leak-recovery/intake-layer/00-customer-journey-intake-engine.png" alt="Intake Ingestion Webhook Screenshot">
+                        </div>
+                        <div class="intake-visual-wrapper" id="intake-visual-2">
+                            <img src="projects/ai-customer-journey-leak-recovery/intake-layer/escalation-notification-email.png" alt="Escalation Email Layout Screenshot">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="why-matters-box" style="margin-top: 40px;">
+                    <h5>Why This Matters</h5>
+                    <p>Every operational system depends on reliable intake. Structured intake ensures consistent data quality and predictable lifecycle monitoring.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Automation Architecture Section -->
+        <section class="case-study-section section-matte section-glow-separator-top">
+            <div class="container-standard">
+                <span class="category-heading">Automation Architecture</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Scenario Inventory</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    The platform's execution layer is split into modular automation scenarios. Click on any card below to expand details and inspect its Make.com blueprint canvas.
+                </p>
+
+                <!-- Expandable Accordion Scenario Cards -->
+                <div class="automation-list">
+                    <!-- Scenario 0 -->
+                    <div class="automation-card" id="scenario-0">
+                        <div class="automation-card-header" onclick="toggleScenario(0)">
+                            <div class="scenario-header-top">
+                                <div class="scenario-meta">
+                                    <span class="scenario-number">SCENARIO 00</span>
+                                    <h4 class="scenario-title">Customer Journey Intake Engine</h4>
+                                </div>
+                                <div class="toggle-btn-wrapper">
+                                    <span class="toggle-text"></span>
+                                    <button class="toggle-btn" aria-label="Toggle Details">
+                                        <span class="toggle-icon">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="scenario-info-grid">
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Purpose</span>
+                                        <span class="info-value">Centralise incoming leads and establish active stage entry timestamps.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Business Function</span>
+                                        <span class="info-value">Ingest validation, deduplication, and initial state logging.</span>
+                                    </div>
+                                </div>
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Inputs</span>
+                                        <span class="info-value">Webhook payloads from Form integrations.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Outputs</span>
+                                        <span class="info-value">Instantiated Customer Journey records in database.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="automation-card-body">
+                            <div class="scenario-expanded-content">
+                                <div class="screenshot-wrapper">
+                                    <img data-src="projects/ai-customer-journey-leak-recovery/automation-scenarios/00-customer-journey-intake-engine.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" class="lazy-load-img" alt="Scenario 00 Blueprint Canvas">
+                                </div>
+                                <p class="scenario-notes">This scenario triggers immediately upon webhook reception. It normalizes data formats, validates record integrity, and instantiates the tracking logic, avoiding stage boundary data losses.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 1 -->
+                    <div class="automation-card" id="scenario-1">
+                        <div class="automation-card-header" onclick="toggleScenario(1)">
+                            <div class="scenario-header-top">
+                                <div class="scenario-meta">
+                                    <span class="scenario-number">SCENARIO 01</span>
+                                    <h4 class="scenario-title">Leakage Detection Engine</h4>
+                                </div>
+                                <div class="toggle-btn-wrapper">
+                                    <span class="toggle-text"></span>
+                                    <button class="toggle-btn" aria-label="Toggle Details">
+                                        <span class="toggle-icon">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="scenario-info-grid">
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Purpose</span>
+                                        <span class="info-value">Audit active pipeline stages and flag opportunities exceeding SLA limits.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Business Function</span>
+                                        <span class="info-value">Continuous SLA audit, automating tracking of stalled leads.</span>
+                                    </div>
+                                </div>
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Inputs</span>
+                                        <span class="info-value">Active Customer Journey records and timestamp timelines.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Outputs</span>
+                                        <span class="info-value">Created Leakage Event records and active alarms.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="automation-card-body">
+                            <div class="scenario-expanded-content">
+                                <div class="screenshot-wrapper">
+                                    <img data-src="projects/ai-customer-journey-leak-recovery/automation-scenarios/01-leakage-detection-fow.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" class="lazy-load-img" alt="Scenario 01 Blueprint Canvas">
+                                </div>
+                                <p class="scenario-notes">A schedule-driven audit engine that runs every hour. It checks each opportunity's stage time against its threshold. If a threshold is crossed, it instantiates an entry in the Leakage Events table to activate the recovery loop.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 2 -->
+                    <div class="automation-card" id="scenario-2">
+                        <div class="automation-card-header" onclick="toggleScenario(2)">
+                            <div class="scenario-header-top">
+                                <div class="scenario-meta">
+                                    <span class="scenario-number">SCENARIO 02</span>
+                                    <h4 class="scenario-title">AI Decision Intelligence Engine</h4>
+                                </div>
+                                <div class="toggle-btn-wrapper">
+                                    <span class="toggle-text"></span>
+                                    <button class="toggle-btn" aria-label="Toggle Details">
+                                        <span class="toggle-icon">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="scenario-info-grid">
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Purpose</span>
+                                        <span class="info-value">Analyze leakage profile and formulate customized re-engagement steps.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Business Function</span>
+                                        <span class="info-value">Automated contextual triage and custom outreach copy formulation.</span>
+                                    </div>
+                                </div>
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Inputs</span>
+                                        <span class="info-value">Leakage event metadata, contact fields, and timeline parameters.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Outputs</span>
+                                        <span class="info-value">AI recovery recommendations and draft content logs.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="automation-card-body">
+                            <div class="scenario-expanded-content">
+                                <div class="screenshot-wrapper">
+                                    <img data-src="projects/ai-customer-journey-leak-recovery/automation-scenarios/02-ai-reasoning-engine.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" class="lazy-load-img" alt="Scenario 02 Blueprint Canvas">
+                                </div>
+                                <p class="scenario-notes">This module connects LLM queries with historical records. It evaluates why the lead stalled and automatically drafts a context-aware email template tailored to the prospect's industry profile.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 3 -->
+                    <div class="automation-card" id="scenario-3">
+                        <div class="automation-card-header" onclick="toggleScenario(3)">
+                            <div class="scenario-header-top">
+                                <div class="scenario-meta">
+                                    <span class="scenario-number">SCENARIO 03</span>
+                                    <h4 class="scenario-title">Recovery Execution Engine</h4>
+                                </div>
+                                <div class="toggle-btn-wrapper">
+                                    <span class="toggle-text"></span>
+                                    <button class="toggle-btn" aria-label="Toggle Details">
+                                        <span class="toggle-icon">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="scenario-info-grid">
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Purpose</span>
+                                        <span class="info-value">Dispatch the formulated recovery content via active re-engagement paths.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Business Function</span>
+                                        <span class="info-value">Instant multi-channel recovery execution, bypass manual lists.</span>
+                                    </div>
+                                </div>
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Inputs</span>
+                                        <span class="info-value">Approved AI recovery actions, lead emails, and phone paths.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Outputs</span>
+                                        <span class="info-value">Dispatched emails/SMS messages and recovery action updates.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="automation-card-body">
+                            <div class="scenario-expanded-content">
+                                <div class="screenshot-wrapper">
+                                    <img data-src="projects/ai-customer-journey-leak-recovery/automation-scenarios/03-recovery-execution-engine.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" class="lazy-load-img" alt="Scenario 03 Blueprint Canvas">
+                                </div>
+                                <p class="scenario-notes">Executes outreach across email and SMS platforms. It registers all interaction parameters on the database to verify active tracking before initiating secondary wait states.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 4 -->
+                    <div class="automation-card" id="scenario-4">
+                        <div class="automation-card-header" onclick="toggleScenario(4)">
+                            <div class="scenario-header-top">
+                                <div class="scenario-meta">
+                                    <span class="scenario-number">SCENARIO 04</span>
+                                    <h4 class="scenario-title">Escalation Management Engine</h4>
+                                </div>
+                                <div class="toggle-btn-wrapper">
+                                    <span class="toggle-text"></span>
+                                    <button class="toggle-btn" aria-label="Toggle Details">
+                                        <span class="toggle-icon">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="scenario-info-grid">
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Purpose</span>
+                                        <span class="info-value">Track recovery outreach response boundaries and trigger manual overrides if unresolved.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Business Function</span>
+                                        <span class="info-value">SLA policing, ensuring failed auto-recovery alerts human ops.</span>
+                                    </div>
+                                </div>
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Inputs</span>
+                                        <span class="info-value">Recovery action logs and customer reaction triggers.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Outputs</span>
+                                        <span class="info-value">Updated Escalation entries and manager notifications.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="automation-card-body">
+                            <div class="scenario-expanded-content">
+                                <div class="screenshot-wrapper">
+                                    <img data-src="projects/ai-customer-journey-leak-recovery/automation-scenarios/04-escalation-magagement-engine.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" class="lazy-load-img" alt="Scenario 04 Blueprint Canvas">
+                                </div>
+                                <p class="scenario-notes">Monitors re-engagement channels. If the prospect does not respond within 48 hours of recovery outreach, this scenario closes the automated track and instantiates an alert inside the Escalations table.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 5A -->
+                    <div class="automation-card" id="scenario-5a">
+                        <div class="automation-card-header" onclick="toggleScenario(5)">
+                            <div class="scenario-header-top">
+                                <div class="scenario-meta">
+                                    <span class="scenario-number">SCENARIO 05A</span>
+                                    <h4 class="scenario-title">Human Escalation Notification Engine</h4>
+                                </div>
+                                <div class="toggle-btn-wrapper">
+                                    <span class="toggle-text"></span>
+                                    <button class="toggle-btn" aria-label="Toggle Details">
+                                        <span class="toggle-icon">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="scenario-info-grid">
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Purpose</span>
+                                        <span class="info-value">Route critical alarms containing opportunity profile summaries to operations teams.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Business Function</span>
+                                        <span class="info-value">Human triage routing and manual task coordination.</span>
+                                    </div>
+                                </div>
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Inputs</span>
+                                        <span class="info-value">Escalation records and team owner profile IDs.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Outputs</span>
+                                        <span class="info-value">Formatted Escalation Notification Emails and CRM tasks.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="automation-card-body">
+                            <div class="scenario-expanded-content">
+                                <div class="screenshot-wrapper">
+                                    <img data-src="projects/ai-customer-journey-leak-recovery/automation-scenarios/05-escalation-notification-engine.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" class="lazy-load-img" alt="Scenario 05A Blueprint Canvas">
+                                </div>
+                                <p class="scenario-notes">Constructs rich-text escalation emails mapping out the stalled lead's journey. It dispatches formatted notification alerts to human operations teams, prompting the Human Review Escalation Process and adjusting CRM Ownership Visibility.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 5B -->
+                    <div class="automation-card" id="scenario-5b">
+                        <div class="automation-card-header" onclick="toggleScenario(6)">
+                            <div class="scenario-header-top">
+                                <div class="scenario-meta">
+                                    <span class="scenario-number">SCENARIO 05B</span>
+                                    <h4 class="scenario-title">Outcome Evaluation Engine</h4>
+                                </div>
+                                <div class="toggle-btn-wrapper">
+                                    <span class="toggle-text"></span>
+                                    <button class="toggle-btn" aria-label="Toggle Details">
+                                        <span class="toggle-icon">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="scenario-info-grid">
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Purpose</span>
+                                        <span class="info-value">Assess re-engagement effectiveness, close active alerts, and synchronize stages.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Business Function</span>
+                                        <span class="info-value">Closed-loop evaluation, CRM updates, and status verification.</span>
+                                    </div>
+                                </div>
+                                <div class="info-col">
+                                    <div class="info-item">
+                                        <span class="info-label">Inputs</span>
+                                        <span class="info-value">CRM outcome parameters, manager closure inputs.</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">Outputs</span>
+                                        <span class="info-value">Closed status logs and synchronized external databases.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="automation-card-body">
+                            <div class="scenario-expanded-content">
+                                <div class="screenshot-wrapper">
+                                    <img data-src="projects/ai-customer-journey-leak-recovery/automation-scenarios/06-outcome-evaluation-engine.png" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" class="lazy-load-img" alt="Scenario 05B Blueprint Canvas">
+                                </div>
+                                <p class="scenario-notes">The final gatekeeper. When a lead is recovered or manually logged as resolved, this scenario updates the database logs to capture outcome classifications (Recovered, Lost, Closed), ensuring analytics purity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="why-matters-box" style="margin-top: 40px;">
+                    <h5>Why This Matters</h5>
+                    <p>Modular automation architecture improves maintainability, scalability, troubleshooting, and operational visibility.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- End to End Operational Flow Section -->
+        <section class="case-study-section section-navy section-glow-separator-top">
+            <div class="container-standard">
+                <span class="category-heading">End-To-End Operational Flow</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 24px; color: var(--text-pure);">System Logic Blueprint</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    This chart documents the sequential logic pathways executed by the platform from lead initialization to final outcome tracking.
+                </p>
+
+                <!-- Flow Visualizer -->
+                <div class="flow-stepper">
+                    <div class="flow-step-item">
+                        <div class="flow-indicator-num">01</div>
+                        <div class="flow-details">
+                            <h5>Lead Created &amp; Intake Logged</h5>
+                            <p>Opportunity profiles enter the ingestion webhook. Data schemas are validated, and a Customer Journey Record is instantiated.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step-item">
+                        <div class="flow-indicator-num">02</div>
+                        <div class="flow-details">
+                            <h5>Continuous Stage Monitoring</h5>
+                            <p>Stage entries calculate active durations. Timelines monitor entry dates against established stage SLA thresholds.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step-item">
+                        <div class="flow-indicator-num">03</div>
+                        <div class="flow-details">
+                            <h5>SLA Breach &amp; Leakage Detected</h5>
+                            <p>If stage boundaries exceed allowable limits, a Leakage Event is created, capturing profiles for recovery routing.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step-item">
+                        <div class="flow-indicator-num">04</div>
+                        <div class="flow-details">
+                            <h5>Contextual AI Evaluation</h5>
+                            <p>The system audits historical email logs and CRM notes, determining re-engagement opportunities and drafting messages.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step-item">
+                        <div class="flow-indicator-num">05</div>
+                        <div class="flow-details">
+                            <h5>Recovery Outreach (OR Human Escalation)</h5>
+                            <p>Formulated recovery outreach dispatches via email/SMS. If no response occurs in 48 hours, escalation paths trigger notification emails for manual review.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step-item">
+                        <div class="flow-indicator-num">06</div>
+                        <div class="flow-details">
+                            <h5>Outcome Audit &amp; Closed-Loop Sync</h5>
+                            <p>Interactions close. Result categories are logged, alarms release, and external databases synchronize.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Operational Governance & Safeguards Section -->
+        <section class="case-study-section section-navy">
+            <div class="container-standard">
+                <span class="category-heading">Operational Governance &amp; Safeguards</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">System Discipline</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    Operational controls and boundaries enforce system reliability, prevent communication fatigue, and guarantee that human intervention is activated when confidence thresholds are breached.
+                </p>
+
+                <div class="decision-grid">
+                    <div class="decision-card">
+                        <h5>Maximum Recovery Attempt Controls</h5>
+                        <p>Recovery actions are limited to defined attempt thresholds to prevent excessive outreach, communication fatigue, and automated recovery loops.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Human Escalation Boundaries</h5>
+                        <p>High-risk opportunities, unresolved recovery events, and low-confidence situations are routed to human review rather than handled entirely through automation.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Confidence-Based Decision Routing</h5>
+                        <p>Recovery recommendations are evaluated using confidence scoring logic to determine whether automated action or human intervention is more appropriate.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>SLA Monitoring Rules</h5>
+                        <p>Lifecycle stages are monitored against predefined timing thresholds to identify stalled records and trigger leakage detection logic.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Recovery Loop Protection</h5>
+                        <p>The system prevents duplicate recovery sequences and repeated escalation cycles by tracking prior recovery history and recovery status.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Outcome Classification Standards</h5>
+                        <p>Every recovery attempt is classified according to a defined outcome framework, ensuring consistent reporting and operational visibility.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Closed-Loop Synchronization Controls</h5>
+                        <p>All recovery, escalation, and outcome records are synchronized back to the primary customer journey record to maintain a single source of operational truth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Architectural Decisions Section -->
+        <section class="case-study-section section-matte section-glow-separator-top">
+            <div class="container-standard">
+                <span class="category-heading">Key Architectural Decisions</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Design Principles</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    Below are the critical design philosophies applied during the construction of the system to guarantee long-term stability and platform independence.
+                </p>
+
+                <div class="decision-grid">
+                    <div class="decision-card">
+                        <h5>Lifecycle-First Design</h5>
+                        <p>Focuses on visual timeline tracking rather than task lists. Keeps opportunities moving through active boundaries instead of letting them sit in stagnant databases.</p>
+                    </div>
+                    <div class="decision-card">
+                        <h5>Journey Record as Truth</h5>
+                        <p>Airtable serves as the master database of lifecycle entries. All automations and managers pull context from the unified Customer Journey Record.</p>
+                    </div>
+                    <div class="decision-card">
+                        <h5>Modular Automation Scenarios</h5>
+                        <p>Each engine runs independently on Make.com. If a re-engagement API fails, ingestion and SLA tracking continue operating without disruption.</p>
+                    </div>
+                    <div class="decision-card">
+                        <h5>Structured Recovery Governance</h5>
+                        <p>Enforces strict SLAs. Automations cannot spam prospects; recovery outreach schedules are tightly locked in database rules.</p>
+                    </div>
+                    <div class="decision-card">
+                        <h5>Human Escalation Layer</h5>
+                        <p>If automated logic fails to trigger re-engagement, the system sends Escalation Notification Emails and initiates the Human Review Escalation Process, keeping manual overrides clean.</p>
+                    </div>
+                    <div class="decision-card">
+                        <h5>Outcome-Based Resolutions</h5>
+                        <p>Alert deactivations require outcome parameters. No alarm is silenced without logging a classification indicator.</p>
+                    </div>
+                    <div class="decision-card">
+                        <h5>Closed-Loop Synchronization</h5>
+                        <p>Ensures that system closures sync updates back to CRM systems instantly, maintaining platform parity and reporting accuracy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Outcomes Section -->
+        <section class="case-study-section section-matte">
+            <div class="container-standard">
+                <span class="category-heading">Project Outcomes</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 24px; color: var(--text-pure);">Operational Performance</h2>
+                
+                <div class="outcomes-list">
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Centralized Lifecycle Visibility</h5>
+                            <p>Establishes visual stage entrance timelines and SLA audit charts, removing visibility gaps across boundaries.</p>
+                        </div>
+                    </div>
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Automated Leakage Detection</h5>
+                            <p>Stalled opportunities are detected within one hour of stage SLA expiration, removing human lag.</p>
+                        </div>
+                    </div>
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Structured Recovery Execution</h5>
+                            <p>AI-drafted re-engagement outreach dispatches instantly, reducing sales team outreach workloads.</p>
+                        </div>
+                    </div>
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Human Escalation Management</h5>
+                            <p>Breached wait states trigger Escalation Notification Emails, initiating the Human Review Escalation Process and CRM task logs.</p>
+                        </div>
+                    </div>
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Outcome Classification</h5>
+                            <p>Enforces data integrity by requiring outcome logs for deactivations, establishing pure pipeline metrics.</p>
+                        </div>
+                    </div>
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Closed-Loop Synchronization</h5>
+                            <p>Ensures that outcome classifications are synchronized back to external CRMs automatically, maintaining platform parity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Documentation Section -->
+        <section class="case-study-section documentation-section section-gradient-b section-glow-separator-top" id="pdf-documentation">
+            <div class="container-standard" style="text-align: center; max-width: 800px;">
+                <span class="category-heading" style="justify-content: center;">Case Study Documentation</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">System Documentation</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; margin-bottom: 32px;">
+                    This case study documents the complete architecture, operational logic, automation framework, recovery methodology, escalation governance, and outcome evaluation model behind the AI Customer Journey Leak Recovery System.<br><br>
+                    The document provides a detailed breakdown of the business problem, system design decisions, implementation structure, and operational reasoning used throughout the project.
+                </p>
+
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 32px;">
+                    <button onclick="togglePdfViewer('case-study-wrapper', this)" class="btn btn-primary">Preview Case Study</button>
+                    <a href="projects/ai-customer-journey-leak-recovery/case-study/ai-customer-journey-leak-recovery-system.pdf" target="_blank" class="btn btn-secondary">Open PDF</a>
+                    <a href="projects/ai-customer-journey-leak-recovery/case-study/ai-customer-journey-leak-recovery-system.pdf" download class="btn btn-secondary">Download PDF</a>
+                </div>
+
+                <!-- Document Embed -->
+                <div class="documentation-card" id="case-study-wrapper" style="display: none; margin-bottom: 32px;">
+                    <div class="pdf-embed-wrapper" style="height: 600px; display: block;">
+                        <object data="projects/ai-customer-journey-leak-recovery/case-study/ai-customer-journey-leak-recovery-system.pdf" type="application/pdf" width="100%" height="100%">
+                            <div class="pdf-fallback">
+                                <p style="color: var(--text-silver); font-size: 0.9rem; margin-bottom: 12px;">Browser PDF preview is unavailable.</p>
+                                <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
+                                    <a href="projects/ai-customer-journey-leak-recovery/case-study/ai-customer-journey-leak-recovery-system.pdf" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 8px 16px;">Open PDF</a>
+                                    <a href="projects/ai-customer-journey-leak-recovery/case-study/ai-customer-journey-leak-recovery-system.pdf" download class="btn btn-secondary" style="font-size: 12px; padding: 8px 16px;">Download PDF</a>
+                                </div>
+                            </div>
+                        </object>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="section border-top" style="padding: 56px 0 48px; margin-left: auto; margin-right: auto;">
+        <div class="container-nav-align footer-responsive">
+            <a href="./" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
+                <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
+                    <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+                </div>
+                Nitin Mishra
+            </a>
+            <p class="footer-desc" style="color: var(--text-muted); font-size: 14px; max-width: 400px; margin-bottom: 1rem;">Structured workflow systems for operational clarity and scalable lead management.</p>
+            <div class="footer-copyright" style="margin-top: 2rem;">
+                <p style="color: var(--text-muted); font-size: 13px;">&copy; 2026 Nitin Mishra. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global Interactions Script & Interactive Custom Detail Elements -->
+    <script src="script.js"></script>
+    <script>
+        // Airtable Tables Tab switcher
+        function switchTableTab(tabIndex) {
+            // Hide all contents & remove active button state
+            document.querySelectorAll('.data-foundation-tabs .tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.data-foundation-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+            
+            // Show selected
+            document.getElementById(`tab-content-${tabIndex}`).classList.add('active');
+            document.querySelectorAll('.data-foundation-tabs .tab-btn')[tabIndex].classList.add('active');
+        }
+
+        // Intake Pipeline Step switcher
+        function switchIntakeStep(stepIndex) {
+            document.querySelectorAll('.pipeline-step').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.intake-visual-wrapper').forEach(v => v.classList.remove('active'));
+            
+            document.querySelectorAll('.pipeline-step')[stepIndex].classList.add('active');
+            document.getElementById(`intake-visual-${stepIndex}`).classList.add('active');
+        }
+
+        // Automation Accordion Scenario expander
+        function toggleScenario(id) {
+            // Convert scenario numeric ID to standard card identifier strings
+            let targetCardId = '';
+            if (id === 0) targetCardId = 'scenario-0';
+            else if (id === 1) targetCardId = 'scenario-1';
+            else if (id === 2) targetCardId = 'scenario-2';
+            else if (id === 3) targetCardId = 'scenario-3';
+            else if (id === 4) targetCardId = 'scenario-4';
+            else if (id === 5) targetCardId = 'scenario-5a';
+            else if (id === 6) targetCardId = 'scenario-5b';
+
+            const card = document.getElementById(targetCardId);
+            if (!card) return;
+
+            const isExpanded = card.classList.contains('expanded');
+            
+            if (isExpanded) {
+                card.classList.remove('expanded');
+            } else {
+                card.classList.add('expanded');
+                // Lazy-load the Make.com screenshot inside the expanded section
+                const img = card.querySelector('.lazy-load-img');
+                if (img && img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+            }
+        }
+
+        // PDF Viewer toggler
+        function togglePdfViewer(wrapperId, button) {
+            const wrapper = document.getElementById(wrapperId);
+            if (!wrapper) return;
+            const isHidden = wrapper.style.display === 'none' || wrapper.style.display === '';
+            if (isHidden) {
+                wrapper.style.display = 'block';
+                if (button && button.tagName === 'BUTTON') {
+                    if (wrapperId === 'case-study-wrapper') {
+                        button.textContent = 'Collapse Case Study';
+                    } else {
+                        button.textContent = 'Collapse Diagram';
+                    }
+                }
+            } else {
+                wrapper.style.display = 'none';
+                if (button && button.tagName === 'BUTTON') {
+                    if (wrapperId === 'case-study-wrapper') {
+                        button.textContent = 'Preview Case Study';
+                    } else {
+                        button.textContent = 'View Diagram';
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

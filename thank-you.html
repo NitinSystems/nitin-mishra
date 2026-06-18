@@ -156,14 +156,14 @@
                 <span class="icon-menu">☰</span>
             </button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="./">Home</a></li>
-                <li><a href="./#capabilities">Capabilities</a></li>
-                <li><a href="./#systems">Showcase</a></li>
-                <li><a href="./#process">Process</a></li>
-                <li><a href="about">About</a></li>
-                <li class="mobile-only"><a href="./#contact" class="btn btn-primary" style="width: 100%;">Book Audit</a></li>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="systems-library.html">Systems</a></li>
+                <li><a href="index.html#process">Process</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li class="mobile-only"><a href="index.html#contact" class="btn btn-primary" style="width: 100%;">Book Audit</a></li>
             </ul>
-            <a href="./#contact" class="btn btn-primary nav-cta">Book Audit</a>
+            <a href="index.html#contact" class="btn btn-primary nav-cta">Book Audit</a>
         </div>
     </nav>
 
@@ -186,6 +186,7 @@
             
             <div class="thank-you-actions" id="dynamicCtaContainer">
                 <!-- CTAs will be injected here by intent logic -->
+                <a href="systems-library.html" class="btn btn-secondary" style="border: 1px solid rgba(28, 78, 216, 0.45) !important;">Explore Systems</a>
                 <a href="./" class="btn btn-secondary">Back to Home</a>
             </div>
             
@@ -252,15 +253,18 @@ Cal("init", "30min", {origin:"https://app.cal.com"});
                 // High Intent - configured with exact Cal.com trigger attributes and namespace config
                 html += `<button data-cal-link="nitin-mishra/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="btn btn-primary">Book Discovery Call</button>`;
                 html += `<div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 12px; font-weight: 500;">I’ll Review & Email You First</div>`;
+                html += `<a href="systems-library.html" class="btn btn-secondary" style="margin-top: 12px; border: 1px solid rgba(28, 78, 216, 0.4) !important;">Explore Systems</a>`;
                 html += `<a href="./" class="btn btn-secondary" style="margin-top: 12px;">Back to Home</a>`;
             } else if (cohort === 'medium') {
                 // Medium Intent
                 html += `<a href="mailto:NitinMishra.me@outlook.com?subject=Additional%20System%20Details" class="btn btn-primary">Tell Me More About Your Need</a>`;
                 html += `<div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 12px; font-weight: 500;">I’ll Review & Reach Out First</div>`;
+                html += `<a href="systems-library.html" class="btn btn-secondary" style="margin-top: 12px; border: 1px solid rgba(28, 78, 216, 0.4) !important;">Explore Systems</a>`;
                 html += `<a href="./" class="btn btn-secondary" style="margin-top: 12px;">Back to Home</a>`;
             } else {
                 // Low Intent
                 html += `<div style="color: var(--text-muted); font-size: 0.95rem; font-weight: 500; margin-bottom: 16px;">I’ll Reach Out After Review</div>`;
+                html += `<a href="systems-library.html" class="btn btn-secondary" style="margin-bottom: 12px; border: 1px solid rgba(28, 78, 216, 0.4) !important;">Explore Systems</a>`;
                 html += `<a href="./" class="btn btn-secondary">Back to Home</a>`;
             }
             

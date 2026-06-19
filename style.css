@@ -4280,6 +4280,15 @@ body {
         max-width: 240px;
         margin: 0 auto;
     }
+    
+    .network-nodes .net-node:nth-child(4) .node-label,
+    .network-nodes .net-node:nth-child(5) .node-label {
+        white-space: normal !important;
+        text-align: center !important;
+        max-width: 90px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
 }
 
 @media (max-width: 600px) {

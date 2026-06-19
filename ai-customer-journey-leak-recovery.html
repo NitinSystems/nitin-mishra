@@ -351,7 +351,7 @@
             opacity: 0.8;
         }
 
-        @media (max-width: 960px) {
+        @media (max-width: 767px) {
             .documentation-section {
                 padding-top: 96px !important;
                 padding-bottom: 96px !important;
@@ -1086,6 +1086,29 @@
         /* Override global case-study-section border to allow custom backgrounds to meet */
         .case-study-section {
             border-bottom: none !important;
+        }
+
+        /* Premium Case Study Resources Readability Fixes */
+        .documentation-header {
+            max-width: 640px;
+            margin: 0 auto 36px auto;
+            text-align: center;
+        }
+        .documentation-header p {
+            font-size: 1.02rem !important;
+            line-height: 1.75 !important;
+            color: var(--text-silver) !important;
+            opacity: 0.95 !important;
+        }
+        @media (max-width: 767px) {
+            .documentation-header {
+                max-width: 100%;
+                margin-bottom: 24px;
+            }
+            .documentation-header p {
+                font-size: 0.95rem !important;
+                line-height: 1.6 !important;
+            }
         }
     </style>
 </head>
@@ -1991,12 +2014,14 @@
         <!-- Case Study Documentation Section -->
         <section class="case-study-section documentation-section section-gradient-b section-glow-separator-top" id="pdf-documentation">
             <div class="container-standard" style="text-align: center; max-width: 800px;">
-                <span class="category-heading" style="justify-content: center;">Case Study Resources</span>
-                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">System Documentation</h2>
-                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; margin-bottom: 32px;">
-                    This case study documents the complete architecture, operational logic, automation framework, recovery methodology, escalation governance, and outcome evaluation model behind the AI Customer Journey Leak Recovery System.<br><br>
-                    The document provides a detailed breakdown of the business problem, system design decisions, implementation structure, and operational reasoning used throughout the project.
-                </p>
+                <div class="documentation-header">
+                    <span class="category-heading" style="justify-content: center;">Case Study Resources</span>
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">System Documentation</h2>
+                    <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">
+                        This case study documents the complete architecture, operational logic, automation framework, recovery methodology, escalation governance, and outcome evaluation model behind the AI Customer Journey Leak Recovery System.<br><br>
+                        The document provides a detailed breakdown of the business problem, system design decisions, implementation structure, and operational reasoning used throughout the project.
+                    </p>
+                </div>
 
                 <div class="pdf-action-buttons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 32px;">
                     <button onclick="togglePdfViewer('case-study-wrapper', this)" class="btn btn-primary">Preview Case Study</button>

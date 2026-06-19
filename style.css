@@ -4283,10 +4283,6 @@ body {
 }
 
 @media (max-width: 600px) {
-    /* Hide secondary labels to avoid clutter on mobile */
-    .node-label.secondary-label {
-        display: none !important;
-    }
     .node-dot {
         width: 16px;
         height: 16px;
@@ -4298,5 +4294,15 @@ body {
     .node-label {
         top: 22px;
         font-size: 7px;
+    }
+}
+
+@media (max-width: 768px) {
+    .teaser-graphic {
+        overflow: visible !important;
+    }
+    .teaser-blueprint-grid {
+        border-radius: 20px !important;
+        overflow: hidden !important;
     }
 }

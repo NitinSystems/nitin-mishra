@@ -220,6 +220,24 @@ Cal("init", "30min", {origin:"https://app.cal.com"});
             
             const serviceType = sessionStorage.getItem('submitted_service_type') || '';
             
+            // Dynamic Review Message Logic
+            const descEl = document.querySelector('.thank-you-desc');
+            if (descEl) {
+                const messageMap = {
+                    'Lead Capture & Intake': "I'll review your lead capture and intake requirements to prepare for the next step.",
+                    'CRM Setup & Organization': "I'll review your CRM setup and organization requirements to prepare for the next step.",
+                    'Follow-Up Automation': "I'll review your follow-up automation requirements to prepare for the next step.",
+                    'Lead Routing & Qualification': "I'll review your lead routing and qualification requirements to prepare for the next step.",
+                    'Booking & Intake Workflows': "I'll review your booking and intake workflow requirements to prepare for the next step.",
+                    'Integration / Workflow Support': "I'll review your integration and workflow support requirements to prepare for the next step.",
+                    'Process Optimization': "I'll review your process optimization requirements to prepare for the next step.",
+                    'Other Business System Need': "I'll review your business system requirements to prepare for the next step.",
+                    'Not Sure, Need Guidance': "I'll review your situation and recommend the most appropriate next step."
+                };
+                const message = messageMap[serviceType] || "I'll review your operational challenges and CRM infrastructure requirements to prepare for the next step.";
+                descEl.textContent = `Your details have been submitted successfully. ${message}`;
+            }
+            
             const highIntent = [
                 'Lead Capture & Intake',
                 'CRM Setup & Organization',

@@ -50,6 +50,156 @@
 
     <!-- Master Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Contact Section Refinement Overrides -->
+    <style>
+        #contact {
+            position: relative;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(28, 78, 216, 0.07) 0%, rgba(2, 3, 7, 0) 70%),
+                var(--bg-primary) !important;
+        }
+        
+        .intake-card-wrapper {
+            max-width: 680px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(11, 17, 36, 0.5) 0%, rgba(7, 10, 24, 0.7) 100%);
+            border: 1px solid rgba(28, 78, 216, 0.2);
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(28, 78, 216, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            text-align: center;
+        }
+
+        .intake-card-wrapper .section-header {
+            max-width: 100% !important;
+            margin: 0 auto 32px auto !important;
+            padding: 0 !important;
+            text-align: center !important;
+        }
+
+        .intake-card-wrapper .section-header h2 {
+            font-size: 2.25rem;
+            line-height: 1.25;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .intake-card-wrapper .section-header p {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: var(--text-silver);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Form styling overrides for SaaS level aesthetics */
+        #contact .operational-form {
+            gap: 16px;
+            margin-top: 0;
+        }
+
+        #contact .form-group {
+            margin-bottom: 0;
+        }
+
+        #contact .form-group input,
+        #contact .form-group textarea,
+        #contact .form-group select {
+            background: rgba(4, 6, 15, 0.7) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 8px !important;
+            padding: 12px 16px !important;
+            color: var(--text-pure, #ffffff) !important;
+            font-size: 0.95rem !important;
+            font-family: inherit !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
+            transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        #contact .form-group select {
+            padding-right: 40px !important;
+        }
+
+        #contact .form-group input:hover,
+        #contact .form-group textarea:hover,
+        #contact .form-group select:hover {
+            border-color: rgba(28, 78, 216, 0.35) !important;
+            background: rgba(255, 255, 255, 0.02) !important;
+        }
+
+        #contact .form-group input:focus,
+        #contact .form-group textarea:focus,
+        #contact .form-group select:focus {
+            background: rgba(4, 6, 15, 0.9) !important;
+            border-color: var(--system-blue) !important;
+            box-shadow: 0 0 0 4px rgba(28, 78, 216, 0.2) !important;
+            outline: none !important;
+        }
+
+        #contact #intakeSubmitBtn {
+            padding: 14px 20px !important;
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            letter-spacing: -0.01em !important;
+            border-radius: 8px !important;
+            background: var(--system-blue) !important;
+            color: #ffffff !important;
+            border: none !important;
+            cursor: pointer !important;
+            box-shadow: 0 4px 12px rgba(28, 78, 216, 0.25) !important;
+            transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        #contact #intakeSubmitBtn:hover {
+            background: #2563eb !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 6px 20px rgba(28, 78, 216, 0.45) !important;
+        }
+
+        #contact #intakeSubmitBtn:active {
+            transform: translateY(1px) !important;
+        }
+
+        /* Mobile responsiveness overrides for contact section */
+        @media (max-width: 768px) {
+            .intake-card-wrapper {
+                padding: 32px 20px !important;
+                border-radius: 12px !important;
+                border-color: rgba(28, 78, 216, 0.15) !important;
+            }
+
+            .intake-card-wrapper .section-header {
+                margin-bottom: 24px !important;
+            }
+
+            .intake-card-wrapper .section-header h2 {
+                font-size: 1.75rem !important;
+            }
+
+            .intake-card-wrapper .section-header p {
+                font-size: 0.95rem !important;
+            }
+
+            #contact .form-group input,
+            #contact .form-group textarea,
+            #contact .form-group select {
+                padding: 10px 14px !important;
+                font-size: 0.9rem !important;
+            }
+
+            #contact #intakeSubmitBtn {
+                padding: 12px 16px !important;
+                font-size: 0.95rem !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Global Glow System -->
@@ -884,8 +1034,8 @@
         </div>
     </section>
 
-    <!-- 08. FAQ & Workflow Intake -->
-    <section class="section" id="contact">
+    <!-- 08. FAQ & Informational Section -->
+    <section class="section" id="faq">
         <div class="container-standard">
             <div class="section-header reveal-on-scroll">
                 <span class="section-badge">Operational Clarity</span>
@@ -894,47 +1044,12 @@
             </div>
             
             <div class="faq-grid">
-                <!-- Left: Intake Panel -->
+                <!-- Left: Informational Panel -->
                 <div class="intake-panel reveal-on-scroll">
-                    <form class="operational-form" id="operationalForm" novalidate>
-                        <div class="form-group">
-                            <label for="intakeName" class="visually-hidden">Name</label>
-                            <input type="text" id="intakeName" name="name" placeholder="Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="intakeEmail" class="visually-hidden">Email</label>
-                            <input type="email" id="intakeEmail" name="email" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="intakeBusinessType" class="visually-hidden">Business / Project Type</label>
-                            <input type="text" id="intakeBusinessType" name="business_type" placeholder="Business / Project Type" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="intakeHelp" class="visually-hidden">What do you need help with?</label>
-                            <select id="intakeHelp" name="help_type" required>
-                                <option value="" disabled selected>What do you need help with?</option>
-                                <option value="Lead Capture & Intake">Lead Capture & Intake</option>
-                                <option value="CRM Setup & Organization">CRM Setup & Organization</option>
-                                <option value="Follow-Up Automation">Follow-Up Automation</option>
-                                <option value="Lead Routing & Qualification">Lead Routing & Qualification</option>
-                                <option value="Booking & Intake Workflows">Booking & Intake Workflows</option>
-                                <option value="Integration / Workflow Support">Integration / Workflow Support</option>
-                                <option value="Process Optimization">Process Optimization</option>
-                                <option value="Other Business System Need">Other Business System Need</option>
-                                <option value="Not Sure, Need Guidance">Not Sure, Need Guidance</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="intakeChallenge" class="visually-hidden">What’s breaking right now?</label>
-                            <textarea id="intakeChallenge" name="operational_challenge" placeholder="What’s breaking right now?" rows="3" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="intakeTools" class="visually-hidden">Current Tools / CRM</label>
-                            <input type="text" id="intakeTools" name="current_tools" placeholder="Current Tools / CRM (Optional: HubSpot, Airtable, etc.)">
-                        </div>
-                        <button type="submit" id="intakeSubmitBtn" class="btn btn-primary btn-full">Start The Conversation</button>
-                        <div class="form-feedback" id="formFeedback" style="display: none; margin-top: 16px; font-family: var(--font-mono, monospace); font-size: 13px; line-height: 1.5; letter-spacing: -0.01em;"></div>
-                    </form>
+                    <span class="section-badge">OPERATIONAL NEXT STEP</span>
+                    <h3 class="intake-heading" style="margin-top: 12px; margin-bottom: 20px;">Ready To Discuss Your System?</h3>
+                    <p class="intake-paragraph" style="margin-bottom: 32px;">If your workflows are creating manual work, causing visibility gaps, or slowing down execution, the next step is understanding where the operational bottlenecks exist.<br><br>Use the intake form to provide context about your current systems, challenges, and objectives.<br><br>This allows conversations to begin with operational clarity instead of assumptions.</p>
+                    <a href="#contact" class="btn btn-primary">Start A Conversation</a>
                 </div>
 
                 <!-- Right: FAQ Accordion -->
@@ -977,6 +1092,59 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 09. Dedicated System Intake Section -->
+    <section class="section border-top" id="contact">
+        <div class="container-standard">
+            <div class="intake-card-wrapper reveal-on-scroll">
+                <div class="section-header">
+                    <span class="section-badge">SYSTEM INTAKE</span>
+                    <h2>Tell Me About Your Current Operations</h2>
+                    <p>Provide a brief overview of your business, current systems, and the operational challenges you are facing.</p>
+                </div>
+                
+                <form class="operational-form" id="operationalForm" novalidate>
+                    <div class="form-group">
+                        <label for="intakeName" class="visually-hidden">Name</label>
+                        <input type="text" id="intakeName" name="name" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="intakeEmail" class="visually-hidden">Email</label>
+                        <input type="email" id="intakeEmail" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="intakeBusinessType" class="visually-hidden">Business / Project Type</label>
+                        <input type="text" id="intakeBusinessType" name="business_type" placeholder="Business / Project Type" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="intakeHelp" class="visually-hidden">What do you need help with?</label>
+                        <select id="intakeHelp" name="help_type" required>
+                            <option value="" disabled selected>What do you need help with?</option>
+                            <option value="Lead Capture & Intake">Lead Capture & Intake</option>
+                            <option value="CRM Setup & Organization">CRM Setup & Organization</option>
+                            <option value="Follow-Up Automation">Follow-Up Automation</option>
+                            <option value="Lead Routing & Qualification">Lead Routing & Qualification</option>
+                            <option value="Booking & Intake Workflows">Booking & Intake Workflows</option>
+                            <option value="Integration / Workflow Support">Integration / Workflow Support</option>
+                            <option value="Process Optimization">Process Optimization</option>
+                            <option value="Other Business System Need">Other Business System Need</option>
+                            <option value="Not Sure, Need Guidance">Not Sure, Need Guidance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="intakeChallenge" class="visually-hidden">What’s breaking right now?</label>
+                        <textarea id="intakeChallenge" name="operational_challenge" placeholder="What’s breaking right now?" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="intakeTools" class="visually-hidden">Current Tools / CRM</label>
+                        <input type="text" id="intakeTools" name="current_tools" placeholder="Current Tools / CRM (Optional: HubSpot, Airtable, etc.)">
+                    </div>
+                    <button type="submit" id="intakeSubmitBtn" class="btn btn-primary btn-full">Start The Conversation</button>
+                    <div class="form-feedback" id="formFeedback" style="display: none; margin-top: 16px; font-family: var(--font-mono, monospace); font-size: 13px; line-height: 1.5; letter-spacing: -0.01em;"></div>
+                </form>
             </div>
         </div>
     </section>

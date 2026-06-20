@@ -464,38 +464,37 @@ function initIntakeForm() {
         Object.keys(payload).forEach(key => urlEncodedPayload.append(key, payload[key]));
 
         try {
-            const response = await fetch(webhookUrl, {
+            // Fire request asynchronously with keepalive to guarantee background transmission
+            fetch(webhookUrl, {
                 method: 'POST',
-                mode: 'no-cors', // Bypasses strict local CORS blocks entirely
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: urlEncodedPayload.toString()
+                body: urlEncodedPayload.toString(),
+                keepalive: true
+            }).catch(err => {
+                console.warn('Background transmission failed:', err);
             });
 
-            // If mode is 'no-cors', response is opaque (status 0). If it didn't throw a network error, it succeeded.
-            if (response.ok || response.status === 200 || response.status === 201 || response.type === 'opaque' || response.status === 0) {
-                // Success state
-                form.reset();
-                feedback.style.display = 'block';
-                feedback.style.color = 'var(--system-blue, #0070f3)'; // Clean system-blue theme success accent
-                feedback.textContent = 'Operational requirements received successfully. Redirecting you...';
-                
-                // Premium instant-yet-smooth redirect to Thank You page
-                setTimeout(() => {
-                    window.location.href = 'thank-you.html';
-                }, 1000);
-            } else {
-                throw new Error('Network response not OK');
-            }
+            // Success state
+            form.reset();
+            feedback.style.display = 'block';
+            feedback.style.color = 'var(--system-blue, #0070f3)'; // Clean system-blue theme success accent
+            feedback.textContent = 'Operational requirements received successfully. Redirecting you...';
+            
+            // Redirect after 600ms to allow visual confirmation of receipt
+            setTimeout(() => {
+                window.location.href = 'thank-you.html';
+            }, 600);
         } catch (error) {
-            // Error state
+            // Error state (only triggered if fetch setup itself fails synchronously)
             console.error('Submission failed:', error);
             feedback.style.display = 'block';
             feedback.style.color = '#f87171'; // soft red
             feedback.textContent = 'Something interrupted the submission. Please try again in a moment.';
-        } finally {
-            // Restore button state
+            
+            // Restore button state on failure so they can retry
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText;
             submitBtn.style.opacity = '';

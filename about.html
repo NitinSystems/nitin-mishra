@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +29,7 @@
       "name": "Nitin Mishra",
       "jobTitle": "Marketing Systems & Automation Specialist",
       "url": "https://nitin-mishra.netlify.app/",
-      "sameAs": ["https://www.linkedin.com/in/srnitinmishra/"]
+      "sameAs": ["https://www.linkedin.com/in/nitinmishra-me"]
     }
     </script>    
     <!-- Favicon Infrastructure -->
@@ -40,32 +40,6 @@
 
     <!-- Page Specific Trust Refinements -->
     <style>
-        .about-cta-link {
-            font-family: 'Outfit', 'Inter', sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-silver);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: color 0.25s ease;
-            text-decoration: none;
-            letter-spacing: -0.01em;
-        }
-        
-        .about-cta-link:hover {
-            color: var(--system-blue);
-        }
-
-        .about-cta-link .arrow {
-            transition: transform 0.25s ease;
-            display: inline-block;
-        }
-
-        .about-cta-link:hover .arrow {
-            transform: translateX(4px);
-        }
-
         @media (max-width: 768px) {
             .social-links {
                 flex-direction: row !important;
@@ -104,7 +78,7 @@
         </div>
     </nav>
 
-    <main style="padding-top: 110px;"> <!-- Offset for sticky navigation -->
+    <main> <!-- Offset for sticky navigation -->
         
         <!-- SECTION 1 - PERSONAL INTRO HERO -->
         <section class="about-section" id="about-hero">
@@ -138,12 +112,18 @@
                             <div class="about-highlight-item">Context loss between apps</div>
                         </div>
                         
-                        <div class="social-links" style="margin-top: 16px; display: flex; gap: 32px; align-items: center;">
-                            <a href="https://www.linkedin.com/in/srnitinmishra/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="about-cta-link">
-                                View LinkedIn Profile <span class="arrow">→</span>
+                        <div class="social-links" style="margin-top: 16px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                            <a href="https://www.linkedin.com/in/nitinmishra-me" target="_blank" rel="noopener noreferrer" class="btn btn-secondary social-btn">
+                                <svg class="btn-icon" viewBox="0 0 24 24">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                                <span>LinkedIn</span>
                             </a>
-                            <a href="mailto:NitinMishra.me@outlook.com" class="about-cta-link">
-                                Send Email <span class="arrow">→</span>
+                            <a href="mailto:NitinMishra.me@outlook.com" class="btn btn-secondary social-btn">
+                                <svg class="btn-icon" viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                                <span>Email</span>
                             </a>
                         </div>
                     </div>

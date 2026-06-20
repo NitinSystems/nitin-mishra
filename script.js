@@ -441,7 +441,7 @@ function initIntakeForm() {
         // Prevent duplicates & show loading state
         submitBtn.disabled = true;
         const originalBtnText = submitBtn.textContent;
-        submitBtn.textContent = 'TRANSMITTING OPERATIONS REQUIREMENT...';
+        submitBtn.textContent = 'Submitting...';
         submitBtn.style.opacity = '0.7';
 
         // Prepare Make.com Payload
@@ -481,12 +481,12 @@ function initIntakeForm() {
             form.reset();
             feedback.style.display = 'block';
             feedback.style.color = 'var(--system-blue, #0070f3)'; // Clean system-blue theme success accent
-            feedback.textContent = 'Operational requirements received successfully. Redirecting you...';
+            feedback.textContent = 'Thanks! Redirecting you...';
             
-            // Redirect after 600ms to allow visual confirmation of receipt
+            // Redirect after 400ms to allow visual confirmation of receipt
             setTimeout(() => {
                 window.location.href = 'thank-you.html';
-            }, 600);
+            }, 400);
         } catch (error) {
             // Error state (only triggered if fetch setup itself fails synchronously)
             console.error('Submission failed:', error);

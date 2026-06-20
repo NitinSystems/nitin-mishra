@@ -486,7 +486,7 @@ function initIntakeForm() {
             // Redirect after 600ms to allow visual confirmation of receipt
             setTimeout(() => {
                 window.location.href = 'thank-you.html';
-            }, 600);
+            }, 400);
         } catch (error) {
             // Error state (only triggered if fetch setup itself fails synchronously)
             console.error('Submission failed:', error);

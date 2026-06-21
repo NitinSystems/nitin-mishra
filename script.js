@@ -378,9 +378,163 @@ function initIntakeForm() {
     const submitBtn = document.getElementById('intakeSubmitBtn');
     const feedback = document.getElementById('formFeedback');
     
-    // Configurable Make.com webhook URL - easily replaceable by the user
+    // Configurable Make.com webhook URLs
     const webhookUrl = 'https://hook.eu1.make.com/f94swjs7bo3239k6bszr9e5x7uorhepc';
+    const checkEmailUrl = 'https://hook.eu1.make.com/m7rmq58ynkjl9pwic5w8edv4ya39f5dt';
+    const DUPLICATE_THRESHOLD_HOURS = 24;
 
+    // Modal elements
+    const modal = document.getElementById('inquiryModal');
+    const modalLastSubmissionDate = document.getElementById('modalLastSubmissionDate');
+    const modalSubmitBtn = document.getElementById('modalSubmitBtn');
+    const modalEmailBtn = document.getElementById('modalEmailBtn');
+    const modalCancelBtn = document.getElementById('modalCancelBtn');
+
+    // Inputs (Cached)
+    const nameInput = document.getElementById('intakeName');
+    const emailInput = document.getElementById('intakeEmail');
+    const businessTypeInput = document.getElementById('intakeBusinessType');
+    const helpInput = document.getElementById('intakeHelp');
+    const challengeInput = document.getElementById('intakeChallenge');
+    const toolsInput = document.getElementById('intakeTools');
+
+    // Accessibility focus tracking
+    let previousActiveElement = null;
+
+    // Submission states
+    let currentSubmissionId = null;
+    let normalizedEmail = '';
+    let originalBtnText = submitBtn.textContent || 'Start The Conversation';
+
+    const closeModal = () => {
+        modal.style.display = 'none';
+        // Restore main form submit button loading states
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+        submitBtn.style.opacity = '';
+        
+        // Restore focus
+        if (previousActiveElement && typeof previousActiveElement.focus === 'function') {
+            previousActiveElement.focus();
+        }
+    };
+
+    // Modal action handlers
+    modalSubmitBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        submitForm('Resubmitted', 'Matched (<24 Hours)');
+    });
+
+    modalEmailBtn.addEventListener('click', () => {
+        closeModal();
+        window.location.href = 'mailto:NitinMishra.me@outlook.com?subject=Additional%20Information%20-%20Portfolio%20Inquiry';
+    });
+
+    modalCancelBtn.addEventListener('click', () => {
+        closeModal();
+    });
+
+    // Close on escape key
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeModal();
+        }
+    });
+
+    // Close on clicking outside container
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Duplicate checking function with 3000ms timeout
+    const checkDuplicate = async (email) => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        try {
+            const response = await fetch(`${checkEmailUrl}?email=${encodeURIComponent(email)}`, {
+                method: 'GET',
+                mode: 'cors',
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+            if (!response.ok) {
+                throw new Error('Check response status not ok');
+            }
+            const result = await response.json();
+            if (typeof result.exists !== 'boolean') {
+                throw new Error('Invalid duplicate response');
+            }
+            return result;
+        } catch (error) {
+            clearTimeout(timeoutId);
+            console.warn('Duplicate check failed, failing open:', error);
+            return { exists: false, failedOpen: true };
+        }
+    };
+
+    // Inner form submission runner
+    async function submitForm(decision, checkSource) {
+        const payload = {
+            name: nameInput.value.trim(),
+            email: normalizedEmail,
+            business_type: businessTypeInput.value.trim(),
+            service_type: helpInput.value,
+            operational_challenge: challengeInput.value.trim(),
+            current_tools: toolsInput.value.trim() || 'None Specified',
+            submission_id: currentSubmissionId,
+            duplicate_decision: decision,
+            duplicate_check_source: checkSource,
+            browser_information: navigator.userAgent,
+            submission_timestamp: new Date().toISOString(),
+            source_page: window.location.pathname || 'index.html'
+        };
+
+        // Save service_type for thank-you page CTA logic
+        try { sessionStorage.setItem('submitted_service_type', payload.service_type); } catch(e) {}
+
+        // Convert payload to URLSearchParams to bypass CORS preflight
+        const urlEncodedPayload = new URLSearchParams();
+        Object.keys(payload).forEach(key => urlEncodedPayload.append(key, payload[key]));
+
+        try {
+            // Fire request asynchronously with keepalive
+            fetch(webhookUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: urlEncodedPayload.toString(),
+                keepalive: true
+            }).catch(err => {
+                console.warn('Background transmission failed:', err);
+            });
+
+            // Success UI state
+            form.reset();
+            feedback.style.display = 'block';
+            feedback.style.color = 'var(--system-blue, #0070f3)';
+            feedback.textContent = 'Thanks! Redirecting you...';
+            
+            // Redirect after 400ms
+            setTimeout(() => {
+                window.location.href = 'thank-you.html';
+            }, 400);
+        } catch (error) {
+            console.error('Submission failed:', error);
+            feedback.style.display = 'block';
+            feedback.style.color = '#f87171'; // soft red
+            feedback.textContent = 'Something interrupted the submission. Please try again in a moment.';
+            
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+            submitBtn.style.opacity = '';
+        }
+    }
+
+    // Form submit intercept
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -389,15 +543,7 @@ function initIntakeForm() {
         feedback.className = 'form-feedback';
         feedback.textContent = '';
 
-        // Form fields
-        const nameInput = document.getElementById('intakeName');
-        const emailInput = document.getElementById('intakeEmail');
-        const businessTypeInput = document.getElementById('intakeBusinessType');
-        const helpInput = document.getElementById('intakeHelp');
-        const challengeInput = document.getElementById('intakeChallenge');
-        const toolsInput = document.getElementById('intakeTools');
-
-        // Validation
+        // Validation helper
         let hasError = false;
         const markInvalid = (el) => {
             el.style.borderColor = 'rgba(239, 68, 68, 0.4)';
@@ -433,71 +579,67 @@ function initIntakeForm() {
 
         if (hasError) {
             feedback.style.display = 'block';
-            feedback.style.color = '#f87171'; // soft red color
+            feedback.style.color = '#f87171'; // soft red
             feedback.textContent = 'Please fill out all required fields with a valid email format.';
             return;
         }
 
-        // Prevent duplicates & show loading state
+        // Email Normalization (Required)
+        const rawEmail = emailInput.value.trim();
+        normalizedEmail = rawEmail.toLowerCase();
+
+        // Lock form during duplicate checking
         submitBtn.disabled = true;
-        const originalBtnText = submitBtn.textContent;
+        originalBtnText = submitBtn.textContent || 'Start The Conversation';
         submitBtn.textContent = 'Submitting...';
         submitBtn.style.opacity = '0.7';
 
-        // Prepare Make.com Payload
-        const payload = {
-            name: nameInput.value.trim(),
-            email: emailInput.value.trim(),
-            business_type: businessTypeInput.value.trim(),
-            service_type: helpInput.value,
-            operational_challenge: challengeInput.value.trim(),
-            current_tools: toolsInput.value.trim() || 'None Specified',
-            submission_timestamp: new Date().toISOString(),
-            source_page: window.location.pathname || 'index.html'
+        // Generate dynamic Submission ID (SUB-XXXXXXXX-XXXXXX)
+        const generateSubmissionId = () => {
+            const randomHex = Math.random().toString(36).substr(2, 8).toUpperCase();
+            const timestamp = Date.now().toString().slice(-6);
+            return `SUB-${randomHex}-${timestamp}`;
         };
+        currentSubmissionId = generateSubmissionId();
 
-        // Save service_type for thank-you page CTA logic
-        try { sessionStorage.setItem('submitted_service_type', payload.service_type); } catch(e) {}
+        // Run duplicate check
+        const checkResult = await checkDuplicate(normalizedEmail);
 
-        // Convert payload to URLSearchParams to bypass CORS preflight (OPTIONS) request
-        const urlEncodedPayload = new URLSearchParams();
-        Object.keys(payload).forEach(key => urlEncodedPayload.append(key, payload[key]));
+        if (checkResult.failedOpen) {
+            // Webhook failure: fail open, submit normally
+            await submitForm('Bypassed (Webhook Failure)', 'Webhook Failure');
+        } else if (!checkResult.exists) {
+            // New email: submit normally
+            await submitForm('New Inquiry', 'New Email');
+        } else {
+            // Duplicate exists, check the 24-hour window
+            const rawDate = checkResult.lastSubmissionDate || checkResult.last_submission_date;
+            let lastDate = null;
+            let isValidDate = false;
 
-        try {
-            // Fire request asynchronously with keepalive to guarantee background transmission
-            fetch(webhookUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: urlEncodedPayload.toString(),
-                keepalive: true
-            }).catch(err => {
-                console.warn('Background transmission failed:', err);
-            });
+            if (rawDate) {
+                const parsedDate = new Date(rawDate);
+                if (!isNaN(parsedDate)) {
+                    lastDate = parsedDate;
+                    isValidDate = true;
+                }
+            }
 
-            // Success state
-            form.reset();
-            feedback.style.display = 'block';
-            feedback.style.color = 'var(--system-blue, #0070f3)'; // Clean system-blue theme success accent
-            feedback.textContent = 'Thanks! Redirecting you...';
-            
-            // Redirect after 400ms to allow visual confirmation of receipt
-            setTimeout(() => {
-                window.location.href = 'thank-you.html';
-            }, 400);
-        } catch (error) {
-            // Error state (only triggered if fetch setup itself fails synchronously)
-            console.error('Submission failed:', error);
-            feedback.style.display = 'block';
-            feedback.style.color = '#f87171'; // soft red
-            feedback.textContent = 'Something interrupted the submission. Please try again in a moment.';
-            
-            // Restore button state on failure so they can retry
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
-            submitBtn.style.opacity = '';
+            const now = new Date();
+            const diffHours = isValidDate ? (now - lastDate) / (1000 * 60 * 60) : 0;
+
+            if (!isValidDate || diffHours <= DUPLICATE_THRESHOLD_HOURS) {
+                // Duplicate inquiry within 24 hours (or invalid date): show modal
+                modalLastSubmissionDate.textContent = isValidDate ? lastDate.toLocaleString() : 'N/A';
+                modal.style.display = 'flex';
+                
+                // Track focus
+                previousActiveElement = document.activeElement;
+                modalCancelBtn.focus();
+            } else {
+                // Duplicate inquiry older than 24 hours: bypass modal, submit normally
+                await submitForm('Bypassed (>24 Hours)', 'Matched (>24 Hours)');
+            }
         }
     });
 

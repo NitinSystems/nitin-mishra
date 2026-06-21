@@ -1192,6 +1192,24 @@
         </div>
     </div>
 
+    <!-- Duplicate Inquiry Modal Popup (Fail-Open Verification System) -->
+    <div id="inquiryModal" class="inquiry-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="inquiryModalTitle">
+        <div class="inquiry-modal-container">
+            <h3 id="inquiryModalTitle">We've already received an inquiry from this email address.</h3>
+            <div class="inquiry-modal-timestamp">
+                Last inquiry received: <span id="modalLastSubmissionDate">--/--/----</span>
+            </div>
+            <p class="inquiry-modal-text">
+                We already have an inquiry associated with this email address.<br><br>If you'd like to update your information or submit another request, you can continue below.
+            </p>
+            <div class="inquiry-modal-actions">
+                <button type="button" id="modalSubmitBtn" class="btn btn-primary btn-full">Update My Request</button>
+                <button type="button" id="modalEmailBtn" class="btn btn-secondary btn-full">Email Me Directly</button>
+                <button type="button" id="modalCancelBtn" class="btn btn-secondary btn-full cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Fresh Interaction Engine -->
     <script src="script.js"></script>
 </body>

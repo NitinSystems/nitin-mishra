@@ -4,7 +4,7 @@
     MAX-WIDTH: 1100px (Strict)
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 
 :root {
     /* --- ━━━━━━━━━━━━━━━━━━ --- */
@@ -1398,6 +1398,8 @@ h1, h2, h3 {
 }
 
 .cert-name {
+    font-family: 'Inter', sans-serif !important;
+    line-height: var(--lh-body) !important;
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-main);
@@ -4013,7 +4015,8 @@ body {
     z-index: 99999; /* high z-index to sit on top of nav and everything else */
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    visibility: hidden; /* Blocks keyboard focus when modal is closed */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
     padding: 32px;
     box-sizing: border-box;
 }
@@ -4021,6 +4024,7 @@ body {
 .cert-modal.active {
     opacity: 1;
     pointer-events: auto;
+    visibility: visible; /* Restores focusability when modal is opened */
 }
 
 .cert-modal-content {

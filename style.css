@@ -72,6 +72,7 @@
     
     --hero-h1-scale: 1.02;
     --hero-h1-weight: 700;
+    --hero-label-fs: 11px;
 }
 
 /* 1. Base Reset */
@@ -3575,6 +3576,9 @@ div.hero-visual-area.reveal-on-load {
 }
 
 @media (max-width: 767px) {
+    :root {
+        --hero-label-fs: 9.5px;
+    }
     .hero {
         padding-top: 144px !important;
         padding-bottom: 64px !important;

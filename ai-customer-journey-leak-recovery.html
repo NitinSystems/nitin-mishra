@@ -1960,8 +1960,51 @@
             </div>
         </section>
 
+        <!-- System Design Rationale Section -->
+        <section class="case-study-section section-navy section-glow-separator-top">
+            <div class="container-standard">
+                <span class="category-heading">System Design Rationale</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">System Design Rationale</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    An analysis of the architectural decisions, operational trade-offs, and system design principles that shaped this solution.
+                </p>
+
+                <div class="decision-grid">
+                    <div class="decision-card">
+                        <h5>Business Problem</h5>
+                        <p>Standard B2B pipelines suffer from state boundary decay. When an opportunity transitions between marketing capture, sales development, and operations, the handoff exists in a structural blind spot. Traditional CRM workflows rely on active user enforcement or static alerts, which fail during periods of high volume or team transition. Simply automating individual notifications is insufficient; without a continuous, decoupled monitoring state that operates independently of CRM user activity, pipeline latency remains undetected, leading to silent revenue leakage.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Design Objectives</h5>
+                        <p>The primary architectural objective is to establish an immutable, zero-latency audit trail for every customer lifecycle transition. The system must operate under strict operational constraints: it must guarantee that no opportunity breaches its stage SLA without immediate detection, isolate execution failures so they do not corrupt the customer record, and enforce strict API rate limit safety. Success is defined by achieving 100% data parity between system states and external CRMs while maintaining visual journey integrity.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Architectural Decisions</h5>
+                        <p>A decoupled, asynchronous state-machine architecture was chosen to isolate the monitoring state from the primary execution engines. By establishing a centralized Customer Journey Record (CJR) as the database of truth and utilizing modular, single-purpose automation engines, the system achieves complete fault isolation. If a downstream re-engagement or communication API suffers an outage, the core ingestion and SLA tracking components continue to queue and process state transitions without loss of context.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Design Trade-offs</h5>
+                        <p>To prioritize deployment speed and visual agility, the system utilizes a low-code database and orchestration stack rather than a custom-coded backend. This trade-off significantly reduces initial development cost and allows rapid operational adjustments to the lifecycle rules. The accepted limitation is dependency on external execution quotas and rate-limiting parameters, which was justified by the immediate business need to recover leaked opportunities and the ease of adapting the system to evolving CRM schemas.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Operational Reliability</h5>
+                        <p>Resilience is built directly into the system's boundary controls. To prevent communication fatigue and infinite recovery loops, the architecture enforces strict attempt thresholds and state locks. If an automated recovery sequence fails to resolve a stalled opportunity, the system isolates the record and triggers a human-in-the-loop escalation pathway. This ensures that logic boundaries are never breached, maintaining professional brand presence and guaranteeing human oversight for complex deals.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Future Evolution</h5>
+                        <p>The current architecture serves as a stable foundation for predictive operational governance. The next phase of the roadmap transitions the polling-based monitoring engine to event-driven webhooks to minimize database query volume. As transaction volume scales, key state-transition evaluation logic will migrate from low-code scenarios to serverless edge functions. This will allow the system to ingest and analyze multi-platform customer events at scale while keeping execution overhead minimal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Project Outcomes Section -->
-        <section class="case-study-section section-matte">
+        <section class="case-study-section section-matte section-glow-separator-top">
             <div class="container-standard">
                 <span class="category-heading">Project Outcomes</span>
                 <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 24px; color: var(--text-pure);">Operational Performance</h2>

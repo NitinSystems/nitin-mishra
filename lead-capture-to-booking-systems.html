@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Capture to Booking System | Case Study | Nitin Mishra</title>
+    <meta name="description" content="Detailed case study of the GoHighLevel Lead Capture to Booking System. Explore the inquiry capture, Google Calendar synchronization, and automated reminder setup.">
+    <link rel="canonical" href="https://nitin-mishra.netlify.app/lead-capture-to-booking-systems.html">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://nitin-mishra.netlify.app/#person",
+          "name": "Nitin Mishra",
+          "jobTitle": "Automation Systems Specialist",
+          "url": "https://nitin-mishra.netlify.app/",
+          "sameAs": ["https://www.linkedin.com/in/nitinmishra-me"]
+        },
+        {
+          "@type": "TechArticle",
+          "@id": "https://nitin-mishra.netlify.app/lead-capture-to-booking-systems.html#article",
+          "url": "https://nitin-mishra.netlify.app/lead-capture-to-booking-systems.html",
+          "name": "Lead Capture to Booking System | Case Study",
+          "headline": "Lead Capture to Booking System",
+          "description": "Detailed case study of the GoHighLevel Lead Capture to Booking System. Explore the inquiry capture, Google Calendar synchronization, and automated reminder setup.",
+          "datePublished": "2026-07-03T08:00:00+05:30",
+          "dateModified": "2026-07-03T08:00:00+05:30",
+          "author": {"@id": "https://nitin-mishra.netlify.app/#person"},
+          "publisher": {"@id": "https://nitin-mishra.netlify.app/#person"},
+          "isPartOf": {
+            "@type": "CollectionPage",
+            "@id": "https://nitin-mishra.netlify.app/systems-library.html#collection",
+            "url": "https://nitin-mishra.netlify.app/systems-library.html",
+            "name": "Systems Library | Nitin Mishra"
+          },
+          "about": [
+            {
+              "@type": "SoftwareApplication",
+              "name": "Lead Capture to Booking System",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "All",
+              "description": "Standardized lead acquisition and appointment scheduling system built to structure inquiry collection, automate responses, and synchronize client calendars."
+            }
+          ],
+          "dependencies": "GoHighLevel, Gmail, Google Calendar"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Social / Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nitin-mishra.netlify.app/lead-capture-to-booking-systems.html">
+    <meta property="og:title" content="Lead Capture to Booking System | Nitin Mishra">
+    <meta property="og:description" content="Portfolio-grade systems case study. Explore the operational logic, workflow inventory, and scheduling automation of the GHL booking system.">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lead Capture to Booking System | Nitin Mishra">
+    <meta name="twitter:description" content="Explore the operational logic, workflow inventory, and scheduling automation of the GHL booking system.">
+
+    <!-- Favicon Infrastructure -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+    <!-- Master Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Scoped Case Study Styling -->
+    <style>
+        .glow-background {
+            background-color: #020307;
+            background-image: 
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(28, 78, 216, 0.15), transparent 70%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+        }
+
+        section.systems-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            padding-top: 170px !important;
+            padding-bottom: 96px;
+            box-sizing: border-box;
+        }
+
+        .systems-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .case-study-section {
+            padding-top: 80px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .case-study-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 960px) {
+            .case-study-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .category-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: var(--sp-16);
+        }
+
+        .category-heading::before {
+            content: '//';
+            color: var(--system-blue);
+            font-family: var(--font-mono, monospace);
+            font-weight: 700;
+        }
+
+        .why-matters-box {
+            background: rgba(28, 78, 216, 0.06);
+            border-left: 3px solid var(--system-blue);
+            padding: var(--sp-24);
+            border-radius: 0 16px 16px 0;
+            margin-top: var(--sp-32);
+        }
+
+        .why-matters-box h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-pure);
+            margin-bottom: var(--sp-8);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .why-matters-box p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-silver);
+            margin: 0;
+        }
+
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .decision-card {
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: var(--sp-24) var(--sp-32);
+            border-radius: var(--card-radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.25s ease;
+        }
+
+        .decision-card:hover {
+            border-color: rgba(28, 78, 216, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .decision-card h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-pure);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .decision-card h5::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--system-blue);
+        }
+
+        .decision-card p {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-silver);
+            margin: 0;
+        }
+
+        .outcomes-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        @media (max-width: 767px) {
+            .outcomes-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .outcome-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: var(--sp-24);
+            border-radius: var(--card-radius);
+            display: flex;
+            gap: var(--sp-16);
+            align-items: flex-start;
+        }
+
+        .outcome-marker {
+            color: #10B981;
+            font-weight: 800;
+            font-size: 1.25rem;
+            line-height: 1;
+        }
+
+        .outcome-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .outcome-text h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            color: var(--text-pure);
+            margin: 0;
+        }
+
+        .outcome-text p {
+            font-size: 0.88rem;
+            line-height: 1.5;
+            color: var(--text-silver);
+            margin: 0;
+        }
+
+        /* Diagrams & PDF Embed Visuals */
+        .diagram-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 32px;
+        }
+
+        .architecture-card {
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--card-radius);
+            padding: 32px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .pdf-embed-wrapper {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            background: #020307;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pdf-fallback {
+            padding: var(--sp-48);
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .pdf-caption {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 12px;
+        }
+
+        /* Airtable-style tabs */
+        .data-foundation-tabs {
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            margin-top: 32px;
+        }
+
+        .tab-list {
+            display: flex;
+            overflow-x: auto;
+            background: rgba(7, 9, 17, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 16px 0;
+            gap: 8px;
+            scrollbar-width: none;
+        }
+
+        .tab-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: var(--text-muted);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 12px 16px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-pure);
+        }
+
+        .tab-btn.active {
+            color: var(--text-pure);
+            border-bottom-color: var(--system-blue);
+        }
+
+        .tab-content-container {
+            padding: 32px;
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: var(--sp-24);
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        .tab-narrative {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tab-narrative h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            color: var(--text-pure);
+            margin: 0;
+        }
+
+        .tab-narrative p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-silver);
+            margin: 0;
+        }
+
+        .tab-bullets {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: var(--sp-16);
+            border-radius: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .tab-bullets {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bullet-item {
+            font-size: 0.85rem;
+            color: var(--text-silver);
+            line-height: 1.5;
+        }
+
+        .bullet-item strong {
+            color: var(--text-pure);
+        }
+
+        .tab-screenshot-wrapper {
+            background: #020307;
+            border: 1px solid rgba(28, 78, 216, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tab-screenshot-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Flow Visualizer */
+        .intake-pipeline-container {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 48px;
+            align-items: center;
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: var(--sp-32);
+            border-radius: var(--card-radius);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            margin-top: var(--sp-32);
+        }
+
+        @media (max-width: 960px) {
+            .intake-pipeline-container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        .intake-pipeline-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .pipeline-step {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: var(--sp-16) var(--sp-24);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pipeline-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 3px;
+            background: transparent;
+            transition: background 0.25s ease;
+        }
+
+        .pipeline-step:hover {
+            background: rgba(28, 78, 216, 0.04);
+            border-color: rgba(28, 78, 216, 0.15);
+        }
+
+        .pipeline-step.active {
+            background: rgba(28, 78, 216, 0.08);
+            border-color: rgba(28, 78, 216, 0.3);
+            box-shadow: 0 5px 15px rgba(28, 78, 216, 0.05);
+        }
+
+        .pipeline-step.active::before {
+            background: var(--system-blue);
+        }
+
+        .step-num {
+            font-family: var(--font-mono, monospace);
+            font-size: 0.75rem;
+            color: var(--system-blue);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .pipeline-step h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: var(--text-pure);
+            margin: 0 0 6px 0;
+        }
+
+        .pipeline-step p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .intake-pipeline-visual {
+            background: #020307;
+            border: 1px solid rgba(28, 78, 216, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 4/3;
+            padding: var(--sp-24);
+        }
+
+        .intake-visual-wrapper {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .intake-visual-wrapper.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* SVG Schematic Styles */
+        .schematic-box {
+            width: 100%;
+            height: 100%;
+            background: rgba(4, 6, 18, 0.6);
+            border: 1px solid rgba(28, 78, 216, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-family: var(--font-mono, monospace);
+            color: var(--text-silver);
+            font-size: 0.75rem;
+            box-sizing: border-box;
+        }
+
+        .schematic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 8px;
+            margin-bottom: 4px;
+        }
+
+        .schematic-title {
+            color: var(--text-pure);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .schematic-field {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .field-label {
+            color: var(--text-muted);
+        }
+
+        .field-status {
+            color: #10B981;
+            font-weight: 700;
+        }
+
+        .flowing-line-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 32px;
+            width: 100%;
+        }
+
+        .flowing-line {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(28, 78, 216, 0.2), var(--system-blue), rgba(28, 78, 216, 0.2));
+            width: 100%;
+        }
+
+        .flowing-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #60a5fa;
+            box-shadow: 0 0 8px #60a5fa;
+            animation: flowForward 2s infinite linear;
+        }
+
+        @keyframes flowForward {
+            0% { left: 0%; }
+            100% { left: 100%; }
+        }
+
+        .schematic-node {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(28, 78, 216, 0.08);
+            border: 1px solid rgba(28, 78, 216, 0.3);
+            border-radius: 6px;
+            padding: 8px 12px;
+        }
+
+        .node-icon {
+            color: var(--system-blue);
+            font-weight: 700;
+        }
+
+        /* Tonal Shifts & Section Background Utilities */
+        .section-gradient-a {
+            background-color: #020307 !important;
+            background-image: 
+                radial-gradient(ellipse 125% 125% at 50% 10%, #000000 40%, #0d1a36 100%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+            background-size: 100% 100%, 40px 40px, 40px 40px !important;
+        }
+
+        .section-matte {
+            background-color: #020307 !important;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+            background-size: 40px 40px, 40px 40px !important;
+        }
+
+        .section-navy {
+            background-color: #040612 !important;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+            background-size: 40px 40px, 40px 40px !important;
+        }
+
+        .section-glow-separator-top {
+            border-top: 1px solid transparent !important;
+            border-image: linear-gradient(90deg, transparent, rgba(28, 78, 216, 0.25) 50%, transparent) 1 !important;
+        }
+
+        .section-glow-separator-bottom {
+            border-bottom: 1px solid transparent !important;
+            border-image: linear-gradient(90deg, transparent, rgba(28, 78, 216, 0.25) 50%, transparent) 1 !important;
+        }
+
+        /* Scored Case Study Styles */
+        .case-study-section {
+            border-bottom: none !important;
+        }
+
+        .mobile-zoom-hint {
+            display: none;
+            font-size: 11px;
+            font-family: var(--font-mono, monospace);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: center;
+            margin-top: 12px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 767px) {
+            .mobile-zoom-hint {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Global Glow System -->
+    <div class="glow-background">
+        <div class="glow-orb glow-top-right"></div>
+        <div class="glow-orb glow-bottom-left"></div>
+    </div>
+
+    <!-- 1. Navigation: Floating Architectural Shell -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="./" class="nav-brand" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+                <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
+                    <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+                </div>
+                Nitin Mishra
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">
+                <span class="icon-menu">☰</span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="systems-library.html">Systems</a></li>
+                <li><a href="index.html#process">Process</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <a href="index.html#contact" class="btn btn-primary nav-cta">Book Audit</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main>
+        <!-- Hero Section -->
+        <section class="section systems-hero section-gradient-a section-glow-separator-bottom">
+            <div class="container-standard">
+                <div class="systems-hero-content reveal-on-load">
+                    <span class="section-badge" style="margin-bottom: var(--sp-16);">Real Company Implementation</span>
+                    <h1 style="font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15; margin-bottom: var(--sp-24); color: var(--text-pure); letter-spacing: -0.03em;">Lead Capture to<br>Booking System</h1>
+                    <p style="font-size: clamp(1rem, 1.8vw, 1.15rem); line-height: 1.6; color: var(--text-muted); max-width: 760px; margin: 0 auto 32px;">A standardized lead acquisition and appointment scheduling system built to structure inquiry collection, automate responses, and synchronize client calendars.</p>
+                    
+                    <!-- Meta specs row -->
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 40px; font-family: var(--font-mono, monospace); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.60);">
+                        <span>Status: <strong style="color: #10B981;">Completed</strong></span>
+                        <span style="color: rgba(255,255,255,0.15);">|</span>
+                        <span>Category: <strong>Lead Management Systems</strong></span>
+                        <span style="color: rgba(255,255,255,0.15);">|</span>
+                        <span>Type: <strong>Workflow &amp; Appointment Automation</strong></span>
+                    </div>
+
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
+                        <a href="#system-flow" class="btn btn-primary">View System Workflow</a>
+                        <a href="systems-library.html" class="btn btn-secondary">Explore Systems Library</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Summary Section -->
+        <section class="case-study-section section-matte">
+            <div class="container-standard">
+                <div class="case-study-grid">
+                    <div>
+                        <span class="category-heading">Executive Summary</span>
+                        <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 20px; color: var(--text-pure);">Operational Overview</h2>
+                        <p style="color: var(--text-silver); font-size: 0.98rem; line-height: 1.7; margin-bottom: 20px;">
+                            B2B service businesses without standardized scheduling structures frequently lose lead momentum. When new inquiries arrive, delayed manual follow-ups, back-and-forth email chains, and double-bookings introduce operational friction that degrades the client experience.
+                        </p>
+                        <p style="color: var(--text-silver); font-size: 0.98rem; line-height: 1.7;">
+                            This project implements a reliable, linear appointment coordination loop. By structuring the intake form, validating lead inputs before workflow execution, automating instant email confirmations, notifying the consultant, and routing the prospect directly to an availability-synchronized booking calendar, the system eliminates administrative coordination delays.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="why-matters-box">
+                            <h5>Why This Matters</h5>
+                            <p>Operational standardisation directly impacts lead retention. By capturing customer details cleanly and providing immediate booking paths with synchronized reminder schedules, businesses protect high-intent momentum and ensure a reliable handoff to the consultation stage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Architecture Section (Diagrams) -->
+        <section class="case-study-section section-navy section-glow-separator-top">
+            <div class="container-standard">
+                <span class="category-heading">System Architecture</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Solution Layout</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    Below are the primary visual models defining the structural data flows and process separation parameters inside the platform. These architectural blueprints are embedded directly in PDF format.
+                </p>
+
+                <div class="diagram-container">
+                    <!-- Diagram 1: System Architecture -->
+                    <div class="architecture-card">
+                        <div style="margin-bottom: var(--sp-16);">
+                            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: var(--text-pure); margin: 0 0 12px 0;">System Architecture Diagram</h3>
+                            <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; margin: 0 0 20px 0;">
+                                This diagram outlines the operational structure of the Lead Capture to Booking System. It maps the intake points, message templates, scheduling sync states, and active notifications.
+                            </p>
+                            <div class="pdf-action-buttons" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+                                <button onclick="togglePdfViewer('system-arch-wrapper', this)" class="btn btn-primary" style="font-size: 13px; padding: 8px 18px;">View Diagram</button>
+                                <a href="projects/lead-capture-booking-system/architecture-diagrams/system-architecture-diagram.pdf" target="_blank" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Open PDF</a>
+                                <a href="projects/lead-capture-booking-system/architecture-diagrams/system-architecture-diagram.pdf" download class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Download PDF</a>
+                            </div>
+                        </div>
+                        <div class="pdf-embed-wrapper" id="system-arch-wrapper" style="display: none; margin-top: 20px;">
+                            <object data="projects/lead-capture-booking-system/architecture-diagrams/system-architecture-diagram.pdf" type="application/pdf" width="100%" height="100%">
+                                <div class="pdf-fallback">
+                                    <p style="color: var(--text-silver); font-size: 0.9rem; margin-bottom: 12px;">Browser PDF preview is unavailable.</p>
+                                    <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
+                                        <a href="projects/lead-capture-booking-system/architecture-diagrams/system-architecture-diagram.pdf" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 8px 16px;">Open PDF</a>
+                                        <a href="projects/lead-capture-booking-system/architecture-diagrams/system-architecture-diagram.pdf" download class="btn btn-secondary" style="font-size: 12px; padding: 8px 16px;">Download PDF</a>
+                                    </div>
+                                </div>
+                            </object>
+                        </div>
+                        <p class="pdf-caption" style="margin-top: 16px;"><strong>Diagram Purpose:</strong> Outlines the end-to-end data pipeline running from GHL form ingestion to internal notification routing, calendar availability checks, and email confirmation scripts.</p>
+                    </div>
+
+                    <!-- Diagram 2: Operational Data Flow -->
+                    <div class="architecture-card">
+                        <div style="margin-bottom: var(--sp-16);">
+                            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: var(--text-pure); margin: 0 0 12px 0;">Operational Data Flow Diagram</h3>
+                            <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; margin: 0 0 20px 0;">
+                                This diagram illustrates the configuration layout and data pathways that route validated custom fields to calendar synchronizations and email remind logs.
+                            </p>
+                            <div class="pdf-action-buttons" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+                                <button onclick="togglePdfViewer('data-arch-wrapper', this)" class="btn btn-primary" style="font-size: 13px; padding: 8px 18px;">View Diagram</button>
+                                <a href="projects/lead-capture-booking-system/architecture-diagrams/operational-data-flow-diagram.pdf" target="_blank" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Open PDF</a>
+                                <a href="projects/lead-capture-booking-system/architecture-diagrams/operational-data-flow-diagram.pdf" download class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Download PDF</a>
+                            </div>
+                        </div>
+                        <div class="pdf-embed-wrapper" id="data-arch-wrapper" style="display: none; margin-top: 20px;">
+                            <object data="projects/lead-capture-booking-system/architecture-diagrams/operational-data-flow-diagram.pdf" type="application/pdf" width="100%" height="100%">
+                                <div class="pdf-fallback">
+                                    <p style="color: var(--text-silver); font-size: 0.9rem; margin-bottom: 12px;">Browser PDF preview is unavailable.</p>
+                                    <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
+                                        <a href="projects/lead-capture-booking-system/architecture-diagrams/operational-data-flow-diagram.pdf" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 8px 16px;">Open PDF</a>
+                                        <a href="projects/lead-capture-booking-system/architecture-diagrams/operational-data-flow-diagram.pdf" download class="btn btn-secondary" style="font-size: 12px; padding: 8px 16px;">Download PDF</a>
+                                    </div>
+                                </div>
+                            </object>
+                        </div>
+                        <p class="pdf-caption" style="margin-top: 16px;"><strong>Diagram Purpose:</strong> Illustrates lead data mapping, consultant notifications, availability status validation, and reminder trigger parameters.</p>
+                    </div>
+                </div>
+
+                <div class="why-matters-box" style="margin-top: 40px;">
+                    <h5>Why This Matters</h5>
+                    <p>A clear architecture creates operational visibility, separates responsibilities across system layers, and enables scalable lifecycle management.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Database & Form Foundation Section (Screenshots) -->
+        <section class="case-study-section section-matte section-glow-separator-top">
+            <div class="container-standard">
+                <span class="category-heading">Database &amp; Field Blueprints</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Database Structure</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px;">
+                    The platform's fields are structured inside GoHighLevel's contact schemas to ensure that follow-up automations behave reliably. Select below to review each configuration mapping.
+                </p>
+
+                <!-- Interactive Tabbed Screenshot Viewer -->
+                <div class="data-foundation-tabs">
+                    <div class="tab-list" role="tablist">
+                        <button class="tab-btn active" role="tab" onclick="switchTableTab(0)">1. Lead Details</button>
+                        <button class="tab-btn" role="tab" onclick="switchTableTab(1)">2. Calendar Mapping</button>
+                        <button class="tab-btn" role="tab" onclick="switchTableTab(2)">3. Outreach History</button>
+                    </div>
+
+                    <div class="tab-content-container">
+                        <!-- Tab 1 -->
+                        <div class="tab-content active" id="tab-content-0">
+                            <div class="tab-narrative">
+                                <h4>Contact Custom Fields Schema</h4>
+                                <p>Captures all validated customer information (name, email, phone, and inquiry details) collected during the intake step.</p>
+                                <div class="tab-bullets">
+                                    <div class="bullet-item"><strong>Ingestion Type:</strong> Input-validated Form Fields</div>
+                                    <div class="bullet-item"><strong>Critical Value:</strong> Standardized contact records</div>
+                                </div>
+                            </div>
+                            <div class="tab-screenshot-wrapper">
+                                <img src="projects/lead-capture-booking-system/screenshots/01-lead-details.png" alt="Contact Custom Fields View">
+                            </div>
+                        </div>
+
+                        <!-- Tab 2 -->
+                        <div class="tab-content" id="tab-content-1">
+                            <div class="tab-narrative">
+                                <h4>Calendar Availability Mapping</h4>
+                                <p>Tracks scheduled consultation bookings, meeting times, and two-way Google Calendar synchronization states.</p>
+                                <div class="tab-bullets">
+                                    <div class="bullet-item"><strong>Synchronization:</strong> Two-way GHL to Google Calendar link</div>
+                                    <div class="bullet-item"><strong>Primary Event:</strong> Confirmed appointment schedule</div>
+                                </div>
+                            </div>
+                            <div class="tab-screenshot-wrapper">
+                                <img src="projects/lead-capture-booking-system/screenshots/02-calendar-mapping.png" alt="Calendar Availability Mapping View">
+                            </div>
+                        </div>
+
+                        <!-- Tab 3 -->
+                        <div class="tab-content" id="tab-content-2">
+                            <div class="tab-narrative">
+                                <h4>Outreach History Logs</h4>
+                                <p>Monitors email confirmations, coordinator alerts, and time-delayed reminder delivery events.</p>
+                                <div class="tab-bullets">
+                                    <div class="bullet-item"><strong>Confirmation Email:</strong> Instant confirmation sent state</div>
+                                    <div class="bullet-item"><strong>Reminder Cadence:</strong> 24h, 1h, and 5m triggers</div>
+                                </div>
+                            </div>
+                            <div class="tab-screenshot-wrapper">
+                                <img src="projects/lead-capture-booking-system/screenshots/03-outreach-history.png" alt="Outreach History Logs View">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="why-matters-box" style="margin-top: 40px;">
+                    <h5>Why This Matters</h5>
+                    <p>Clean schemas enforce data alignment. By collecting and mapping attributes systematically, the CRM maintains reliable contact data and runs reminder automations without custom script overrides.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Flow Section (Screenshots) -->
+        <section class="case-study-section section-navy section-glow-separator-top section-glow-separator-bottom" id="system-flow">
+            <div class="container-standard">
+                <span class="category-heading">System Flow</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Step-by-Step Flow</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    The system executes a linear process flow designed to move leads from submission to a confirmed calendar slot. Click through each step inside the workflow list below to display the corresponding interface screenshot.
+                </p>
+
+                <!-- Interactive Workflow Flow -->
+                <div class="intake-pipeline-container">
+                    <div class="intake-pipeline-steps">
+                        <!-- Step 1 -->
+                        <div class="pipeline-step active" onclick="switchIntakeStep(0)">
+                            <span class="step-num">Step 01</span>
+                            <h5>Lead Capture &amp; Validation</h5>
+                            <p>Structured GoHighLevel forms enforce required field inputs, formatting details cleanly before submission.</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="pipeline-step" onclick="switchIntakeStep(1)">
+                            <span class="step-num">Step 02</span>
+                            <h5>Automated Response &amp; Alert</h5>
+                            <p>Immediate email confirmation dispatches to the prospect while sending an alert notification directly to the consultant.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="pipeline-step" onclick="switchIntakeStep(2)">
+                            <span class="step-num">Step 03</span>
+                            <h5>Calendar Booking &amp; Reminders</h5>
+                            <p>The lead selects a slot on GHL's synchronized calendar. The system sends booking confirmations and schedules reminder emails.</p>
+                        </div>
+                    </div>
+
+                    <div class="intake-pipeline-visual">
+                        <!-- Visual 1 -->
+                        <div class="intake-visual-wrapper active" id="intake-visual-0">
+                            <img src="projects/lead-capture-booking-system/screenshots/ghl-form.png" alt="GHL Lead Capture Form Interface">
+                        </div>
+                        <!-- Visual 2 -->
+                        <div class="intake-visual-wrapper" id="intake-visual-1">
+                            <img src="projects/lead-capture-booking-system/screenshots/confirmation-email.png" alt="Response Notification Interface">
+                        </div>
+                        <!-- Visual 3 -->
+                        <div class="intake-visual-wrapper" id="intake-visual-2">
+                            <img src="projects/lead-capture-booking-system/screenshots/google-calendar.png" alt="Calendar Booking &amp; Sync Interface">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Inventory Section -->
+        <section class="case-study-section section-matte">
+            <div class="container-standard">
+                <span class="category-heading">Workflow Inventory</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Standardized Operations</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    This project coordinates the operational boundaries of inquiry management by structuring key touchpoints inside GoHighLevel:
+                </p>
+
+                <div class="decision-grid">
+                    <div class="decision-card">
+                        <h5>Lead Capture Form</h5>
+                        <p>GoHighLevel embedded form collecting clean, validated customer information (name, email, phone, details) to enforce input hygiene from first contact.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Immediate Confirmation Email</h5>
+                        <p>Auto-response email dispatched immediately after submission, confirming receipt and providing direct access to the consultant's calendar.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Consultant Notification</h5>
+                        <p>Instant internal notification triggered to inform the consultant of the new inquiry, containing all submitted details to prepare for follow-up.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Thank You Page</h5>
+                        <p>A native confirmation page loaded instantly post-submission, thanking the lead and directing them to book their slot on the embedded GHL calendar widget.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Appointment Booking</h5>
+                        <p>A GoHighLevel calendar widget embedded on the Thank You page allowing prospects to select their preferred meeting time instantly.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Google Calendar Synchronization</h5>
+                        <p>Active calendar alignment that connects GoHighLevel slots with the consultant's Google Calendar to update availability and reduce scheduling conflicts.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Reminder Workflow</h5>
+                        <p>Time-delayed email reminder sequences (24 hours, 1 hour, and 5 minutes before the call) that contain native cancel and reschedule options.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Stack Section -->
+        <section class="case-study-section section-navy section-glow-separator-top section-glow-separator-bottom">
+            <div class="container-standard">
+                <span class="category-heading">System Dependencies</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Technology Stack</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    The system intentionally relies on GoHighLevel's native suite and Google Calendar integration to keep execution direct, reliable, and low-maintenance.
+                </p>
+
+                <div class="decision-grid">
+                    <!-- GoHighLevel -->
+                    <div class="decision-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: var(--sp-16);">
+                                <div style="width: 24px; height: 24px; overflow: hidden; display: flex; align-items: center; justify-content: flex-start; border-radius: 4px;">
+                                    <img src="assets/platform-logos/gohighlevel.png" alt="GoHighLevel Logo" style="height: 24px; width: auto; max-width: none;">
+                                </div>
+                                <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; color: var(--text-pure); margin: 0;">GoHighLevel</h4>
+                            </div>
+                            <p style="font-size: 0.88rem; line-height: 1.6; color: var(--text-silver);">
+                                Forms builder, automated email workflows, internal notification triggers, landing pages, and appointment booking calendar system.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Gmail -->
+                    <div class="decision-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: var(--sp-16);">
+                                <span style="font-size: 24px; line-height: 1;">📧</span>
+                                <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; color: var(--text-pure); margin: 0;">Gmail / G Suite</h4>
+                            </div>
+                            <p style="font-size: 0.88rem; line-height: 1.6; color: var(--text-silver);">
+                                Delivery provider for immediate prospect confirmation, internal consultant notifications, booking details, and automated meeting reminders.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Google Calendar -->
+                    <div class="decision-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: var(--sp-16);">
+                                <span style="font-size: 24px; line-height: 1;">📅</span>
+                                <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; color: var(--text-pure); margin: 0;">Google Calendar</h4>
+                            </div>
+                            <p style="font-size: 0.88rem; line-height: 1.6; color: var(--text-silver);">
+                                Two-way schedule synchronization to track availability and synchronize appointment confirmations across devices.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Design Rationale Section -->
+        <section class="case-study-section section-matte">
+            <div class="container-standard">
+                <span class="category-heading">System Design Rationale</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Design Principles</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    An analysis of the operational decisions and system design principles that shaped this lead acquisition and scheduling solution.
+                </p>
+
+                <div class="decision-grid">
+                    <div class="decision-card">
+                        <h5>Business Problem</h5>
+                        <p>Manual follow-up lag and unstructured scheduling methods cause drop-offs. In B2B sales, the longer a prospect waits for an email or a booking calendar after submitting an inquiry, the higher the chance they seek alternatives. Without standardized scheduling, double-bookings and no-shows create administrative friction.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Design Objectives</h5>
+                        <p>The primary objective is to implement a reliable, low-friction entry point for consultations. Objectives include providing immediate automated responses, standardizing appointment coordination, maintaining consistent customer communication, and ensuring reliable calendar synchronization.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Key Architectural Decisions</h5>
+                        <p>The implementation intentionally relied on GoHighLevel's native forms, workflows, calendar, and communication features to simplify operations and reduce maintenance complexity. By avoiding external API webhooks and third-party database syncs, the system achieves maximum stability and zero integration lag.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Design Trade-offs</h5>
+                        <p>Using GoHighLevel's native tools limits visual styling customization and workflow branching logic compared to custom-coded backends. However, this trade-off significantly reduces ongoing maintenance overhead and eliminates potential downtime caused by API updates or webhook disconnects.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Operational Reliability</h5>
+                        <p>To reduce manual errors, input validation is enforced at the form level. Google Calendar synchronization is set up to maintain synchronized calendar availability and reduce scheduling conflicts, while reminder schedules (24h, 1h, 5m) automatically adjust if appointments are rescheduled or cancelled.</p>
+                    </div>
+
+                    <div class="decision-card">
+                        <h5>Future Evolution</h5>
+                        <p>The current platform establishes a solid foundation for future workflow extensions. A planned enhancement is to introduce GoHighLevel SMS triggers to allow leads to confirm, reschedule, or cancel consultations directly via mobile messaging, further reducing scheduling friction.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Outcomes Section -->
+        <section class="case-study-section section-navy section-glow-separator-top">
+            <div class="container-standard">
+                <span class="category-heading">Project Outcomes</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 24px; color: var(--text-pure);">Operational Performance</h2>
+                
+                <div class="outcomes-list">
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Standardized Data Capture</h5>
+                            <p>Enforced form validation fields before lead ingestion, guaranteeing clean, structured contact records.</p>
+                        </div>
+                    </div>
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Immediate Automated Response</h5>
+                            <p>Replaced manual outreach latency by dispatching prospect confirmation emails immediately after form submission.</p>
+                        </div>
+                    </div>
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Consultant Notification</h5>
+                            <p>Automated consultant notifications contain full contact details, preparing the consultant for the call.</p>
+                        </div>
+                    </div>
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Availability Synchronization</h5>
+                            <p>Connected GHL calendar slots with Google Calendar, updating availability and reducing scheduling conflicts.</p>
+                        </div>
+                    </div>
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Automated Reminder Queue</h5>
+                            <p>Structured 24-hour, 1-hour, and 5-minute reminder emails maintain contact touchpoints before the consultation.</p>
+                        </div>
+                    </div>
+                    <div class="outcome-item">
+                        <span class="outcome-marker">✓</span>
+                        <div class="outcome-text">
+                            <h5>Reduced Coordination Effort</h5>
+                            <p>Eliminated manual follow-up loops by providing reschedule and cancel links directly inside the booking details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study Documentation Section -->
+        <section class="case-study-section documentation-section section-gradient-b section-glow-separator-top" id="pdf-documentation">
+            <div class="container-standard" style="text-align: center; max-width: 800px;">
+                <div class="documentation-header">
+                    <span class="category-heading" style="justify-content: center;">Case Study Resources</span>
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">System Documentation</h2>
+                    <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">
+                        This case study documents the complete setup, configurations, templates, calendar rules, and automated reminders behind the Lead Capture to Booking System.<br><br>
+                        The document provides a detailed breakdown of the GHL form structures, GHL workflow logs, and calendar synchronization details.
+                    </p>
+                </div>
+
+                <div class="pdf-action-buttons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 32px;">
+                    <button onclick="togglePdfViewer('case-study-wrapper', this)" class="btn btn-primary">Preview Case Study</button>
+                    <a href="projects/lead-capture-booking-system/case-study/lead-capture-booking-system-case-study.pdf" target="_blank" class="btn btn-secondary">Open PDF</a>
+                    <a href="projects/lead-capture-booking-system/case-study/lead-capture-booking-system-case-study.pdf" download class="btn btn-secondary">Download PDF</a>
+                </div>
+
+                <!-- Document Embed -->
+                <div class="documentation-card" id="case-study-wrapper" style="display: none; margin-bottom: 32px;">
+                    <div class="pdf-embed-wrapper" style="height: 600px; display: block;">
+                        <object data="projects/lead-capture-booking-system/case-study/lead-capture-booking-system-case-study.pdf" type="application/pdf" width="100%" height="100%">
+                            <div class="pdf-fallback">
+                                <p style="color: var(--text-silver); font-size: 0.9rem; margin-bottom: 12px;">Browser PDF preview is unavailable.</p>
+                                <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
+                                    <a href="projects/lead-capture-booking-system/case-study/lead-capture-booking-system-case-study.pdf" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 8px 16px;">Open PDF</a>
+                                    <a href="projects/lead-capture-booking-system/case-study/lead-capture-booking-system-case-study.pdf" download class="btn btn-secondary" style="font-size: 12px; padding: 8px 16px;">Download PDF</a>
+                                </div>
+                            </div>
+                        </object>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="section border-top" style="padding: 56px 0 48px; margin-left: auto; margin-right: auto;">
+        <div class="container-nav-align footer-responsive">
+            <a href="./" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
+                <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
+                    <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+                </div>
+                Nitin Mishra
+            </a>
+            <p class="footer-desc" style="color: var(--text-muted); font-size: 14px; max-width: 400px; margin-bottom: 1rem;">Structured workflow automation systems for operational clarity and standardized lead management.</p>
+            <div class="footer-copyright" style="margin-top: 2rem;">
+                <p style="color: var(--text-muted); font-size: 13px;">&copy; 2026 Nitin Mishra. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Zoom Overlay -->
+    <div id="fullscreen-image-modal" class="fullscreen-modal" style="display: none;">
+        <button class="modal-close-btn" aria-label="Close modal">&times;</button>
+        <div class="modal-content-wrapper">
+            <img id="modal-image" src="" alt="Enlarged Image" class="modal-img">
+        </div>
+    </div>
+
+    <!-- Script Orchestrations -->
+    <script src="script.js"></script>
+    <script>
+        // Database blueprint tabs switcher
+        function switchTableTab(tabIndex) {
+            document.querySelectorAll('.data-foundation-tabs .tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.data-foundation-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+
+            document.getElementById(`tab-content-${tabIndex}`).classList.add('active');
+            document.querySelectorAll('.data-foundation-tabs .tab-btn')[tabIndex].classList.add('active');
+        }
+
+        // Intake step screenshots switcher
+        function switchIntakeStep(stepIndex) {
+            document.querySelectorAll('.pipeline-step').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.intake-visual-wrapper').forEach(v => v.classList.remove('active'));
+
+            document.querySelectorAll('.pipeline-step')[stepIndex].classList.add('active');
+            document.getElementById(`intake-visual-${stepIndex}`).classList.add('active');
+        }
+
+        // PDF diagram preview expander
+        function togglePdfViewer(wrapperId, button) {
+            const wrapper = document.getElementById(wrapperId);
+            if (!wrapper) return;
+            const isHidden = wrapper.style.display === 'none' || wrapper.style.display === '';
+            if (isHidden) {
+                wrapper.style.display = 'block';
+                if (button && button.tagName === 'BUTTON') {
+                    if (wrapperId === 'case-study-wrapper') {
+                        button.textContent = 'Collapse Case Study';
+                    } else {
+                        button.textContent = 'Collapse Diagram';
+                    }
+                }
+            } else {
+                wrapper.style.display = 'none';
+                if (button && button.tagName === 'BUTTON') {
+                    if (wrapperId === 'case-study-wrapper') {
+                        button.textContent = 'Preview Case Study';
+                    } else {
+                        button.textContent = 'View Diagram';
+                    }
+                }
+            }
+        }
+
+        // Image zoom modal functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inject mobile zoom hints
+            const screenshotWrappers = document.querySelectorAll('.tab-screenshot-wrapper');
+            screenshotWrappers.forEach(wrapper => {
+                const hint = document.createElement('span');
+                hint.className = 'mobile-zoom-hint';
+                hint.textContent = 'Tap image to enlarge';
+                wrapper.parentNode.insertBefore(hint, wrapper.nextSibling);
+            });
+
+            const intakeVisual = document.querySelector('.intake-pipeline-visual');
+            if (intakeVisual) {
+                const hint = document.createElement('span');
+                hint.className = 'mobile-zoom-hint';
+                hint.textContent = 'Tap image to enlarge';
+                intakeVisual.parentNode.insertBefore(hint, intakeVisual.nextSibling);
+            }
+
+            const modal = document.getElementById('fullscreen-image-modal');
+            const modalImg = document.getElementById('modal-image');
+            const closeBtn = modal.querySelector('.modal-close-btn');
+
+            let scale = 1;
+            let posX = 0;
+            let posY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            function resetZoom() {
+                scale = 1;
+                posX = 0;
+                posY = 0;
+                updateImageTransform();
+            }
+
+            function updateImageTransform() {
+                modalImg.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+            }
+
+            const zoomableImages = document.querySelectorAll('main img:not(.nm-monogram-img)');
+            zoomableImages.forEach(img => {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function() {
+                    modalImg.src = this.src;
+                    modal.style.display = 'flex';
+                    setTimeout(() => {
+                        modal.classList.add('active');
+                        document.body.classList.add('modal-open');
+                    }, 10);
+                    resetZoom();
+                });
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal || e.target === modal.querySelector('.modal-content-wrapper')) {
+                    closeModal();
+                }
+            });
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            }
+
+            modalImg.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                if (scale === 1) return;
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+                modalImg.style.cursor = 'grabbing';
+            });
+
+            window.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                posX = e.clientX - startX;
+                posY = e.clientY - startY;
+                updateImageTransform();
+            });
+
+            window.addEventListener('mouseup', function() {
+                isDragging = false;
+                modalImg.style.cursor = 'grab';
+            });
+        });
+    </script>
+</body>
+</html>

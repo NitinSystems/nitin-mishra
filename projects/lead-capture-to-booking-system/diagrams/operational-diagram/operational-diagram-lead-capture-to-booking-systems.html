@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lead Capture to Booking System — Operational Flow Diagram</title>
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:      #0A0F1E;
+  --blue:      #3B82F6;
+  --blue-tint: #EFF4FE;
+  --blue-mid:  #DBEAFE;
+  --white:     #FFFFFF;
+  --grey:      #94A3B8;
+  --muted:     #64748B;
+  --border:    #D7DEE8;
+  --divider:   #E2E8F0;
+  --tint-a:    #F7F9FC;
+  --sig:       #B0BBCA;
+  --num-col:   #DDE6F1;
+}
+
+body {
+  font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  color: var(--navy);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  width: 210mm;
+  margin: 0 auto;
+  padding: 14mm 14mm 14mm;
+  background: #fff;
+}
+
+/* ── TITLE ── */
+.doc-label {
+  text-align: center;
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 2.8px;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.doc-title {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 26pt;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.doc-sub {
+  text-align: center;
+  font-size: 10.5pt;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.title-rule {
+  width: 200px;
+  margin: 0 auto 18px;
+  border: none;
+  border-top: 1px solid var(--divider);
+}
+
+/* ── SUMMARY ── */
+.summary {
+  background: var(--blue-tint);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  margin-bottom: 22px;
+  box-shadow: 0 1px 5px rgba(10,15,30,.05);
+  overflow: hidden;
+}
+.sum-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.sum-col {
+  padding: 11px 16px;
+  border-right: 1px solid var(--divider);
+}
+.sum-col:last-child { border-right: none; }
+.sum-lbl { font-size: 7pt; font-weight: 700; letter-spacing: 1px; color: var(--blue); margin-bottom: 3px; text-transform: uppercase; }
+.sum-val { font-size: 9.5pt; font-weight: 700; color: var(--navy); line-height: 1.3; }
+.sum-obj {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 16px;
+  border-top: 1px solid var(--divider);
+}
+.obj-lbl { font-size: 7pt; font-weight: 700; letter-spacing: 1px; color: var(--blue); white-space: nowrap; text-transform: uppercase; }
+.obj-txt { font-size: 8.5pt; color: var(--muted); line-height: 1.5; }
+
+/* ── STEP CARD ── */
+.step {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgba(10,15,30,.05);
+  break-inside: avoid;
+  page-break-inside: avoid;
+  overflow: hidden;
+}
+.step::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 7px; bottom: 7px;
+  width: 3.5px;
+  background: var(--blue);
+  border-radius: 0 2px 2px 0;
+}
+.step.trigger {
+  background: var(--blue-mid);
+  border-color: var(--blue);
+  border-width: 1.5px;
+}
+.step-num {
+  position: absolute;
+  top: 7px; right: 12px;
+  font-family: Georgia, serif;
+  font-size: 20pt;
+  font-weight: 700;
+  color: var(--num-col);
+  line-height: 1;
+}
+.step-head {
+  padding: 10px 40px 9px 18px;
+  border-bottom: 1px solid var(--divider);
+}
+.step-title {
+  font-size: 13.5pt;
+  font-weight: 700;
+  color: var(--navy);
+}
+.step-body {
+  padding: 10px 18px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Row: inline label + value */
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+.rlbl {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: #64748B;
+  text-transform: uppercase;
+  width: 130px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+.rval {
+  font-size: 9.5pt;
+  color: #1E293B;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* Section: label then bullets below */
+.sec { display: flex; flex-direction: column; gap: 4px; }
+.slbl {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: #64748B;
+  text-transform: uppercase;
+}
+.bullets { padding-left: 10px; display: flex; flex-direction: column; gap: 2px; }
+.bul {
+  font-size: 9.5pt;
+  color: #1E293B;
+  line-height: 1.5;
+  display: flex;
+  gap: 7px;
+}
+.bul::before { content: '·'; color: var(--grey); flex-shrink: 0; }
+
+/* Trigger special */
+.trig-txt {
+  font-size: 9.5pt;
+  color: var(--navy);
+  font-weight: 500;
+  line-height: 1.55;
+  padding-left: 130px;
+}
+.trig-note {
+  font-size: 8.5pt;
+  color: #64748B;
+  font-style: italic;
+  line-height: 1.45;
+  padding-left: 130px;
+}
+
+/* ── CONNECTORS ── */
+.conn {
+  display: flex;
+  justify-content: center;
+  height: 38px;
+  position: relative;
+  flex-shrink: 0;
+}
+.conn::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 0; bottom: 9px;
+  width: 1.5px;
+  background: var(--grey);
+  transform: translateX(-50%);
+}
+.conn::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: 0;
+  transform: translateX(-50%);
+  border-left: 5.5px solid transparent;
+  border-right: 5.5px solid transparent;
+  border-top: 8px solid var(--grey);
+}
+
+/* Fan-out */
+.fanout {
+  height: 24px;
+  position: relative;
+  flex-shrink: 0;
+}
+.fanout .s  { position: absolute; left: 50%; top: 0; width: 1.5px; height: 12px; background: var(--grey); transform: translateX(-50%); }
+.fanout .cb { position: absolute; top: 12px; left: 25%; right: 25%; height: 1.5px; background: var(--grey); }
+.fanout .dl { position: absolute; top: 12px; left: calc(25% - 0.75px); width: 1.5px; height: 12px; background: var(--grey); }
+.fanout .dl::after,
+.fanout .dr::after {
+  content: '';
+  position: absolute;
+  bottom: -7px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 4.5px solid transparent;
+  border-right: 4.5px solid transparent;
+  border-top: 6.5px solid var(--grey);
+}
+.fanout .dr { position: absolute; top: 12px; right: calc(25% - 0.75px); width: 1.5px; height: 12px; background: var(--grey); }
+
+/* Parallel */
+.parallel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.branch {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgba(10,15,30,.05);
+  overflow: hidden;
+}
+.br-head { padding: 9px 14px 8px; border-bottom: 1px solid var(--divider); }
+.br-dom  { font-size: 7pt; font-weight: 700; letter-spacing: 1px; color: var(--blue); text-transform: uppercase; margin-bottom: 3px; }
+.br-ttl  { font-size: 10.5pt; font-weight: 700; color: var(--navy); }
+.br-body { padding: 8px 14px 10px; }
+.br-objlbl { font-size: 7pt; font-weight: 700; letter-spacing: 1px; color: var(--blue); text-transform: uppercase; margin-bottom: 4px; }
+
+/* Merge */
+.merge {
+  height: 24px;
+  position: relative;
+  flex-shrink: 0;
+}
+.merge .rl { position: absolute; top: 0; left: calc(25% - 0.75px); width: 1.5px; height: 12px; background: var(--grey); }
+.merge .rr { position: absolute; top: 0; right: calc(25% - 0.75px); width: 1.5px; height: 12px; background: var(--grey); }
+.merge .cb { position: absolute; top: 12px; left: 25%; right: 25%; height: 1.5px; background: var(--grey); }
+.merge .s  { position: absolute; top: 12px; left: 50%; width: 1.5px; height: 12px; background: var(--grey); transform: translateX(-50%); }
+.merge .s::after {
+  content: '';
+  position: absolute;
+  bottom: -7px; left: 50%;
+  transform: translateX(-50%);
+  border-left: 5.5px solid transparent;
+  border-right: 5.5px solid transparent;
+  border-top: 8px solid var(--grey);
+}
+
+/* ── OUTCOME ── */
+.outcome {
+  background: linear-gradient(90deg, #1C4ED8 0%, #3B82F6 100%);
+  border-radius: 40px;
+  padding: 16px 28px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(28, 78, 216, 0.4), 0 0 15px rgba(28, 78, 216, 0.2);
+  break-inside: avoid;
+  page-break-inside: avoid;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.outcome-txt { font-size: 13.5pt; font-weight: 700; color: #fff; letter-spacing: 0.2px; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+
+.outcome-note {
+  text-align: center;
+  font-size: 8pt;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.6;
+  margin-top: 12px;
+  padding: 0 40px;
+}
+
+/* ── BENEFITS ── */
+.benefits {
+  background: var(--blue-tint);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+  margin-top: 20px;
+  box-shadow: 0 1px 5px rgba(10,15,30,.05);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.ben-head { padding: 10px 16px 9px; border-bottom: 1px solid var(--divider); }
+.ben-lbl  { font-size: 8pt; font-weight: 700; letter-spacing: 1.3px; color: var(--blue); text-transform: uppercase; }
+.ben-grid { display: grid; grid-template-columns: 1fr 1fr; padding: 10px 16px 12px; gap: 5px 0; }
+.ben-item { font-size: 9.5pt; color: var(--navy); display: flex; gap: 7px; align-items: baseline; }
+.ben-item::before { content: '—'; color: var(--blue); font-weight: 600; flex-shrink: 0; }
+
+/* ── STACK ── */
+.stack {
+  margin-top: 20px;
+  text-align: center;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.stack-lbl  { font-size: 8pt; font-weight: 700; letter-spacing: 1.5px; color: var(--grey); text-transform: uppercase; margin-bottom: 9px; }
+.stack-pills { display: flex; justify-content: center; gap: 12px; }
+.pill {
+  background: var(--tint-a);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 4px 16px;
+  font-size: 8.5pt;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+/* ── FOOTER ── */
+.footer { margin-top: 20px; text-align: center; }
+.footer-rule { width: 200px; margin: 0 auto 10px; border: none; border-top: 1px solid var(--divider); }
+.footer-txt  { font-size: 8pt; color: var(--sig); }
+
+/* ── PRINT ── */
+@media print {
+  @page { size: A4; margin: 14mm; }
+  body  { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { padding: 0; width: 100%; }
+  .step, .parallel, .benefits, .stack, .outcome { break-inside: avoid; page-break-inside: avoid; }
+  /* Force page break BEFORE step 06 so steps 06-09 stay together on page 2 */
+  .break-before { break-before: page; page-break-before: always; margin-top: 0; }
+}
+
+/* Screen layout: keep everything in flow column */
+.flow { display: flex; flex-direction: column; gap: 0; }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="doc-label">Operational Flow Diagram</div>
+  <h1 class="doc-title">Lead Capture to Booking System</h1>
+  <p class="doc-sub">From Lead Submission to Confirmed Consultation</p>
+  <hr class="title-rule">
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div class="sum-meta">
+      <div class="sum-col"><div class="sum-lbl">Project Type</div><div class="sum-val">Real Company Implementation</div></div>
+      <div class="sum-col"><div class="sum-lbl">Primary Platform</div><div class="sum-val">GoHighLevel</div></div>
+      <div class="sum-col"><div class="sum-lbl">Supporting Services</div><div class="sum-val">Gmail · Google Calendar</div></div>
+    </div>
+    <div class="sum-obj">
+      <div class="obj-lbl">Business Objective</div>
+      <div class="obj-txt">Standardize lead capture, appointment scheduling, and customer communication while reducing manual coordination.</div>
+    </div>
+  </div>
+
+  <div class="flow">
+
+    <!-- 01 -->
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-head"><div class="step-title">Lead Enters System</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Capture an incoming business inquiry through the consultation landing page.</div></div>
+        <div class="row"><div class="rlbl">Outcome</div><div class="rval">Visitor decides to submit an inquiry.</div></div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- 02 -->
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-head"><div class="step-title">Lead Capture Form</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Collect structured lead information.</div></div>
+        <div class="sec">
+          <div class="slbl">Fields Collected</div>
+          <div class="bullets">
+            <div class="bul">Name</div>
+            <div class="bul">Work Email</div>
+            <div class="bul">Phone Number</div>
+            <div class="bul">Preferred Contact Method</div>
+          </div>
+        </div>
+        <div class="row"><div class="rlbl">Outcome</div><div class="rval">Lead information submitted successfully.</div></div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- 03 -->
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-head"><div class="step-title">Input Validation</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Ensure submitted information is complete before processing.</div></div>
+        <div class="sec">
+          <div class="slbl">Validation</div>
+          <div class="bullets">
+            <div class="bul">Required fields</div>
+            <div class="bul">Email format verification</div>
+          </div>
+        </div>
+        <div class="row"><div class="rlbl">Outcome</div><div class="rval">Validated submission accepted.</div></div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- 04 Trigger -->
+    <div class="step trigger">
+      <div class="step-num">04</div>
+      <div class="step-head"><div class="step-title">Automation Trigger</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval"></div></div>
+        <div class="trig-txt">A successful form submission automatically initiates the operational workflow and all downstream business actions.</div>
+        <div class="trig-note">This is the central execution point of the system.</div>
+      </div>
+    </div>
+
+    <!-- Fan-out -->
+    <div class="fanout"><div class="s"></div><div class="cb"></div><div class="dl"></div><div class="dr"></div></div>
+
+    <!-- Parallel -->
+    <div class="parallel">
+      <div class="branch">
+        <div class="br-head"><div class="br-dom">Customer Communication</div><div class="br-ttl">Confirmation Email</div></div>
+        <div class="br-body">
+          <div class="br-objlbl">Objectives</div>
+          <div class="bullets">
+            <div class="bul">Confirm successful inquiry</div>
+            <div class="bul">Reassure the lead</div>
+            <div class="bul">Set expectations for next steps</div>
+          </div>
+        </div>
+      </div>
+      <div class="branch">
+        <div class="br-head"><div class="br-dom">Team Notification</div><div class="br-ttl">Internal Notification</div></div>
+        <div class="br-body">
+          <div class="br-objlbl">Objectives</div>
+          <div class="bullets">
+            <div class="bul">Reduce manual checking</div>
+            <div class="bul">Improve response readiness</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Merge -->
+    <div class="merge"><div class="rl"></div><div class="rr"></div><div class="cb"></div><div class="s"></div></div>
+
+    <!-- 05 -->
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-head"><div class="step-title">Thank You Page</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Confirm successful submission and guide the lead toward scheduling a consultation.</div></div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- PAGE BREAK POINT — step 06 starts fresh on page 2 -->
+    <!-- 06 -->
+    <div class="step break-before">
+      <div class="step-num">06</div>
+      <div class="step-head"><div class="step-title">Appointment Booking</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Allow the lead to select an available 30-minute consultation slot using the GoHighLevel booking calendar.</div></div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- 07 -->
+    <div class="step">
+      <div class="step-num">07</div>
+      <div class="step-head"><div class="step-title">Booking Confirmation Email</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Confirm the scheduled consultation.</div></div>
+        <div class="sec">
+          <div class="slbl">Includes</div>
+          <div class="bullets">
+            <div class="bul">Appointment details</div>
+            <div class="bul">Reschedule option</div>
+            <div class="bul">Cancel option</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- 08 -->
+    <div class="step">
+      <div class="step-num">08</div>
+      <div class="step-head"><div class="step-title">Google Calendar Synchronization</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Maintain synchronized appointment availability between GoHighLevel and Google Calendar.</div></div>
+        <div class="row"><div class="rlbl">Outcome</div><div class="rval">Consistent scheduling visibility across both platforms.</div></div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- 09 -->
+    <div class="step">
+      <div class="step-num">09</div>
+      <div class="step-head"><div class="step-title">Automated Reminder Sequence</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Reduce missed consultations through scheduled reminder emails.</div></div>
+        <div class="sec">
+          <div class="slbl">Reminder Schedule</div>
+          <div class="bullets">
+            <div class="bul">24 Hours Before</div>
+            <div class="bul">1 Hour Before</div>
+            <div class="bul">5 Minutes Before</div>
+          </div>
+        </div>
+        <div class="row"><div class="rlbl">Delivery Method</div><div class="rval">Email</div></div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- OUTCOME -->
+    <div class="outcome">
+      <div class="outcome-txt">Confirmed Scheduled Consultation</div>
+    </div>
+    <p class="outcome-note">The operational workflow successfully transitions a lead from the initial inquiry to a confirmed consultation through standardized automation, structured communication, and reliable scheduling.</p>
+
+    <!-- BENEFITS -->
+    <div class="benefits">
+      <div class="ben-head"><div class="ben-lbl">Operational Benefits</div></div>
+      <div class="ben-grid">
+        <div class="ben-item">Reduced manual appointment coordination</div>
+        <div class="ben-item">Consistent customer communication</div>
+        <div class="ben-item">Standardized lead handling</div>
+        <div class="ben-item">Reliable consultation scheduling</div>
+      </div>
+    </div>
+
+    <!-- STACK -->
+    <div class="stack">
+      <div class="stack-lbl">Implementation Stack</div>
+      <div class="stack-pills">
+        <div class="pill">GoHighLevel</div>
+        <div class="pill">Gmail</div>
+        <div class="pill">Google Calendar</div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <hr class="footer-rule">
+      <div class="footer-txt">Designed by Nitin Mishra &nbsp;·&nbsp; Portfolio Case Study &nbsp;•&nbsp; 2026</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

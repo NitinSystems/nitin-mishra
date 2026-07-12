@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Customer Journey Leak Recovery Architect</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #07080d;
+    --bg-secondary: #0d0f1a;
+    --bg-card: #0f1120;
+    --bg-card-hover: #141628;
+
+    --blue: #2d7ef5;
+    --blue-dim: #1a4a9e;
+    --blue-glow: rgba(45,126,245,0.15);
+    --blue-border: rgba(45,126,245,0.4);
+
+    --purple: #8b5cf6;
+    --purple-dim: #4c2d9e;
+    --purple-glow: rgba(139,92,246,0.15);
+    --purple-border: rgba(139,92,246,0.4);
+
+    --orange: #f97316;
+    --orange-dim: #9a4410;
+    --orange-glow: rgba(249,115,22,0.15);
+    --orange-border: rgba(249,115,22,0.4);
+
+    --red: #ef4444;
+    --red-dim: #8b1a1a;
+    --red-glow: rgba(239,68,68,0.15);
+    --red-border: rgba(239,68,68,0.4);
+
+    --green: #22c55e;
+    --green-dim: #145c2f;
+    --green-glow: rgba(34,197,94,0.15);
+    --green-border: rgba(34,197,94,0.4);
+
+    --gray: #6b7280;
+    --gray-dim: #2d3340;
+    --gray-glow: rgba(107,114,128,0.1);
+    --gray-border: rgba(107,114,128,0.3);
+
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #4b5563;
+    --text-accent: #cbd5e1;
+
+    --grid-line: rgba(255,255,255,0.03);
+    --border-subtle: rgba(255,255,255,0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 32px 60px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 32px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .header-left {}
+
+  .system-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--purple);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .system-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--purple);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--purple);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .main-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .main-title span { color: var(--blue); }
+
+  .header-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  .header-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .meta-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 4px 10px;
+    text-transform: uppercase;
+  }
+
+  .kpi-badge {
+    background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(34,197,94,0.06));
+    border: 1px solid var(--green-border);
+    border-radius: 6px;
+    padding: 8px 16px;
+    text-align: right;
+  }
+
+  .kpi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .kpi-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* ── LEGEND ── */
+  .legend-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    margin-bottom: 40px;
+    padding: 14px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.06em;
+  }
+
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── MAIN FLOW ── */
+  .architecture-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    position: relative;
+  }
+
+  /* Flow connector vertical line */
+  .flow-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 0;
+    position: relative;
+  }
+
+  .connector-line {
+    width: 2px;
+    height: 28px;
+    background: linear-gradient(to bottom, transparent, currentColor, transparent);
+    opacity: 0.5;
+  }
+
+  .connector-arrow {
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid currentColor;
+    opacity: 0.7;
+    margin-top: -2px;
+  }
+
+  .connector-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    opacity: 0.6;
+  }
+
+  /* ── NODE CARDS ── */
+  .node {
+    border-radius: 10px;
+    border: 1px solid;
+    padding: 18px 22px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .node::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .node:hover { transform: translateY(-1px); }
+
+  /* Color variants */
+  .node-blue {
+    border-color: var(--blue-border);
+    background: linear-gradient(135deg, rgba(45,126,245,0.08) 0%, var(--bg-card) 100%);
+    box-shadow: 0 0 0 1px var(--blue-border) inset, 0 4px 24px rgba(45,126,245,0.06);
+  }
+  .node-blue:hover { box-shadow: 0 0 0 1px var(--blue-border) inset, 0 8px 32px rgba(45,126,245,0.12); }
+  .node-blue .node-icon { color: var(--blue); }
+  .node-blue .node-accent { background: var(--blue); }
+  .node-blue .tag { background: var(--blue-glow); border-color: var(--blue-border); color: var(--blue); }
+
+  .node-purple {
+    border-color: var(--purple-border);
+    background: linear-gradient(135deg, rgba(139,92,246,0.1) 0%, var(--bg-card) 100%);
+    box-shadow: 0 0 0 1px var(--purple-border) inset, 0 4px 24px rgba(139,92,246,0.08);
+  }
+  .node-purple:hover { box-shadow: 0 0 0 1px var(--purple-border) inset, 0 8px 32px rgba(139,92,246,0.15); }
+  .node-purple .node-icon { color: var(--purple); }
+  .node-purple .node-accent { background: var(--purple); }
+  .node-purple .tag { background: var(--purple-glow); border-color: var(--purple-border); color: var(--purple); }
+
+  .node-orange {
+    border-color: var(--orange-border);
+    background: linear-gradient(135deg, rgba(249,115,22,0.08) 0%, var(--bg-card) 100%);
+    box-shadow: 0 0 0 1px var(--orange-border) inset, 0 4px 24px rgba(249,115,22,0.06);
+  }
+  .node-orange:hover { box-shadow: 0 0 0 1px var(--orange-border) inset, 0 8px 32px rgba(249,115,22,0.12); }
+  .node-orange .node-icon { color: var(--orange); }
+  .node-orange .node-accent { background: var(--orange); }
+  .node-orange .tag { background: var(--orange-glow); border-color: var(--orange-border); color: var(--orange); }
+
+  .node-red {
+    border-color: var(--red-border);
+    background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, var(--bg-card) 100%);
+    box-shadow: 0 0 0 1px var(--red-border) inset, 0 4px 24px rgba(239,68,68,0.06);
+  }
+  .node-red:hover { box-shadow: 0 0 0 1px var(--red-border) inset, 0 8px 32px rgba(239,68,68,0.12); }
+  .node-red .node-icon { color: var(--red); }
+  .node-red .node-accent { background: var(--red); }
+  .node-red .tag { background: var(--red-glow); border-color: var(--red-border); color: var(--red); }
+
+  .node-green {
+    border-color: var(--green-border);
+    background: linear-gradient(135deg, rgba(34,197,94,0.08) 0%, var(--bg-card) 100%);
+    box-shadow: 0 0 0 1px var(--green-border) inset, 0 4px 24px rgba(34,197,94,0.06);
+  }
+  .node-green:hover { box-shadow: 0 0 0 1px var(--green-border) inset, 0 8px 32px rgba(34,197,94,0.12); }
+  .node-green .node-icon { color: var(--green); }
+  .node-green .node-accent { background: var(--green); }
+  .node-green .tag { background: var(--green-glow); border-color: var(--green-border); color: var(--green); }
+
+  .node-gray {
+    border-color: var(--gray-border);
+    background: linear-gradient(135deg, rgba(107,114,128,0.06) 0%, var(--bg-card) 100%);
+    box-shadow: 0 0 0 1px var(--gray-border) inset, 0 4px 24px rgba(107,114,128,0.04);
+  }
+  .node-gray .node-icon { color: var(--gray); }
+  .node-gray .node-accent { background: var(--gray); }
+  .node-gray .tag { background: var(--gray-glow); border-color: var(--gray-border); color: var(--gray); }
+
+  /* Node accent stripe */
+  .node-accent {
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .node-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .node-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .node-step {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .node-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  .node-subtitle {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .node-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    opacity: 0.9;
+  }
+
+  /* Tag pills */
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 12px;
+  }
+
+  .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Node body content */
+  .node-body {
+    display: grid;
+    gap: 10px;
+  }
+
+  .node-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+  }
+
+  .sub-section {
+    background: rgba(0,0,0,0.25);
+    border-radius: 6px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .sub-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .sub-label::before {
+    content: '';
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.6;
+  }
+
+  .item-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .item-list li {
+    font-size: 11px;
+    color: var(--text-accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.3;
+  }
+
+  .item-list li::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 1px;
+    background: currentColor;
+    opacity: 0.4;
+    flex-shrink: 0;
+  }
+
+  /* ── OUTCOME GRID ── */
+  .outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .outcome-cell {
+    background: rgba(0,0,0,0.3);
+    border-radius: 6px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-subtle);
+    text-align: center;
+  }
+
+  .outcome-icon {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .outcome-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+    line-height: 1.3;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── BOTTOM LAYERS ── */
+  .bottom-layers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  /* ── METRICS ROW ── */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .metric-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .metric-card.primary {
+    background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(34,197,94,0.04));
+    border-color: var(--green-border);
+  }
+
+  .metric-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  .metric-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .metric-card.primary .metric-label { color: var(--green); }
+  .metric-card.primary .metric-name { color: var(--green); font-size: 14px; }
+
+  /* ── AI CONFIDENCE INDICATOR ── */
+  .confidence-bar {
+    height: 3px;
+    background: var(--gray-dim);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+
+  .confidence-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--blue));
+    border-radius: 2px;
+    width: 72%;
+    animation: fillBar 2s ease forwards;
+  }
+
+  @keyframes fillBar {
+    from { width: 0; }
+    to { width: 72%; }
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+  }
+
+  .divider-line { flex: 1; height: 1px; background: var(--border-subtle); }
+
+  .divider-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-left {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-right {
+    display: flex;
+    gap: 16px;
+  }
+
+  .footer-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    border-radius: 3px;
+    padding: 3px 8px;
+    text-transform: uppercase;
+  }
+
+  /* ── AI AGENT BADGE ── */
+  .ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(90deg, rgba(139,92,246,0.2), rgba(45,126,245,0.2));
+    border: 1px solid rgba(139,92,246,0.4);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--purple);
+    text-transform: uppercase;
+  }
+
+  .ai-dot {
+    width: 5px; height: 5px;
+    background: var(--purple);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--purple);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  /* ── EVALUATION OUTPUTS ── */
+  .eval-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+
+  .eval-item {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border-subtle);
+    border-radius: 5px;
+    padding: 7px 9px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* Animation entrance */
+  .node { animation: fadeIn 0.5s ease both; }
+  .node:nth-child(1) { animation-delay: 0.05s; }
+  .node:nth-child(2) { animation-delay: 0.1s; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsiveness */
+  @media (max-width: 900px) {
+    .outcome-grid { grid-template-columns: repeat(2, 1fr); }
+    .eval-grid { grid-template-columns: repeat(2, 1fr); }
+    .metrics-row { grid-template-columns: 1fr 1fr; }
+    .bottom-layers { grid-template-columns: 1fr; }
+    .header { flex-direction: column; }
+    .header-meta { align-items: flex-start; }
+    .node-columns { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div class="header-left">
+      <div class="system-tag">Revenue Operations Architecture · v1.0</div>
+      <h1 class="main-title">AI Customer Journey<br><span>Leak Recovery Architect</span></h1>
+      <p class="header-desc">Detects customer journey leakage across a B2B service lifecycle, evaluates recovery opportunities using AI, coordinates recovery execution, escalates operational risk, and measures recovery outcomes.</p>
+    </div>
+    <div class="header-meta">
+      <span class="meta-badge">Enterprise Architecture</span>
+      <span class="meta-badge">B2B Service Operations</span>
+      <div class="kpi-badge">
+        <div class="kpi-label">Primary KPI</div>
+        <div class="kpi-value">Pipeline Recovery Rate</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LEGEND ── -->
+  <div class="legend-bar">
+    <div class="legend-item"><span class="legend-dot" style="background:var(--blue)"></span>Data Layer</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span>AI Intelligence</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--orange)"></span>Recovery Execution</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--red)"></span>Escalation Management</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--green)"></span>Outcome Layer</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--gray)"></span>Governance &amp; Reporting</div>
+  </div>
+
+  <!-- ── MAIN FLOW ── -->
+  <div class="architecture-grid">
+
+    <!-- 01 · CUSTOMER JOURNEY RECORDS -->
+    <div class="node node-blue">
+      <div class="node-accent"></div>
+      <div class="node-header">
+        <div class="node-title-group">
+          <span class="node-step">01 · System of Record</span>
+          <div class="node-title">Customer Journey Records</div>
+          <div class="node-subtitle">Primary lifecycle data source across all B2B touchpoints</div>
+        </div>
+        <div class="node-icon">🗃️</div>
+      </div>
+      <div class="node-columns">
+        <div class="sub-section">
+          <div class="sub-label">Journey Stages</div>
+          <ul class="item-list">
+            <li>Lead Capture &amp; Qualification</li>
+            <li>Consultation Scheduling</li>
+            <li>Proposal Delivery</li>
+            <li>Onboarding Initiation</li>
+            <li>Engagement &amp; Retention</li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">Record Fields</div>
+          <ul class="item-list">
+            <li>Contact &amp; Opportunity ID</li>
+            <li>Stage Timestamps</li>
+            <li>Engagement Signals</li>
+            <li>Previous Recovery History</li>
+            <li>Lifecycle Status</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">CRM Source</span>
+        <span class="tag">Airtable / HubSpot</span>
+        <span class="tag">Real-Time Sync</span>
+        <span class="tag">State Tracking</span>
+      </div>
+    </div>
+
+    <!-- CONNECTOR -->
+    <div class="flow-connector" style="color: var(--blue)">
+      <div class="connector-line"></div>
+      <div class="connector-arrow"></div>
+      <div class="connector-label" style="color:var(--blue)">Leakage Scan Trigger</div>
+    </div>
+
+    <!-- 02 · LEAKAGE DETECTION ENGINE -->
+    <div class="node node-blue">
+      <div class="node-accent"></div>
+      <div class="node-header">
+        <div class="node-title-group">
+          <span class="node-step">02 · Detection Layer</span>
+          <div class="node-title">Leakage Detection Engine</div>
+          <div class="node-subtitle">Monitors lifecycle events and flags stalled or dropped journeys</div>
+        </div>
+        <div class="node-icon">🔍</div>
+      </div>
+      <div class="node-columns">
+        <div class="sub-section">
+          <div class="sub-label">Leakage Event Types</div>
+          <ul class="item-list">
+            <li>Lead Stopped Replying</li>
+            <li>Consultation No-Show</li>
+            <li>Proposal Ignored</li>
+            <li>Onboarding Delayed</li>
+            <li>Engagement Dropped</li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">Detection Signals</div>
+          <ul class="item-list">
+            <li>Inactivity Time Windows</li>
+            <li>Stage Stall Thresholds</li>
+            <li>Email Open / Reply Drop</li>
+            <li>Calendar Non-Attendance</li>
+            <li>Session Activity Absence</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Scheduled Scan</span>
+        <span class="tag">Make.com Trigger</span>
+        <span class="tag">Threshold Rules</span>
+        <span class="tag">Event Emitter</span>
+      </div>
+    </div>
+
+    <!-- CONNECTOR -->
+    <div class="flow-connector" style="color: var(--purple)">
+      <div class="connector-line"></div>
+      <div class="connector-arrow"></div>
+      <div class="connector-label" style="color:var(--purple)">Leakage Events → AI Input</div>
+    </div>
+
+    <!-- 03 · AI DECISION ENGINE -->
+    <div class="node node-purple">
+      <div class="node-accent"></div>
+      <div class="node-header">
+        <div class="node-title-group">
+          <span class="node-step">03 · Intelligence Layer</span>
+          <div class="node-title">AI Decision Engine</div>
+          <div class="node-subtitle">Make AI Agent — evaluates leakage context and selects recovery strategy</div>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+          <div class="node-icon">🧠</div>
+          <div class="ai-badge"><span class="ai-dot"></span>AI Agent</div>
+        </div>
+      </div>
+      <div class="node-columns">
+        <div class="sub-section">
+          <div class="sub-label">AI Evaluation Inputs</div>
+          <ul class="item-list">
+            <li>Leakage Classification</li>
+            <li>Opportunity Importance</li>
+            <li>Engagement Health Score</li>
+            <li>Previous Recovery Actions</li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">AI Decision Logic</div>
+          <ul class="item-list">
+            <li>Recovery Viability Check</li>
+            <li>Recovery Strategy Selection</li>
+            <li>Escalation Need Assessment</li>
+            <li>Confidence Scoring</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 12px;">
+        <div class="sub-label" style="margin-bottom:6px; color: var(--purple)">AI Output Fields</div>
+        <div class="eval-grid">
+          <div class="eval-item">Leakage Type</div>
+          <div class="eval-item">Priority Level</div>
+          <div class="eval-item">Recovery Strategy</div>
+          <div class="eval-item">Confidence Score</div>
+          <div class="eval-item">Escalation Decision</div>
+          <div class="eval-item">Reasoning Summary</div>
+          <div class="eval-item">Attempt Context</div>
+          <div class="eval-item">Next Action</div>
+        </div>
+        <div class="confidence-bar" style="margin-top:10px">
+          <div class="confidence-fill"></div>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--text-muted); margin-top:4px; letter-spacing:0.1em;">AI CONFIDENCE DISTRIBUTION INDICATOR</div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">OpenAI / Claude</span>
+        <span class="tag">Make AI Module</span>
+        <span class="tag">Structured Output</span>
+        <span class="tag">Confidence Gate</span>
+      </div>
+    </div>
+
+    <!-- CONNECTOR -->
+    <div class="flow-connector" style="color: var(--orange)">
+      <div class="connector-line"></div>
+      <div class="connector-arrow"></div>
+      <div class="connector-label" style="color:var(--orange)">AI Decision Output → Recovery</div>
+    </div>
+
+    <!-- 04 · RECOVERY EXECUTION ENGINE -->
+    <div class="node node-orange">
+      <div class="node-accent"></div>
+      <div class="node-header">
+        <div class="node-title-group">
+          <span class="node-step">04 · Execution Layer</span>
+          <div class="node-title">Recovery Execution Engine</div>
+          <div class="node-subtitle">Coordinates and executes recovery actions based on AI strategy output</div>
+        </div>
+        <div class="node-icon">⚡</div>
+      </div>
+      <div class="node-columns">
+        <div class="sub-section">
+          <div class="sub-label">Execution Actions</div>
+          <ul class="item-list">
+            <li>Recovery Scheduling</li>
+            <li>Outreach Sequence Trigger</li>
+            <li>Follow-Up Coordination</li>
+            <li>Recovery Attempt Logging</li>
+            <li>Re-Engagement Routing</li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">Execution Channels</div>
+          <ul class="item-list">
+            <li>Email Automation</li>
+            <li>SMS / WhatsApp Trigger</li>
+            <li>Calendar Rescheduling</li>
+            <li>CRM Status Update</li>
+            <li>Internal Slack Alert</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Make Automation</span>
+        <span class="tag">GoHighLevel</span>
+        <span class="tag">Zapier Sequence</span>
+        <span class="tag">CRM Write-Back</span>
+        <span class="tag">Attempt Counter</span>
+      </div>
+    </div>
+
+    <!-- CONNECTOR -->
+    <div class="flow-connector" style="color: var(--red)">
+      <div class="connector-line"></div>
+      <div class="connector-arrow"></div>
+      <div class="connector-label" style="color:var(--red)">Recovery Actions → Escalation Check</div>
+    </div>
+
+    <!-- 05 · ESCALATION MANAGEMENT ENGINE -->
+    <div class="node node-red">
+      <div class="node-accent"></div>
+      <div class="node-header">
+        <div class="node-title-group">
+          <span class="node-step">05 · Risk Layer</span>
+          <div class="node-title">Escalation Management Engine</div>
+          <div class="node-subtitle">Routes high-risk leakage events to human oversight and priority intervention</div>
+        </div>
+        <div class="node-icon">🚨</div>
+      </div>
+      <div class="node-columns">
+        <div class="sub-section">
+          <div class="sub-label">Escalation Triggers</div>
+          <ul class="item-list">
+            <li>High-Value Opportunity Risk</li>
+            <li>Low AI Confidence Score</li>
+            <li>Repeated Recovery Failure</li>
+            <li>Negative Customer Signals</li>
+            <li>Onboarding Risk Threshold</li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">Escalation Actions</div>
+          <ul class="item-list">
+            <li>Human Review Queue Entry</li>
+            <li>Priority Alert Dispatch</li>
+            <li>Escalation Record Create</li>
+            <li>Recovery Pause / Override</li>
+            <li>Account Manager Notify</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Human-in-Loop</span>
+        <span class="tag">Risk Threshold Rules</span>
+        <span class="tag">Slack / Email Alert</span>
+        <span class="tag">Audit Trail</span>
+      </div>
+    </div>
+
+    <!-- CONNECTOR -->
+    <div class="flow-connector" style="color: var(--green)">
+      <div class="connector-line"></div>
+      <div class="connector-arrow"></div>
+      <div class="connector-label" style="color:var(--green)">Escalation Records → Monitoring</div>
+    </div>
+
+    <!-- 06 · OUTCOME MONITORING ENGINE -->
+    <div class="node node-green">
+      <div class="node-accent"></div>
+      <div class="node-header">
+        <div class="node-title-group">
+          <span class="node-step">06 · Monitoring Layer</span>
+          <div class="node-title">Outcome Monitoring Engine</div>
+          <div class="node-subtitle">Continuously tracks journey progression, recovery status, and engagement signals</div>
+        </div>
+        <div class="node-icon">📡</div>
+      </div>
+      <div class="node-columns">
+        <div class="sub-section">
+          <div class="sub-label">Monitoring Signals</div>
+          <ul class="item-list">
+            <li>Customer Journey Progression</li>
+            <li>Recovery Status Tracking</li>
+            <li>Escalation Status Update</li>
+            <li>Recovery Attempt Count</li>
+            <li>Customer Response Activity</li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">Monitoring Logic</div>
+          <ul class="item-list">
+            <li>Polling / Webhook Listeners</li>
+            <li>State Comparison Engine</li>
+            <li>Progress Threshold Check</li>
+            <li>Attempt Limit Enforcement</li>
+            <li>Lifecycle Stage Evaluator</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Scheduled Check</span>
+        <span class="tag">Event Listener</span>
+        <span class="tag">State Machine</span>
+        <span class="tag">Loop Controller</span>
+      </div>
+    </div>
+
+    <!-- CONNECTOR -->
+    <div class="flow-connector" style="color: var(--green)">
+      <div class="connector-line"></div>
+      <div class="connector-arrow"></div>
+      <div class="connector-label" style="color:var(--green)">Monitoring Data → Evaluation</div>
+    </div>
+
+    <!-- 07 · OUTCOME EVALUATION ENGINE -->
+    <div class="node node-green">
+      <div class="node-accent"></div>
+      <div class="node-header">
+        <div class="node-title-group">
+          <span class="node-step">07 · Evaluation Layer</span>
+          <div class="node-title">Outcome Evaluation Engine</div>
+          <div class="node-subtitle">Classifies final outcomes and terminates or continues recovery loops</div>
+        </div>
+        <div class="node-icon">⚖️</div>
+      </div>
+      <div class="node-columns">
+        <div class="sub-section">
+          <div class="sub-label">Evaluation Criteria</div>
+          <ul class="item-list">
+            <li>Recovery Success Threshold</li>
+            <li>Escalation Outcome Resolution</li>
+            <li>Maximum Attempt Limit</li>
+            <li>Lifecycle Stage Progression</li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">Outcome Classification</div>
+          <ul class="item-list">
+            <li>Outcome Record Creation</li>
+            <li>CRM Status Final Write</li>
+            <li>Recovery Loop Termination</li>
+            <li>Reporting Layer Dispatch</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top: 12px;">
+        <div class="sub-label" style="color: var(--green); margin-bottom:8px;">Outcome Categories</div>
+        <div class="outcome-grid">
+          <div class="outcome-cell">
+            <div class="outcome-icon">✅</div>
+            <div class="outcome-label" style="color:var(--green)">Recovered</div>
+          </div>
+          <div class="outcome-cell">
+            <div class="outcome-icon">🔺</div>
+            <div class="outcome-label" style="color:var(--red)">Escalated</div>
+          </div>
+          <div class="outcome-cell">
+            <div class="outcome-icon">🔒</div>
+            <div class="outcome-label" style="color:var(--gray)">Closed – Max Attempts</div>
+          </div>
+          <div class="outcome-cell">
+            <div class="outcome-icon">🔄</div>
+            <div class="outcome-label" style="color:var(--orange)">Still Active</div>
+          </div>
+        </div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Decision Router</span>
+        <span class="tag">Outcome Record</span>
+        <span class="tag">Loop Terminator</span>
+        <span class="tag">State Finalizer</span>
+      </div>
+    </div>
+
+  </div><!-- end .architecture-grid -->
+
+  <!-- ── DIVIDER ── -->
+  <div class="section-divider" style="margin-top: 28px;">
+    <div class="divider-line"></div>
+    <div class="divider-label">Supporting Infrastructure Layers</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ── BOTTOM: SUPPORTING LAYERS ── -->
+  <div class="bottom-layers">
+
+    <!-- DATA LAYER -->
+    <div class="node node-blue" style="animation-delay:0.15s">
+      <div class="node-accent"></div>
+      <div class="node-header">
+        <div class="node-title-group">
+          <span class="node-step">Supporting · Data Layer</span>
+          <div class="node-title">System Data Records</div>
+        </div>
+        <div class="node-icon">🗂️</div>
+      </div>
+      <div class="node-columns" style="grid-template-columns: 1fr 1fr;">
+        <div class="sub-section">
+          <div class="sub-label">Core Records</div>
+          <ul class="item-list">
+            <li>Customer Journey Records</li>
+            <li>Leakage Events</li>
+            <li>Recovery Actions</li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">Outcome Records</div>
+          <ul class="item-list">
+            <li>Escalation Records</li>
+            <li>Outcome Records</li>
+            <li>State Snapshots</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Airtable</span>
+        <span class="tag">HubSpot CRM</span>
+        <span class="tag">Google Sheets</span>
+        <span class="tag">Normalized Schema</span>
+      </div>
+    </div>
+
+    <!-- AI GOVERNANCE LAYER -->
+    <div class="node node-gray" style="animation-delay:0.2s">
+      <div class="node-accent"></div>
+      <div class="node-header">
+        <div class="node-title-group">
+          <span class="node-step">Supporting · AI Governance</span>
+          <div class="node-title">AI Governance Layer</div>
+        </div>
+        <div class="node-icon">🛡️</div>
+      </div>
+      <div class="node-columns" style="grid-template-columns: 1fr 1fr;">
+        <div class="sub-section">
+          <div class="sub-label">Control Mechanisms</div>
+          <ul class="item-list">
+            <li>Confidence Scoring Rules</li>
+            <li>Escalation Rule Engine</li>
+            <li>Recovery Attempt Limits</li>
+          </ul>
+        </div>
+        <div class="sub-section">
+          <div class="sub-label">Oversight Controls</div>
+          <ul class="item-list">
+            <li>Human Override Controls</li>
+            <li>Audit Logging</li>
+            <li>Decision Traceability</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">Rule Engine</span>
+        <span class="tag">Audit Trail</span>
+        <span class="tag">Human-in-Loop</span>
+        <span class="tag">Compliance Layer</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- REPORTING LAYER -->
+  <div class="node node-gray" style="margin-top: 12px; animation-delay:0.25s">
+    <div class="node-accent"></div>
+    <div class="node-header">
+      <div class="node-title-group">
+        <span class="node-step">Supporting · Observability</span>
+        <div class="node-title">Reporting &amp; Observability Layer</div>
+        <div class="node-subtitle">Full-stack operational visibility across AI decisions, recovery actions, and outcomes</div>
+      </div>
+      <div class="node-icon">📊</div>
+    </div>
+    <div class="node-columns">
+      <div class="sub-section">
+        <div class="sub-label">Operational Logs</div>
+        <ul class="item-list">
+          <li>AI Decision Logs</li>
+          <li>Recovery Action Logs</li>
+          <li>Escalation Logs</li>
+          <li>Outcome Logs</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Reporting Surface</div>
+        <ul class="item-list">
+          <li>Recovery Rate Dashboard</li>
+          <li>Escalation Trend View</li>
+          <li>AI Confidence Distribution</li>
+          <li>Lifecycle Leak Heatmap</li>
+        </ul>
+      </div>
+      <div class="sub-section">
+        <div class="sub-label">Output Destinations</div>
+        <ul class="item-list">
+          <li>Google Looker Studio</li>
+          <li>HubSpot Reports</li>
+          <li>Airtable Dashboard</li>
+          <li>Slack Digest</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tag-row">
+      <span class="tag">Real-Time Logs</span>
+      <span class="tag">BI Dashboard</span>
+      <span class="tag">Alerting</span>
+      <span class="tag">Audit Export</span>
+      <span class="tag">Observability Stack</span>
+    </div>
+  </div>
+
+  <!-- ── METRICS ── -->
+  <div class="section-divider" style="margin-top: 24px;">
+    <div class="divider-line"></div>
+    <div class="divider-label">Performance Metrics Framework</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="metrics-row">
+    <div class="metric-card primary">
+      <div class="metric-label">⭐ Primary KPI</div>
+      <div class="metric-name">Pipeline Recovery Rate</div>
+      <div style="font-size:11px; color:var(--green); margin-top:4px; font-family:'IBM Plex Mono',monospace; letter-spacing:0.06em;">Recovered / Total Leakage Events</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Secondary</div>
+      <div class="metric-name">Recovery Success Rate</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Secondary</div>
+      <div class="metric-name">Escalation Rate</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Secondary</div>
+      <div class="metric-name">Avg Recovery Attempts</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Secondary</div>
+      <div class="metric-name">AI Confidence Dist.</div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <div class="footer-left">AI Customer Journey Leak Recovery Architect · Revenue Operations Architecture</div>
+    <div class="footer-right">
+      <span class="footer-tag">Portfolio</span>
+      <span class="footer-tag">Case Study</span>
+      <span class="footer-tag">Client Demonstration</span>
+      <span class="footer-tag">Challenge Submission</span>
+    </div>
+  </div>
+
+</div><!-- end .page-wrap -->
+</body>
+</html>

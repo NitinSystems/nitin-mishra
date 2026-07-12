@@ -28,7 +28,7 @@
           "headline": "Lead Capture to Booking System",
           "description": "Detailed case study of the GoHighLevel Lead Capture to Booking System. Explore the inquiry capture, Google Calendar synchronization, and automated reminder setup.",
           "datePublished": "2026-07-03T08:00:00+05:30",
-          "dateModified": "2026-07-03T08:00:00+05:30",
+          "dateModified": "2026-07-11T08:00:00+05:30",
           "author": {"@id": "https://nitin-mishra.netlify.app/#person"},
           "publisher": {"@id": "https://nitin-mishra.netlify.app/#person"},
           "isPartOf": {
@@ -270,11 +270,43 @@
         }
 
         .architecture-card {
-            background: rgba(4, 6, 18, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: var(--card-radius);
-            padding: 32px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(6, 9, 24, 0.7) 0%, rgba(3, 4, 10, 0.5) 100%) !important;
+            border: 1px solid rgba(28, 78, 216, 0.38) !important;
+            border-radius: 16px;
+            padding: var(--sp-32) !important;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.6), 
+                0 0 40px rgba(28, 78, 216, 0.12),
+                inset 0 0 20px rgba(28, 78, 216, 0.05) !important;
+            transition: all 0.3s ease;
+        }
+
+        .architecture-card:hover {
+            border-color: rgba(28, 78, 216, 0.55) !important;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.7), 
+                0 0 50px rgba(28, 78, 216, 0.22),
+                inset 0 0 25px rgba(28, 78, 216, 0.08) !important;
+        }
+
+        .documentation-card {
+            background: rgba(4, 6, 18, 0.6) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(28, 78, 216, 0.25) !important;
+            border-radius: 16px !important;
+            padding: var(--sp-32) !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .documentation-card:hover {
+            border-color: rgba(28, 78, 216, 0.5) !important;
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.7),
+                0 0 45px rgba(28, 78, 216, 0.18) !important;
         }
 
         .pdf-embed-wrapper {
@@ -429,8 +461,11 @@
         }
 
         .tab-screenshot-wrapper img {
-            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
             height: auto;
+            object-fit: contain;
             display: block;
         }
 
@@ -548,6 +583,12 @@
             justify-content: center;
         }
 
+        .intake-visual-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* SVG Schematic Styles */
         .schematic-box {
             width: 100%;
@@ -655,6 +696,15 @@
             background-size: 100% 100%, 40px 40px, 40px 40px !important;
         }
 
+        .section-gradient-b {
+            background-color: #020307 !important;
+            background-image: 
+                radial-gradient(ellipse 125% 125% at 50% 10%, #000000 40%, #010133 100%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+            background-size: 100% 100%, 40px 40px, 40px 40px !important;
+        }
+
         .section-matte {
             background-color: #020307 !important;
             background-image: 
@@ -699,9 +749,229 @@
             opacity: 0.8;
         }
 
+        /* Universal Fullscreen Image Modal */
+        .fullscreen-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(2, 3, 7, 0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .fullscreen-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content-wrapper {
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(28, 78, 216, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: grab;
+        }
+
+        .fullscreen-modal.active .modal-img {
+            transform: scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: rgba(28, 78, 216, 0.2);
+            border: 1px solid rgba(28, 78, 216, 0.4);
+            color: #fff;
+            font-size: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            z-index: 10000;
+        }
+
+        .modal-close-btn:hover {
+            background: rgba(28, 78, 216, 0.4);
+            border-color: rgba(28, 78, 216, 0.8);
+            transform: scale(1.05);
+        }
+
+        body.modal-open {
+            overflow: hidden !important;
+        }
+
+        .doc-vault-panel {
+            width: 100%;
+            max-width: 760px;
+            margin: 40px auto 48px auto;
+            text-align: left;
+            background: rgba(5, 5, 15, 0.4);
+            border: 1px solid rgba(59, 130, 246, 0.12);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.47), inset 0 1px 0 rgba(59, 130, 246, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .doc-vault-panel:hover {
+            border-color: rgba(59, 130, 246, 0.28);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), 0 0 32px rgba(59, 130, 246, 0.08), inset 0 1px 0 rgba(59, 130, 246, 0.12);
+        }
+
+        .doc-vault-panel::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.04), transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .doc-file-node {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .doc-file-node svg {
+            stroke: #64748B;
+            transition: stroke 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .doc-file-node:hover {
+            color: #FFFFFF !important;
+            transform: translateX(3px);
+        }
+
+        .doc-file-node:hover svg {
+            stroke: #3B82F6;
+        }
+
+        .doc-toc-row {
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 32px;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .doc-metadata-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            width: 100%;
+            max-width: 760px;
+            margin: 40px auto 0 auto;
+            padding: 16px 24px;
+            background: rgba(255, 255, 255, 0.015);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        .bullets-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 24px;
+            font-size: 0.95rem;
+            color: #F1F5F9;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        /* Responsive Breakpoints matching flagship case study */
         @media (max-width: 767px) {
+            .doc-metadata-bar {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 16px 12px !important;
+                border-radius: 12px 12px 0 0 !important;
+                padding: 16px !important;
+            }
+            .documentation-section {
+                padding-top: 96px !important;
+                padding-bottom: 96px !important;
+            }
+            .documentation-card {
+                padding: var(--sp-24) !important;
+                display: none !important;
+            }
             .mobile-zoom-hint {
                 display: block !important;
+            }
+            .pdf-embed-wrapper,
+            #case-study-wrapper,
+            #system-arch-wrapper,
+            #operational-flow-wrapper,
+            #change-history-wrapper {
+                display: none !important;
+            }
+            button[onclick^="togglePdfViewer"],
+            .pdf-action-buttons button[onclick^="togglePdfViewer"] {
+                display: none !important;
+            }
+            .pdf-action-buttons {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                width: 100% !important;
+                gap: 12px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                max-width: 320px;
+            }
+            .pdf-action-buttons .btn {
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
+            }
+            .bullets-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .doc-toc-row {
+                grid-template-columns: 1fr !important;
+                gap: 8px !important;
+                padding: 16px 0 !important;
             }
         }
     </style>
@@ -756,8 +1026,8 @@
                     </div>
 
                     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
-                        <a href="#system-flow" class="btn btn-primary">View System Workflow</a>
-                        <a href="systems-library.html" class="btn btn-secondary">Explore Systems Library</a>
+                        <a href="#pdf-documentation" class="btn btn-primary">View Case Study</a>
+                        <a href="javascript:showToast('Documentation PDF is currently in final compilation and will be available soon.')" class="btn btn-secondary">Download Case History</a>
                     </div>
                 </div>
             </div>
@@ -787,13 +1057,13 @@
             </div>
         </section>
 
-        <!-- System Architecture Section (Diagrams) -->
+        <!-- System Architecture Section -->
         <section class="case-study-section section-navy section-glow-separator-top">
             <div class="container-standard">
                 <span class="category-heading">System Architecture</span>
                 <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Solution Layout</h2>
                 <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
-                    Below are the primary visual models defining the structural data flows and process separation parameters inside the platform. These architectural blueprints are embedded directly in PDF format.
+                    Below are the primary visual models defining the structural data flows and process separation parameters inside the platform. These architectural blueprints are embedded directly in interactive format.
                 </p>
 
                 <div class="diagram-container">
@@ -802,59 +1072,38 @@
                         <div style="margin-bottom: var(--sp-16);">
                             <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: var(--text-pure); margin: 0 0 12px 0;">System Architecture Diagram</h3>
                             <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; margin: 0 0 20px 0;">
-                                This diagram outlines the operational structure of the Lead Capture to Booking System. It maps the intake points, message templates, scheduling sync states, and active notifications.
+                                Outlines the end-to-end data pipeline running from GHL form ingestion to internal notification routing, calendar availability checks, and email confirmation scripts.
                             </p>
                             <div class="pdf-action-buttons" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
-                                <button onclick="togglePdfViewer('system-arch-wrapper', this)" class="btn btn-primary" style="font-size: 13px; padding: 8px 18px;">View Diagram</button>
-                                <a href="projects/lead-capture-booking-system/architecture-diagrams/system-architecture-diagram.pdf" target="_blank" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Open PDF</a>
-                                <a href="projects/lead-capture-booking-system/architecture-diagrams/system-architecture-diagram.pdf" download class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Download PDF</a>
+                                <button onclick="togglePdfViewer('system-arch-wrapper', this)" class="btn btn-primary" style="font-size: 13px; padding: 8px 18px;">View Interactive Diagram</button>
+                                <a href="projects/lead-capture-to-booking-system/diagrams/architecture-diagram/architecture-diagram-lead-capture-to-booking-systems.pdf" target="_blank" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Open PDF</a>
+                                <a href="projects/lead-capture-to-booking-system/diagrams/architecture-diagram/architecture-diagram-lead-capture-to-booking-systems.pdf" download class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Download PDF</a>
                             </div>
                         </div>
                         <div class="pdf-embed-wrapper" id="system-arch-wrapper" style="display: none; margin-top: 20px;">
-                            <object data="projects/lead-capture-booking-system/architecture-diagrams/system-architecture-diagram.pdf" type="application/pdf" width="100%" height="100%">
-                                <div class="pdf-fallback">
-                                    <p style="color: var(--text-silver); font-size: 0.9rem; margin-bottom: 12px;">Browser PDF preview is unavailable.</p>
-                                    <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
-                                        <a href="projects/lead-capture-booking-system/architecture-diagrams/system-architecture-diagram.pdf" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 8px 16px;">Open PDF</a>
-                                        <a href="projects/lead-capture-booking-system/architecture-diagrams/system-architecture-diagram.pdf" download class="btn btn-secondary" style="font-size: 12px; padding: 8px 16px;">Download PDF</a>
-                                    </div>
-                                </div>
-                            </object>
+                            <iframe src="projects/lead-capture-to-booking-system/diagrams/architecture-diagram/architecture-diagram-lead-capture-to-booking-systems.html" width="100%" height="100%" style="border: none;"></iframe>
                         </div>
-                        <p class="pdf-caption" style="margin-top: 16px;"><strong>Diagram Purpose:</strong> Outlines the end-to-end data pipeline running from GHL form ingestion to internal notification routing, calendar availability checks, and email confirmation scripts.</p>
+                        <p class="pdf-caption" style="margin-top: 16px;"><strong>Diagram Purpose:</strong> Outlines GHL workflow stages, trigger parameters, and email dispatch nodes.</p>
                     </div>
 
-                    <!-- Diagram 2: Operational Data Flow -->
+                    <!-- Diagram 2: System Flow Architecture -->
                     <div class="architecture-card">
                         <div style="margin-bottom: var(--sp-16);">
-                            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: var(--text-pure); margin: 0 0 12px 0;">Operational Data Flow Diagram</h3>
+                            <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: var(--text-pure); margin: 0 0 12px 0;">System Flow Architecture Diagram</h3>
                             <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; margin: 0 0 20px 0;">
-                                This diagram illustrates the configuration layout and data pathways that route validated custom fields to calendar synchronizations and email remind logs.
+                                Illustrates the configuration layout and data pathways that route validated custom fields to calendar synchronizations and email remind logs.
                             </p>
                             <div class="pdf-action-buttons" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
-                                <button onclick="togglePdfViewer('data-arch-wrapper', this)" class="btn btn-primary" style="font-size: 13px; padding: 8px 18px;">View Diagram</button>
-                                <a href="projects/lead-capture-booking-system/architecture-diagrams/operational-data-flow-diagram.pdf" target="_blank" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Open PDF</a>
-                                <a href="projects/lead-capture-booking-system/architecture-diagrams/operational-data-flow-diagram.pdf" download class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Download PDF</a>
+                                <button onclick="togglePdfViewer('operational-flow-wrapper', this)" class="btn btn-primary" style="font-size: 13px; padding: 8px 18px;">View Interactive Diagram</button>
+                                <a href="projects/lead-capture-to-booking-system/diagrams/operational-diagram/operational-diagram-lead-capture-to-booking-systems.pdf" target="_blank" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Open PDF</a>
+                                <a href="projects/lead-capture-to-booking-system/diagrams/operational-diagram/operational-diagram-lead-capture-to-booking-systems.pdf" download class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px;">Download PDF</a>
                             </div>
                         </div>
-                        <div class="pdf-embed-wrapper" id="data-arch-wrapper" style="display: none; margin-top: 20px;">
-                            <object data="projects/lead-capture-booking-system/architecture-diagrams/operational-data-flow-diagram.pdf" type="application/pdf" width="100%" height="100%">
-                                <div class="pdf-fallback">
-                                    <p style="color: var(--text-silver); font-size: 0.9rem; margin-bottom: 12px;">Browser PDF preview is unavailable.</p>
-                                    <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
-                                        <a href="projects/lead-capture-booking-system/architecture-diagrams/operational-data-flow-diagram.pdf" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 8px 16px;">Open PDF</a>
-                                        <a href="projects/lead-capture-booking-system/architecture-diagrams/operational-data-flow-diagram.pdf" download class="btn btn-secondary" style="font-size: 12px; padding: 8px 16px;">Download PDF</a>
-                                    </div>
-                                </div>
-                            </object>
+                        <div class="pdf-embed-wrapper" id="operational-flow-wrapper" style="display: none; margin-top: 20px;">
+                            <iframe src="projects/lead-capture-to-booking-system/diagrams/operational-diagram/operational-diagram-lead-capture-to-booking-systems.html" width="100%" height="100%" style="border: none;"></iframe>
                         </div>
-                        <p class="pdf-caption" style="margin-top: 16px;"><strong>Diagram Purpose:</strong> Illustrates lead data mapping, consultant notifications, availability status validation, and reminder trigger parameters.</p>
+                        <p class="pdf-caption" style="margin-top: 16px;"><strong>Diagram Purpose:</strong> Illustrates user session routing, calendar slot verification, and GHL scheduling logic.</p>
                     </div>
-                </div>
-
-                <div class="why-matters-box" style="margin-top: 40px;">
-                    <h5>Why This Matters</h5>
-                    <p>A clear architecture creates operational visibility, separates responsibilities across system layers, and enables scalable lifecycle management.</p>
                 </div>
             </div>
         </section>
@@ -873,7 +1122,7 @@
                     <div class="tab-list" role="tablist">
                         <button class="tab-btn active" role="tab" onclick="switchTableTab(0)">1. Lead Details</button>
                         <button class="tab-btn" role="tab" onclick="switchTableTab(1)">2. Calendar Mapping</button>
-                        <button class="tab-btn" role="tab" onclick="switchTableTab(2)">3. Outreach History</button>
+                        <button class="tab-btn" role="tab" onclick="switchTableTab(2)">3. Reminder Automation Pipeline</button>
                     </div>
 
                     <div class="tab-content-container">
@@ -888,7 +1137,7 @@
                                 </div>
                             </div>
                             <div class="tab-screenshot-wrapper">
-                                <img src="projects/lead-capture-booking-system/screenshots/01-lead-details.png" alt="Contact Custom Fields View">
+                                <img src="projects/lead-capture-to-booking-system/intake-layer/integrated-form.png" alt="Contact Custom Fields View">
                             </div>
                         </div>
 
@@ -903,22 +1152,22 @@
                                 </div>
                             </div>
                             <div class="tab-screenshot-wrapper">
-                                <img src="projects/lead-capture-booking-system/screenshots/02-calendar-mapping.png" alt="Calendar Availability Mapping View">
+                                <img src="projects/lead-capture-to-booking-system/gohighlevel-screenshots/booking-calendar.png" alt="Calendar Availability Mapping View">
                             </div>
                         </div>
 
                         <!-- Tab 3 -->
                         <div class="tab-content" id="tab-content-2">
                             <div class="tab-narrative">
-                                <h4>Outreach History Logs</h4>
-                                <p>Monitors email confirmations, coordinator alerts, and time-delayed reminder delivery events.</p>
+                                <h4>Reminder Automation Pipeline</h4>
+                                <p>Monitors client booking triggers, google availability slots, and time-delayed reminder sequences.</p>
                                 <div class="tab-bullets">
                                     <div class="bullet-item"><strong>Confirmation Email:</strong> Instant confirmation sent state</div>
                                     <div class="bullet-item"><strong>Reminder Cadence:</strong> 24h, 1h, and 5m triggers</div>
                                 </div>
                             </div>
                             <div class="tab-screenshot-wrapper">
-                                <img src="projects/lead-capture-booking-system/screenshots/03-outreach-history.png" alt="Outreach History Logs View">
+                                <img src="projects/lead-capture-to-booking-system/gohighlevel-screenshots/calender-booking-workflow.png" alt="Reminder Automation Pipeline View">
                             </div>
                         </div>
                     </div>
@@ -966,15 +1215,94 @@
                     <div class="intake-pipeline-visual">
                         <!-- Visual 1 -->
                         <div class="intake-visual-wrapper active" id="intake-visual-0">
-                            <img src="projects/lead-capture-booking-system/screenshots/ghl-form.png" alt="GHL Lead Capture Form Interface">
+                            <img src="projects/lead-capture-to-booking-system/intake-layer/integrated-form.png" alt="GHL Lead Capture Form Interface">
                         </div>
                         <!-- Visual 2 -->
                         <div class="intake-visual-wrapper" id="intake-visual-1">
-                            <img src="projects/lead-capture-booking-system/screenshots/confirmation-email.png" alt="Response Notification Interface">
+                            <img src="projects/lead-capture-to-booking-system/gohighlevel-screenshots/lead-automation.png" alt="Response Notification Interface">
                         </div>
                         <!-- Visual 3 -->
                         <div class="intake-visual-wrapper" id="intake-visual-2">
-                            <img src="projects/lead-capture-booking-system/screenshots/google-calendar.png" alt="Calendar Booking &amp; Sync Interface">
+                            <img src="projects/lead-capture-to-booking-system/gohighlevel-screenshots/calender-booking-workflow.png" alt="Calendar Booking &amp; Sync Interface">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Evidence Section -->
+        <section class="case-study-section section-matte section-glow-separator-top">
+            <div class="container-standard">
+                <span class="category-heading">System Verification</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">Implementation Evidence</h2>
+                <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px; margin-bottom: 32px;">
+                    This section organizes the configured screenshots of the Lead Capture to Booking System. The gallery showcases forms, scheduling configurations, and automation workflows.
+                </p>
+
+                <div class="decision-grid">
+                    <!-- Evidence 1: Lead Capture Form -->
+                    <div class="decision-card" style="display: flex; flex-direction: column; gap: var(--sp-16);">
+                        <div class="tab-screenshot-wrapper" style="aspect-ratio: 16/9; overflow: hidden; border-radius: 8px;">
+                            <img src="projects/lead-capture-to-booking-system/intake-layer/integrated-form.png" alt="Lead Capture Form" style="width: 100%; height: auto; display: block;">
+                        </div>
+                        <div>
+                            <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--text-pure); margin: 0 0 8px 0;">Lead Capture Form</h4>
+                            <p style="font-size: 0.88rem; line-height: 1.5; color: var(--text-silver); margin: 0;">Demonstrates the validation parameters and structured form fields configured inside GoHighLevel to capture inbound prospect inquiries.</p>
+                        </div>
+                    </div>
+
+                    <!-- Evidence 2: Thank You Page -->
+                    <div class="decision-card" style="display: flex; flex-direction: column; gap: var(--sp-16);">
+                        <div class="tab-screenshot-wrapper" style="aspect-ratio: 16/9; overflow: hidden; border-radius: 8px;">
+                            <img src="projects/lead-capture-to-booking-system/intake-layer/thank-you-page.png" alt="Thank You Page" style="width: 100%; height: auto; display: block;">
+                        </div>
+                        <div>
+                            <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--text-pure); margin: 0 0 8px 0;">Thank You Page</h4>
+                            <p style="font-size: 0.88rem; line-height: 1.5; color: var(--text-silver); margin: 0;">Shows the native redirection target page containing the embedded scheduling calendar widget to guide the prospect toward booking immediately after submission.</p>
+                        </div>
+                    </div>
+
+                    <!-- Evidence 3: Booking Calendar -->
+                    <div class="decision-card" style="display: flex; flex-direction: column; gap: var(--sp-16);">
+                        <div class="tab-screenshot-wrapper" style="aspect-ratio: 16/9; overflow: hidden; border-radius: 8px;">
+                            <img src="projects/lead-capture-to-booking-system/gohighlevel-screenshots/booking-calendar.png" alt="Booking Calendar" style="width: 100%; height: auto; display: block;">
+                        </div>
+                        <div>
+                            <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--text-pure); margin: 0 0 8px 0;">Booking Calendar</h4>
+                            <p style="font-size: 0.88rem; line-height: 1.5; color: var(--text-silver); margin: 0;">Displays the public availability calendar where prospects select consultation slots based on real-time calendar synchronization.</p>
+                        </div>
+                    </div>
+
+                    <!-- Evidence 4: Lead Email Workflow -->
+                    <div class="decision-card" style="display: flex; flex-direction: column; gap: var(--sp-16);">
+                        <div class="tab-screenshot-wrapper" style="aspect-ratio: 16/9; overflow: hidden; border-radius: 8px;">
+                            <img src="projects/lead-capture-to-booking-system/gohighlevel-screenshots/lead-automation.png" alt="Lead Email Workflow" style="width: 100%; height: auto; display: block;">
+                        </div>
+                        <div>
+                            <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--text-pure); margin: 0 0 8px 0;">Lead Email Workflow</h4>
+                            <p style="font-size: 0.88rem; line-height: 1.5; color: var(--text-silver); margin: 0;">Configured GoHighLevel workflow that triggers upon form submission to dispatch immediate automated confirmation emails to prospects.</p>
+                        </div>
+                    </div>
+
+                    <!-- Evidence 5: Booking Workflow -->
+                    <div class="decision-card" style="display: flex; flex-direction: column; gap: var(--sp-16);">
+                        <div class="tab-screenshot-wrapper" style="aspect-ratio: 16/9; overflow: hidden; border-radius: 8px;">
+                            <img src="projects/lead-capture-to-booking-system/gohighlevel-screenshots/calender-booking-workflow.png" alt="Booking Workflow" style="width: 100%; height: auto; display: block;">
+                        </div>
+                        <div>
+                            <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; color: var(--text-pure); margin: 0 0 8px 0;">Booking Workflow</h4>
+                            <p style="font-size: 0.88rem; line-height: 1.5; color: var(--text-silver); margin: 0;">Coordinates appointment booking workflows, two-way Google Calendar updates, and the automated reminder email queue.</p>
+                        </div>
+                    </div>
+
+                    <!-- Evidence 6: GoHighLevel Calendar Configuration -->
+                    <div class="decision-card" style="display: flex; flex-direction: column; gap: var(--sp-16);">
+                        <div class="tab-screenshot-wrapper" style="aspect-ratio: 16/9; overflow: hidden; border-radius: 8px;">
+                            <img src="projects/lead-capture-to-booking-system/gohighlevel-screenshots/calender-group.png" alt="GHL Calendar Configuration" style="width: 100%; height: auto; display: block;">
+                        </div>
+                        <div>
+                            <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; color: var(--text-pure); margin: 0 0 8px 0;">Calendar Configuration</h4>
+                            <p style="font-size: 0.88rem; line-height: 1.5; color: var(--text-silver); margin: 0;">Demonstrates GHL backend calendar configurations linking multiple availability rules to Google Calendar synchronization pipelines.</p>
                         </div>
                     </div>
                 </div>
@@ -1181,34 +1509,145 @@
 
         <!-- Case Study Documentation Section -->
         <section class="case-study-section documentation-section section-gradient-b section-glow-separator-top" id="pdf-documentation">
-            <div class="container-standard" style="text-align: center; max-width: 800px;">
-                <div class="documentation-header">
-                    <span class="category-heading" style="justify-content: center;">Case Study Resources</span>
-                    <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 16px; color: var(--text-pure);">System Documentation</h2>
-                    <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">
-                        This case study documents the complete setup, configurations, templates, calendar rules, and automated reminders behind the Lead Capture to Booking System.<br><br>
-                        The document provides a detailed breakdown of the GHL form structures, GHL workflow logs, and calendar synchronization details.
+            <div class="container-standard" style="max-width: 850px; padding: 100px 24px;">
+                <div class="documentation-header" style="max-width: 760px; margin: 0 auto; text-align: center;">
+                    <span class="category-heading" style="justify-content: center; margin-bottom: var(--sp-16);">Case Study Resources</span>
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 24px; color: var(--text-pure); text-align: center;">System Documentation</h2>
+                    
+                    <p style="color: var(--text-silver); font-size: 1.02rem; line-height: 1.75; margin-bottom: 48px; opacity: 0.95; text-align: center;">
+                        This implementation case study documents the design, configuration, and validation of a Lead Capture to Booking System developed for a B2B AI SaaS company. The documentation presents the complete implementation approach, including system architecture, workflow configuration, operational decisions, automation logic, and supporting implementation evidence. Company-specific information has been anonymized to maintain confidentiality while preserving the technical integrity of the implementation.
                     </p>
-                </div>
+                    
+                    <!-- System Documentation Metadata Bar -->
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; max-width: 760px; margin: 40px auto 0 auto; padding: 24px 32px; background: rgba(255, 255, 255, 0.015); border-top: 1px solid rgba(255, 255, 255, 0.06); border-left: 1px solid rgba(255, 255, 255, 0.06); border-right: 1px solid rgba(255, 255, 255, 0.06); border-top-left-radius: 16px; border-top-right-radius: 16px; text-align: left; box-sizing: border-box;">
+                        <div>
+                            <span style="font-family: monospace; font-size: 0.7rem; color: #64748B; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">Organization</span>
+                            <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-pure);">B2B AI SaaS Company</span>
+                        </div>
+                        <div>
+                            <span style="font-family: monospace; font-size: 0.7rem; color: #64748B; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">Platform</span>
+                            <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-pure);">GoHighLevel</span>
+                        </div>
+                        <div>
+                            <span style="font-family: monospace; font-size: 0.7rem; color: #64748B; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">System Scope</span>
+                            <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-pure);">Lead Intake & Booking</span>
+                        </div>
+                        <div>
+                            <span style="font-family: monospace; font-size: 0.7rem; color: #64748B; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">Execution Status</span>
+                            <span style="font-size: 0.88rem; font-weight: 600; color: #3B82F6; display: flex; align-items: center; gap: 6px;">
+                                <span style="width: 6px; height: 6px; background: #3B82F6; border-radius: 50%;"></span>
+                                Workflow Validated
+                            </span>
+                        </div>
+                    </div>
 
-                <div class="pdf-action-buttons" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 32px;">
-                    <button onclick="togglePdfViewer('case-study-wrapper', this)" class="btn btn-primary">Preview Case Study</button>
-                    <a href="projects/lead-capture-booking-system/case-study/lead-capture-booking-system-case-study.pdf" target="_blank" class="btn btn-secondary">Open PDF</a>
-                    <a href="projects/lead-capture-booking-system/case-study/lead-capture-booking-system-case-study.pdf" download class="btn btn-secondary">Download PDF</a>
-                </div>
+                    <!-- Disclaimer Bar -->
+                    <div style="width: 100%; max-width: 760px; margin: 0 auto; padding: 16px 32px; background: rgba(5, 5, 15, 0.2); border-left: 1px solid rgba(255, 255, 255, 0.06); border-right: 1px solid rgba(255, 255, 255, 0.06); border-bottom: 1px solid rgba(255, 255, 255, 0.06); text-align: left; box-sizing: border-box;">
+                        <p style="color: #64748B; font-size: 0.75rem; line-height: 1.5; margin: 0; font-family: monospace; font-weight: 500;">
+                            NOTICE: Certain organization-specific information has been intentionally anonymized to protect client confidentiality. All workflows, diagrams, implementation artifacts, and documentation accurately represent the system designed, configured, and documented by the author.
+                        </p>
+                    </div>
+
+                    <!-- Premium Documentation Vault Panel -->
+                    <div class="doc-vault-panel" style="margin-top: 0; border-top-left-radius: 0; border-top-right-radius: 0;">
+                        
+                        <!-- Panel Header -->
+                        <div style="padding: 20px 32px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: space-between; background: rgba(255, 255, 255, 0.01);">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                                <span style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--text-pure); text-transform: uppercase; letter-spacing: 0.12em;">Documentation Index</span>
+                            </div>
+                            <span style="font-size: 0.75rem; color: #64748B; font-weight: 700; font-family: monospace; letter-spacing: 0.05em;">DELIVERABLE ID: GHL-SYS-01</span>
+                        </div>
+
+                        <!-- Panel Body -->
+                        <div style="padding: 32px;">
+                            
+                            <!-- Row 1: Project Foundation -->
+                            <div class="doc-toc-row" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 0 0 32px 0; margin-bottom: 32px;">
+                                <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+                                    <span style="font-family: monospace; font-size: 0.65rem; color: #3B82F6; font-weight: bold; border: 1px solid rgba(59, 130, 246, 0.2); background: rgba(59, 130, 246, 0.15); padding: 3px 8px; border-radius: 4px; letter-spacing: 0.05em; display: inline-block;">PART 01</span>
+                                    <h5 style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text-pure); text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">Foundation</h5>
+                                </div>
+                                <div>
+                                    <div class="bullets-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; font-size: 0.95rem; color: #F1F5F9; margin-bottom: 12px; font-weight: 500;">
+                                        <div class="doc-file-node">Business Problem</div>
+                                        <div class="doc-file-node">System Objectives</div>
+                                        <div class="doc-file-node">Architecture Overview</div>
+                                    </div>
+                                    <p style="color: #94A3B8; font-size: 0.88rem; line-height: 1.5; margin: 0; opacity: 0.95;">
+                                        Defines the business problem, project scope, system objectives, and architectural decisions that guided the implementation.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Row 2: Technical Implementation -->
+                            <div class="doc-toc-row" style="border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 0 0 32px 0; margin-bottom: 32px;">
+                                <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+                                    <span style="font-family: monospace; font-size: 0.65rem; color: #3B82F6; font-weight: bold; border: 1px solid rgba(59, 130, 246, 0.2); background: rgba(59, 130, 246, 0.15); padding: 3px 8px; border-radius: 4px; letter-spacing: 0.05em; display: inline-block;">PART 02</span>
+                                    <h5 style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text-pure); text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">Technical Implementation</h5>
+                                </div>
+                                <div>
+                                    <div class="bullets-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; font-size: 0.95rem; color: #F1F5F9; margin-bottom: 12px; font-weight: 500;">
+                                        <div class="doc-file-node">Contact Data Structure</div>
+                                        <div class="doc-file-node">Lead Capture Implementation</div>
+                                        <div class="doc-file-node">Workflow Logic</div>
+                                        <div class="doc-file-node">Notification Workflows</div>
+                                        <div class="doc-file-node">Calendar Integration</div>
+                                        <div class="doc-file-node">Reminder Automation</div>
+                                    </div>
+                                    <p style="color: #94A3B8; font-size: 0.88rem; line-height: 1.5; margin: 0; opacity: 0.95;">
+                                        Documents contact data structure, workflow configuration, automated triggers, calendar integration, notification workflows, and reminder automation.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Operational Documentation -->
+                            <div class="doc-toc-row" style="border-bottom: none; padding: 0;">
+                                <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+                                    <span style="font-family: monospace; font-size: 0.65rem; color: #3B82F6; font-weight: bold; border: 1px solid rgba(59, 130, 246, 0.2); background: rgba(59, 130, 246, 0.15); padding: 3px 8px; border-radius: 4px; letter-spacing: 0.05em; display: inline-block;">PART 03</span>
+                                    <h5 style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text-pure); text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">Verification</h5>
+                                </div>
+                                <div>
+                                    <div class="bullets-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; font-size: 0.95rem; color: #F1F5F9; margin-bottom: 12px; font-weight: 500;">
+                                        <div class="doc-file-node">Configuration Decisions</div>
+                                        <div class="doc-file-node">Technical Reasoning</div>
+                                        <div class="doc-file-node">Implementation Boundaries</div>
+                                        <div class="doc-file-node">Implementation Evidence</div>
+                                    </div>
+                                    <p style="color: #94A3B8; font-size: 0.88rem; line-height: 1.5; margin: 0; opacity: 0.95;">
+                                        Documents implementation decisions, operational boundaries, validation activities, and supporting implementation evidence.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <!-- Panel Footer -->
+                        <div style="padding: 24px 32px; border-top: 1px solid rgba(255, 255, 255, 0.06); display: flex; align-items: center; justify-content: space-between; background: rgba(255, 255, 255, 0.015); box-sizing: border-box; flex-wrap: wrap; gap: 16px;">
+                            <div style="display: flex; gap: 20px; font-family: monospace; font-size: 0.72rem; color: #64748B; font-weight: bold; flex-wrap: wrap;">
+                                <span>TYPE: IMPLEMENTATION CASE STUDY</span>
+                                <span>IMPLEMENTED: AUG – SEP 2025</span>
+                                <span>VERSION: V1.0</span>
+                                <span>PREPARED: JUL 2026</span>
+                            </div>
+                            <div class="pdf-action-buttons" style="display: flex; gap: 12px; margin: 0 !important; width: auto !important; max-width: none !important; flex-direction: row !important; align-items: center !important;">
+                                <button onclick="togglePdfViewer('case-study-wrapper', this)" class="btn btn-primary" style="font-size: 13px; padding: 8px 18px;">Preview Case Study</button>
+                                <a href="javascript:showToast('Documentation PDF is currently in final compilation and will be available soon.')" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px; display: inline-flex !important; margin: 0 !important;">Open PDF</a>
+                                <a href="javascript:showToast('Documentation PDF is currently in final compilation and will be available soon.')" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px; display: inline-flex !important; margin: 0 !important;">Download PDF</a>
+                            </div>
+                        </div>
+
+                    </div>
 
                 <!-- Document Embed -->
                 <div class="documentation-card" id="case-study-wrapper" style="display: none; margin-bottom: 32px;">
-                    <div class="pdf-embed-wrapper" style="height: 600px; display: block;">
-                        <object data="projects/lead-capture-booking-system/case-study/lead-capture-booking-system-case-study.pdf" type="application/pdf" width="100%" height="100%">
-                            <div class="pdf-fallback">
-                                <p style="color: var(--text-silver); font-size: 0.9rem; margin-bottom: 12px;">Browser PDF preview is unavailable.</p>
-                                <div style="display: flex; gap: 12px; justify-content: center; align-items: center;">
-                                    <a href="projects/lead-capture-booking-system/case-study/lead-capture-booking-system-case-study.pdf" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 8px 16px;">Open PDF</a>
-                                    <a href="projects/lead-capture-booking-system/case-study/lead-capture-booking-system-case-study.pdf" download class="btn btn-secondary" style="font-size: 12px; padding: 8px 16px;">Download PDF</a>
-                                </div>
-                            </div>
-                        </object>
+                    <div class="pdf-embed-wrapper" style="height: auto; display: block; background: #020307; border: 1px dashed rgba(28, 78, 216, 0.2); border-radius: 12px; padding: 48px 32px; text-align: center;">
+                        <span style="font-size: 48px; display: block; margin-bottom: 16px;">📄</span>
+                        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.35rem; color: var(--text-pure); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Case Study Under Compilation</h3>
+                        <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 500px; margin: 0 auto;">
+                            The comprehensive documentation, containing the operational playbooks and field mappings for the GoHighLevel Lead Capture to Booking System, is undergoing final layout alignment.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1242,6 +1681,38 @@
     <!-- Script Orchestrations -->
     <script src="script.js"></script>
     <script>
+        // Inbound lead assets coming soon handler
+        function showToast(message) {
+            let toast = document.getElementById('coming-soon-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'coming-soon-toast';
+                toast.style.position = 'fixed';
+                toast.style.bottom = '32px';
+                toast.style.right = '32px';
+                toast.style.background = 'rgba(4, 6, 18, 0.95)';
+                toast.style.border = '1px solid rgba(28, 78, 216, 0.3)';
+                toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(28, 78, 216, 0.15)';
+                toast.style.color = '#fff';
+                toast.style.padding = '16px 24px';
+                toast.style.borderRadius = '8px';
+                toast.style.fontFamily = 'Outfit, sans-serif';
+                toast.style.fontSize = '14px';
+                toast.style.zIndex = '99999';
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(20px)';
+                toast.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+                document.body.appendChild(toast);
+            }
+            toast.textContent = message;
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(20px)';
+            }, 3500);
+        }
+
         // Database blueprint tabs switcher
         function switchTableTab(tabIndex) {
             document.querySelectorAll('.data-foundation-tabs .tab-content').forEach(c => c.classList.remove('active'));
@@ -1270,8 +1741,10 @@
                 if (button && button.tagName === 'BUTTON') {
                     if (wrapperId === 'case-study-wrapper') {
                         button.textContent = 'Collapse Case Study';
+                    } else if (wrapperId === 'change-history-wrapper') {
+                        button.textContent = 'Collapse Change History';
                     } else {
-                        button.textContent = 'Collapse Diagram';
+                        button.textContent = 'Collapse Interactive Diagram';
                     }
                 }
             } else {
@@ -1279,8 +1752,10 @@
                 if (button && button.tagName === 'BUTTON') {
                     if (wrapperId === 'case-study-wrapper') {
                         button.textContent = 'Preview Case Study';
+                    } else if (wrapperId === 'change-history-wrapper') {
+                        button.textContent = 'Preview Change History';
                     } else {
-                        button.textContent = 'View Diagram';
+                        button.textContent = 'View Interactive Diagram';
                     }
                 }
             }
@@ -1297,29 +1772,28 @@
                 wrapper.parentNode.insertBefore(hint, wrapper.nextSibling);
             });
 
-            const intakeVisual = document.querySelector('.intake-pipeline-visual');
-            if (intakeVisual) {
-                const hint = document.createElement('span');
-                hint.className = 'mobile-zoom-hint';
-                hint.textContent = 'Tap image to enlarge';
-                intakeVisual.parentNode.insertBefore(hint, intakeVisual.nextSibling);
-            }
-
             const modal = document.getElementById('fullscreen-image-modal');
             const modalImg = document.getElementById('modal-image');
             const closeBtn = modal.querySelector('.modal-close-btn');
 
             let scale = 1;
-            let posX = 0;
-            let posY = 0;
-            let isDragging = false;
+            let lastScale = 1;
             let startX = 0;
             let startY = 0;
+            let posX = 0;
+            let posY = 0;
+            let lastPosX = 0;
+            let lastPosY = 0;
+            let isDragging = false;
+            let startDist = 0;
 
             function resetZoom() {
                 scale = 1;
+                lastScale = 1;
                 posX = 0;
                 posY = 0;
+                lastPosX = 0;
+                lastPosY = 0;
                 updateImageTransform();
             }
 
@@ -1327,11 +1801,20 @@
                 modalImg.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
             }
 
+            // Click to open modal
             const zoomableImages = document.querySelectorAll('main img:not(.nm-monogram-img)');
             zoomableImages.forEach(img => {
                 img.style.cursor = 'pointer';
-                img.addEventListener('click', function() {
-                    modalImg.src = this.src;
+                img.addEventListener('click', function(e) {
+                    let src = this.src;
+                    // Support lazy-loaded source
+                    if (this.classList.contains('lazy-load-img') && this.dataset.src) {
+                        src = this.dataset.src;
+                    } else if (this.classList.contains('lazy-load-img') && !this.src.startsWith('data:')) {
+                        src = this.src;
+                    }
+                    
+                    modalImg.src = src;
                     modal.style.display = 'flex';
                     setTimeout(() => {
                         modal.classList.add('active');
@@ -1356,9 +1839,10 @@
                 }, 300);
             }
 
+            // Dragging / Panning on Desktop
             modalImg.addEventListener('mousedown', function(e) {
                 e.preventDefault();
-                if (scale === 1) return;
+                if (scale === 1) return; // Only allow panning when zoomed in
                 isDragging = true;
                 startX = e.clientX - posX;
                 startY = e.clientY - posY;
@@ -1375,6 +1859,50 @@
             window.addEventListener('mouseup', function() {
                 isDragging = false;
                 modalImg.style.cursor = 'grab';
+            });
+
+            // Touch events for mobile (Pinch-to-zoom and drag panning)
+            modalImg.addEventListener('touchstart', function(e) {
+                if (e.touches.length === 1) {
+                    if (scale > 1) {
+                        isDragging = true;
+                        startX = e.touches[0].clientX - posX;
+                        startY = e.touches[0].clientY - posY;
+                    }
+                } else if (e.touches.length === 2) {
+                    isDragging = false;
+                    startDist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                    lastScale = scale;
+                }
+            });
+
+            modalImg.addEventListener('touchmove', function(e) {
+                if (isDragging && e.touches.length === 1) {
+                    posX = e.touches[0].clientX - startX;
+                    posY = e.touches[0].clientY - startY;
+                    updateImageTransform();
+                } else if (e.touches.length === 2) {
+                    const dist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                    scale = Math.min(Math.max(lastScale * (dist / startDist), 1), 3);
+                    updateImageTransform();
+                }
+            });
+
+            modalImg.addEventListener('touchend', function(e) {
+                isDragging = false;
+            });
+
+            // Close on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
             });
         });
     </script>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lead Capture to Booking System — System Architecture Diagram</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:      #0A0F1E;
+  --blue:      #3B82F6;
+  --blue-tint: #EFF4FE;
+  --blue-mid:  #DBEAFE;
+  --white:     #FFFFFF;
+  --grey:      #94A3B8;
+  --muted:     #64748B;
+  --border:    #D7DEE8;
+  --divider:   #E2E8F0;
+  --tint-a:    #F7F9FC;
+  --sig:       #B0BBCA;
+  --num-col:   #DDE6F1;
+}
+
+body {
+  font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  color: var(--navy);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  width: 210mm;
+  margin: 0 auto;
+  padding: 14mm 14mm 14mm;
+  background: #fff;
+}
+
+/* ── TITLE ── */
+.doc-label {
+  text-align: center;
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 2.8px;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.doc-title {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 26pt;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.doc-sub {
+  text-align: center;
+  font-size: 10.5pt;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.title-rule {
+  width: 200px;
+  margin: 0 auto 18px;
+  border: none;
+  border-top: 1px solid var(--divider);
+}
+
+/* ── SUMMARY ── */
+.summary {
+  background: var(--blue-tint);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  margin-bottom: 22px;
+  box-shadow: 0 1px 5px rgba(10,15,30,.05);
+  overflow: hidden;
+}
+.sum-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.sum-col {
+  padding: 11px 16px;
+  border-right: 1px solid var(--divider);
+}
+.sum-col:last-child { border-right: none; }
+.sum-lbl { font-size: 7pt; font-weight: 700; letter-spacing: 1px; color: var(--blue); margin-bottom: 3px; text-transform: uppercase; }
+.sum-val { font-size: 9.5pt; font-weight: 700; color: var(--navy); line-height: 1.3; }
+.sum-obj {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 16px;
+  border-top: 1px solid var(--divider);
+}
+.obj-lbl { font-size: 7pt; font-weight: 700; letter-spacing: 1px; color: var(--blue); white-space: nowrap; text-transform: uppercase; }
+.obj-txt { font-size: 8.5pt; color: var(--muted); line-height: 1.5; }
+
+/* ── LAYER CARD ── */
+.step {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgba(10,15,30,.05);
+  break-inside: avoid;
+  page-break-inside: avoid;
+  overflow: hidden;
+}
+.step::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 7px; bottom: 7px;
+  width: 3.5px;
+  background: var(--blue);
+  border-radius: 0 2px 2px 0;
+}
+.step.trigger {
+  background: var(--blue-mid);
+  border-color: var(--blue);
+  border-width: 1.5px;
+}
+.step-num {
+  position: absolute;
+  top: 7px; right: 12px;
+  font-family: Georgia, serif;
+  font-size: 20pt;
+  font-weight: 700;
+  color: var(--num-col);
+  line-height: 1;
+}
+.step-head {
+  padding: 10px 40px 9px 18px;
+  border-bottom: 1px solid var(--divider);
+}
+.step-title {
+  font-size: 13.5pt;
+  font-weight: 700;
+  color: var(--navy);
+}
+.step-body {
+  padding: 10px 18px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Row: inline label + value */
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+.rlbl {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: #64748B;
+  text-transform: uppercase;
+  width: 130px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+.rval {
+  font-size: 9.5pt;
+  color: #1E293B;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* Section: label then bullets below */
+.sec { display: flex; flex-direction: column; gap: 4px; }
+.slbl {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: #64748B;
+  text-transform: uppercase;
+}
+.bullets { padding-left: 10px; display: flex; flex-direction: column; gap: 2px; }
+.bul {
+  font-size: 9.5pt;
+  color: #1E293B;
+  line-height: 1.5;
+  display: flex;
+  gap: 7px;
+}
+.bul::before { content: '·'; color: var(--grey); flex-shrink: 0; }
+
+/* Connectors */
+.conn {
+  display: flex;
+  justify-content: center;
+  height: 38px;
+  position: relative;
+  flex-shrink: 0;
+}
+.conn::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 0; bottom: 9px;
+  width: 1.5px;
+  background: var(--grey);
+  transform: translateX(-50%);
+}
+.conn::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: 0;
+  transform: translateX(-50%);
+  border-left: 5.5px solid transparent;
+  border-right: 5.5px solid transparent;
+  border-top: 8px solid var(--grey);
+}
+
+/* ── OUTCOME ── */
+.outcome {
+  background: linear-gradient(90deg, #1C4ED8 0%, #3B82F6 100%);
+  border-radius: 40px;
+  padding: 16px 28px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(28, 78, 216, 0.4), 0 0 15px rgba(28, 78, 216, 0.2);
+  break-inside: avoid;
+  page-break-inside: avoid;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.outcome-txt { font-size: 13.5pt; font-weight: 700; color: #fff; letter-spacing: 0.2px; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+
+.outcome-note {
+  text-align: center;
+  font-size: 8pt;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.6;
+  margin-top: 12px;
+  padding: 0 40px;
+}
+
+/* ── BENEFITS ── */
+.benefits {
+  background: var(--blue-tint);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  overflow: hidden;
+  margin-top: 20px;
+  box-shadow: 0 1px 5px rgba(10,15,30,.05);
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.ben-head { padding: 10px 16px 9px; border-bottom: 1px solid var(--divider); }
+.ben-lbl  { font-size: 8pt; font-weight: 700; letter-spacing: 1.3px; color: var(--blue); text-transform: uppercase; }
+.ben-grid { display: grid; grid-template-columns: 1fr 1fr; padding: 10px 16px 12px; gap: 5px 0; }
+.ben-item { font-size: 9.5pt; color: var(--navy); display: flex; gap: 7px; align-items: baseline; }
+.ben-item::before { content: '—'; color: var(--blue); font-weight: 600; flex-shrink: 0; }
+
+/* ── STACK ── */
+.stack {
+  margin-top: 20px;
+  text-align: center;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.stack-lbl  { font-size: 8pt; font-weight: 700; letter-spacing: 1.5px; color: var(--grey); text-transform: uppercase; margin-bottom: 9px; }
+.stack-pills { display: flex; justify-content: center; gap: 12px; }
+.pill {
+  background: var(--tint-a);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 4px 16px;
+  font-size: 8.5pt;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+/* ── FOOTER ── */
+.footer { margin-top: 20px; text-align: center; }
+.footer-rule { width: 200px; margin: 0 auto 10px; border: none; border-top: 1px solid var(--divider); }
+.footer-txt  { font-size: 8pt; color: var(--sig); }
+
+.flow { display: flex; flex-direction: column; gap: 0; }
+
+@media print {
+  @page { size: A4; margin: 14mm; }
+  body  { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { padding: 0; width: 100%; }
+  .step, .benefits, .stack, .outcome { break-inside: avoid; page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="doc-label">System Architecture Diagram</div>
+  <h1 class="doc-title">Lead Capture to Booking System</h1>
+  <p class="doc-sub">Platform Boundaries &amp; Data Integration Layers</p>
+  <hr class="title-rule">
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div class="sum-meta">
+      <div class="sum-col"><div class="sum-lbl">Architecture Type</div><div class="sum-val">Lead Acquisition Pipeline</div></div>
+      <div class="sum-col"><div class="sum-lbl">Core Engine</div><div class="sum-val">GoHighLevel CRM</div></div>
+      <div class="sum-col"><div class="sum-lbl">Integrations</div><div class="sum-val">Google Calendar API &amp; SMTP</div></div>
+    </div>
+    <div class="sum-obj">
+      <div class="obj-lbl">System Scope</div>
+      <div class="obj-txt">Structured frontend ingestion linked directly to automated database records, calendar availability rules, and email confirmations.</div>
+    </div>
+  </div>
+
+  <div class="flow">
+    <!-- Layer 1 -->
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-head"><div class="step-title">Client Ingestion Layer (Frontend)</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Components</div><div class="rval">GoHighLevel Form Widget &amp; Landing Page</div></div>
+        <div class="sec">
+          <div class="slbl">Input Fields</div>
+          <div class="bullets">
+            <div class="bul">Name, Email, Phone Number, Inquiry Details</div>
+          </div>
+        </div>
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Captures and validates visitor details at first point of contact.</div></div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- Layer 2 -->
+    <div class="step trigger">
+      <div class="step-num">02</div>
+      <div class="step-head"><div class="step-title">Core Automation Engine (GHL Workflows)</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Components</div><div class="rval">Workflow Triggers &amp; Execution Branching</div></div>
+        <div class="sec">
+          <div class="slbl">Configured Sequences</div>
+          <div class="bullets">
+            <div class="bul">Lead Ingestion (Triggers alert and auto-reply email)</div>
+            <div class="bul">Calendar Scheduler (Validates availability, holds slot)</div>
+            <div class="bul">Reminder Queue (Triggers timed reminder email cadence)</div>
+          </div>
+        </div>
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Runs business rule logic, validates fields, and dispatches automated responses.</div></div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- Layer 3 -->
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-head"><div class="step-title">Data &amp; Synchronization Layer (Integrations)</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Components</div><div class="rval">GoHighLevel DB &amp; Google Calendar API Link</div></div>
+        <div class="sec">
+          <div class="slbl">Data Flow</div>
+          <div class="bullets">
+            <div class="bul">CRM Custom Contact Fields (Normalized schema mapping)</div>
+            <div class="bul">Two-Way Calendar Sync (Google Calendar to GHL availability)</div>
+          </div>
+        </div>
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Maintains synchronization of availability blocks and eliminates double-bookings.</div></div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- Layer 4 -->
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-head"><div class="step-title">Communication &amp; Alert Delivery Layer</div></div>
+      <div class="step-body">
+        <div class="row"><div class="rlbl">Components</div><div class="rval">Gmail SMTP SMTP Services</div></div>
+        <div class="sec">
+          <div class="slbl">Output Channels</div>
+          <div class="bullets">
+            <div class="bul">Prospect Confirmation Emails</div>
+            <div class="bul">Consultant Inbound Lead Alerts</div>
+            <div class="bul">24h, 1h, 5m Scheduled Reminders</div>
+          </div>
+        </div>
+        <div class="row"><div class="rlbl">Purpose</div><div class="rval">Executes outbound transactional messages to keep clients informed and reduce no-shows.</div></div>
+      </div>
+    </div>
+    <div class="conn"></div>
+
+    <!-- OUTCOME -->
+    <div class="outcome">
+      <div class="outcome-txt">Unified Scheduling &amp; Lead Management Pipeline</div>
+    </div>
+    <p class="outcome-note">The architecture coordinates multiple platform layers to run the appointment acquisition funnel without manual intervention.</p>
+
+    <!-- BENEFITS -->
+    <div class="benefits">
+      <div class="ben-head"><div class="ben-lbl">System Performance Benefits</div></div>
+      <div class="ben-grid">
+        <div class="ben-item">Zero integration latency</div>
+        <div class="ben-item">Native database tracking</div>
+        <div class="ben-item">High system availability</div>
+        <div class="ben-item">Clean process separation</div>
+      </div>
+    </div>
+
+    <!-- STACK -->
+    <div class="stack">
+      <div class="stack-lbl">System Stack</div>
+      <div class="stack-pills">
+        <div class="pill">GoHighLevel</div>
+        <div class="pill">Gmail</div>
+        <div class="pill">Google Calendar</div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <hr class="footer-rule">
+      <div class="footer-txt">Designed by Nitin Mishra &nbsp;·&nbsp; Portfolio Case Study &nbsp;•&nbsp; 2026</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

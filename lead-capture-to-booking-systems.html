@@ -114,6 +114,10 @@
         }
 
         @media (max-width: 960px) {
+            section.systems-hero {
+                padding-top: 112px !important;
+                padding-bottom: 64px;
+            }
             .case-study-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -1509,7 +1513,7 @@
 
         <!-- Case Study Documentation Section -->
         <section class="case-study-section documentation-section section-gradient-b section-glow-separator-top" id="pdf-documentation">
-            <div class="container-standard" style="max-width: 850px; padding: 100px 24px;">
+            <div class="container-standard" style="max-width: 850px;">
                 <div class="documentation-header" style="max-width: 760px; margin: 0 auto; text-align: center;">
                     <span class="category-heading" style="justify-content: center; margin-bottom: var(--sp-16);">Case Study Resources</span>
                     <h2 style="font-family: 'Outfit', sans-serif; font-size: var(--fs-h3); margin-bottom: 24px; color: var(--text-pure); text-align: center;">System Documentation</h2>
@@ -1519,7 +1523,7 @@
                     </p>
                     
                     <!-- System Documentation Metadata Bar -->
-                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; max-width: 760px; margin: 40px auto 0 auto; padding: 24px 32px; background: rgba(255, 255, 255, 0.015); border-top: 1px solid rgba(255, 255, 255, 0.06); border-left: 1px solid rgba(255, 255, 255, 0.06); border-right: 1px solid rgba(255, 255, 255, 0.06); border-top-left-radius: 16px; border-top-right-radius: 16px; text-align: left; box-sizing: border-box;">
+                    <div class="doc-metadata-bar" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; max-width: 760px; margin: 40px auto 0 auto; padding: 24px 32px; background: rgba(255, 255, 255, 0.015); border-top: 1px solid rgba(255, 255, 255, 0.06); border-left: 1px solid rgba(255, 255, 255, 0.06); border-right: 1px solid rgba(255, 255, 255, 0.06); border-top-left-radius: 16px; border-top-right-radius: 16px; text-align: left; box-sizing: border-box;">
                         <div>
                             <span style="font-family: monospace; font-size: 0.7rem; color: #64748B; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">Organization</span>
                             <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-pure);">B2B AI SaaS Company</span>
@@ -1631,7 +1635,7 @@
                                 <span>VERSION: V1.0</span>
                                 <span>PREPARED: JUL 2026</span>
                             </div>
-                            <div class="pdf-action-buttons" style="display: flex; gap: 12px; margin: 0 !important; width: auto !important; max-width: none !important; flex-direction: row !important; align-items: center !important;">
+                            <div class="pdf-action-buttons" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
                                 <button onclick="togglePdfViewer('case-study-wrapper', this)" class="btn btn-primary" style="font-size: 13px; padding: 8px 18px;">Preview Case Study</button>
                                 <a href="javascript:showToast('Documentation PDF is currently in final compilation and will be available soon.')" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px; display: inline-flex !important; margin: 0 !important;">Open PDF</a>
                                 <a href="javascript:showToast('Documentation PDF is currently in final compilation and will be available soon.')" class="btn btn-secondary" style="font-size: 13px; padding: 8px 18px; display: inline-flex !important; margin: 0 !important;">Download PDF</a>

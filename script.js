@@ -520,7 +520,7 @@ function initIntakeForm() {
             
             // Redirect after 400ms
             setTimeout(() => {
-                window.location.href = 'thank-you.html';
+                window.location.href = 'thank-you';
             }, 400);
         } catch (error) {
             console.error('Submission failed:', error);

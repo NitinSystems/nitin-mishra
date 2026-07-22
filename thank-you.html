@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,11 +6,11 @@
     <title>Request Received - Nitin Mishra</title>
     <meta name="description" content="Structured CRM systems, lead routing, and workflow automation implementation for businesses seeking operational clarity.">
     <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="https://nitin-mishra.netlify.app/thank-you.html">
+    <link rel="canonical" href="https://nitin-mishra.netlify.app/thank-you">
 
     <!-- Social / Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nitin-mishra.netlify.app/thank-you.html">
+    <meta property="og:url" content="https://nitin-mishra.netlify.app/thank-you">
     <meta property="og:title" content="Request Received - Nitin Mishra">
     <meta property="og:description" content="Structured CRM systems, lead routing, and workflow automation implementation for businesses seeking operational clarity.">
     <meta property="og:image" content="https://nitin-mishra.netlify.app/assets/workflows/full-systems-architecture-make.png">
@@ -200,21 +200,23 @@
 <!-- Cal element-click embed code begins -->
 <script type="text/javascript">
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-Cal("init", "30min", {origin:"https://app.cal.com"});
+Cal("init", {origin:"https://app.cal.com"});
+Cal.config = Cal.config || {};
+Cal.config.forwardQueryParams = true;
 
-  
-  // Important: Please add the following attributes to the element that should trigger the calendar to open upon clicking.
-  // `data-cal-link="nitin-mishra/30min"`
-  // data-cal-namespace="30min"
-  // `data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'`
-
-  Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#1f1f1f"},"dark":{"cal-brand":"#3D82F6"}},"hideEventTypeDetails":false,"layout":"month_view"});
+  Cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#1f1f1f"},"dark":{"cal-brand":"#3D82F6"}},"hideEventTypeDetails":false,"layout":"month_view"});
   </script>
   <!-- Cal element-click embed code ends -->
 
     <!-- Intent Routing Logic -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Instant Clean URL Address Bar Enforcement
+            if (window.location.pathname.endsWith('.html')) {
+                const cleanPath = window.location.pathname.replace(/\.html$/, '');
+                window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+            }
+
             const container = document.getElementById('dynamicCtaContainer');
             if (!container) return;
             
@@ -269,8 +271,8 @@ Cal("init", "30min", {origin:"https://app.cal.com"});
             }
             
             if (cohort === 'high') {
-                // High Intent - configured with exact Cal.com trigger attributes and namespace config
-                html += `<button data-cal-link="nitin-mishra/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="btn btn-primary">Book Discovery Call</button>`;
+                // High Intent - configured with exact Cal.com trigger attributes and brand config
+                html += `<button data-cal-link="nitinmishra/30min" data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}' class="btn btn-primary">Book Discovery Call</button>`;
                 html += `<div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 12px; font-weight: 500;">I’ll Review & Email You First</div>`;
                 html += `<a href="systems-library.html" class="btn btn-secondary" style="margin-top: 12px; border: 1px solid rgba(28, 78, 216, 0.4) !important;">Explore Systems</a>`;
                 html += `<a href="./" class="btn btn-secondary" style="margin-top: 12px;">Back to Home</a>`;
@@ -291,9 +293,9 @@ Cal("init", "30min", {origin:"https://app.cal.com"});
             container.style.flexDirection = 'column';
             container.style.gap = '12px';
             
-            // Programmatically trigger DOM rebinding for the dynamic button under Cal.ns['30min']
-            if (cohort === 'high' && typeof Cal === 'function' && Cal.ns && Cal.ns["30min"]) {
-                Cal.ns["30min"]("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#1f1f1f"},"dark":{"cal-brand":"#3D82F6"}},"hideEventTypeDetails":false,"layout":"month_view"});
+            // Programmatically trigger UI config application under Cal
+            if (cohort === 'high' && typeof Cal === 'function') {
+                Cal("ui", {"cssVarsPerTheme":{"light":{"cal-brand":"#1f1f1f"},"dark":{"cal-brand":"#3D82F6"}},"hideEventTypeDetails":false,"layout":"month_view"});
             }
             
             // Cleanup session storage to prevent persistence on manual refresh

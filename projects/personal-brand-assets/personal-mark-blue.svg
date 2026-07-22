@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+    <defs>
+        <!-- Premium Blue Gradient (Deep Navy Blue to Professional Royal Blue) -->
+        <linearGradient id="blueGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00123c" />
+            <stop offset="100%" stop-color="#0055ff" />
+        </linearGradient>
+    </defs>
+
+    <!-- Outer Framing Circle (Gradient stroke) -->
+    <circle cx="50" cy="50" r="43.5" fill="none" stroke="url(#blueGradient)" stroke-width="4.5" />
+    
+    <!-- Inner Geometric Symbol (Gradient fill) -->
+    <g fill="url(#blueGradient)">
+        <!-- Left Pillar + Upper Diagonal Segment -->
+        <polygon points="35,23 59,47 59,55 41,37 41,65 35,71" />
+        <!-- Right Pillar + Lower Diagonal Segment -->
+        <polygon points="59,35 65,29 65,77 41,53 41,45 59,63" />
+    </g>
+</svg>

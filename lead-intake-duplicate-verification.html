@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Intake & Duplicate Verification System | Case Study | Nitin Mishra</title>
+    <meta name="description" content="Detailed case study of the Lead Intake & Duplicate Verification System. Explore real-time duplicate checking, Airtable logging, HubSpot CRM contact creation, and automated intent-based routing.">
+    <link rel="canonical" href="https://nitin-mishra.netlify.app/lead-intake-duplicate-verification">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://nitin-mishra.netlify.app/#person",
+          "name": "Nitin Mishra",
+          "jobTitle": "Automation Systems Specialist",
+          "url": "https://nitin-mishra.netlify.app/",
+          "sameAs": ["https://www.linkedin.com/in/nitinmishra-me"]
+        },
+        {
+          "@type": "TechArticle",
+          "@id": "https://nitin-mishra.netlify.app/lead-intake-duplicate-verification#article",
+          "url": "https://nitin-mishra.netlify.app/lead-intake-duplicate-verification",
+          "name": "Lead Intake & Duplicate Verification System | Case Study",
+          "headline": "Lead Intake & Duplicate Verification System",
+          "description": "Detailed case study of the Lead Intake & Duplicate Verification System. Explore real-time duplicate checking, Airtable logging, HubSpot CRM contact creation, and automated intent-based routing.",
+          "datePublished": "2026-07-15T08:00:00+05:30",
+          "dateModified": "2026-07-23T08:00:00+05:30",
+          "author": {"@id": "https://nitin-mishra.netlify.app/#person"},
+          "publisher": {"@id": "https://nitin-mishra.netlify.app/#person"},
+          "isPartOf": {
+            "@type": "CollectionPage",
+            "@id": "https://nitin-mishra.netlify.app/systems-library.html#collection",
+            "url": "https://nitin-mishra.netlify.app/systems-library.html",
+            "name": "Systems Library | Nitin Mishra"
+          },
+          "about": [
+            {
+              "@type": "SoftwareApplication",
+              "name": "Lead Intake & Duplicate Verification System",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "All",
+              "description": "Portfolio-grade operational intake system that validates form submissions, checks for duplicate leads in real time, routes data to Airtable & HubSpot CRM, and triggers intent-based calendar booking."
+            }
+          ],
+          "dependencies": "Make.com, Airtable, HubSpot CRM, Cal.com"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Social / Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nitin-mishra.netlify.app/lead-intake-duplicate-verification">
+    <meta property="og:title" content="Lead Intake & Duplicate Verification System | Nitin Mishra">
+    <meta property="og:description" content="Portfolio-grade operational intake case study. Real-time duplicate checking, fail-open safeguards, Airtable/HubSpot integration, and automated intent routing.">
+    <meta property="og:image" content="https://nitin-mishra.netlify.app/assets/workflows/full-systems-architecture-make.png">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lead Intake & Duplicate Verification System | Nitin Mishra">
+    <meta name="twitter:description" content="Real-time duplicate verification, fail-open safeguards, Airtable/HubSpot integration, and automated intent routing.">
+    <meta name="twitter:image" content="https://nitin-mishra.netlify.app/assets/workflows/full-systems-architecture-make.png">
+
+    <!-- Favicon Infrastructure -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+
+    <!-- Master Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Scoped Case Study Styling -->
+    <style>
+        .glow-background {
+            background-color: #020307;
+            background-image: 
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(28, 78, 216, 0.15), transparent 70%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+        }
+
+        section.systems-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            padding-top: 170px !important;
+            padding-bottom: 96px;
+            box-sizing: border-box;
+        }
+
+        .systems-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-split-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: flex-start;
+        }
+
+        .section-badge {
+            font-family: var(--font-mono, monospace);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-pure);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            background: rgba(28, 78, 216, 0.2);
+            border: 1px solid var(--system-blue);
+            padding: 4px 12px;
+            border-radius: 100px;
+            box-shadow: 0 0 12px rgba(28, 78, 216, 0.4);
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            color: var(--text-pure);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: var(--text-silver);
+            margin-bottom: 28px;
+            opacity: 0.9;
+        }
+
+        .hero-compact-metrics {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(4, 6, 18, 0.5);
+            border: 1px solid rgba(28, 78, 216, 0.25);
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            font-family: var(--font-mono, monospace);
+            font-size: 11px;
+            color: var(--text-silver);
+        }
+
+        .metric-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .metric-item strong {
+            color: #10b981;
+            font-size: 12px;
+        }
+
+        .metric-divider {
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .visual-schematic-card {
+            background: rgba(4, 6, 18, 0.6);
+            border: 1px solid rgba(28, 78, 216, 0.3);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 0 40px rgba(28, 78, 216, 0.15);
+            backdrop-filter: blur(12px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-schematic-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 75% 25%, rgba(28, 78, 216, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .case-study-section {
+            padding-top: 80px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .case-study-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .category-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: var(--sp-16);
+        }
+
+        .category-heading::before {
+            content: '//';
+            color: var(--system-blue);
+            font-family: var(--font-mono, monospace);
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-pure);
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: flex-start;
+        }
+
+        .why-matters-box {
+            background: rgba(28, 78, 216, 0.06);
+            border-left: 3px solid var(--system-blue);
+            padding: var(--sp-24);
+            border-radius: 0 16px 16px 0;
+        }
+
+        .why-matters-box h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-pure);
+            margin-bottom: var(--sp-8);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .why-matters-box p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-silver);
+            margin: 0;
+        }
+
+        /* Interactive Proof Tabs Styling */
+        .data-foundation-tabs {
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            margin-top: 32px;
+        }
+
+        .tab-list {
+            display: flex;
+            overflow-x: auto;
+            background: rgba(7, 9, 17, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 16px 0;
+            gap: 8px;
+            scrollbar-width: none;
+        }
+
+        .tab-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: var(--text-muted);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 12px 16px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-pure);
+        }
+
+        .tab-btn.active {
+            color: var(--text-pure);
+            border-bottom-color: var(--system-blue);
+        }
+
+        .tab-content-container {
+            padding: 32px;
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: var(--sp-24);
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        .tab-narrative {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tab-narrative h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            color: var(--text-pure);
+            margin: 0;
+        }
+
+        .tab-narrative p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-silver);
+            margin: 0;
+        }
+
+        .tab-bullets {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: var(--sp-16);
+            border-radius: 12px;
+        }
+
+        .tab-screenshot-wrapper {
+            background: #020307;
+            border: 1px solid rgba(28, 78, 216, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tab-screenshot-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .placeholder-box {
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-family: var(--font-mono, monospace);
+            font-size: 12px;
+        }
+
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .decision-card {
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: var(--sp-24) var(--sp-32);
+            border-radius: var(--card-radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.25s ease;
+        }
+
+        .decision-card:hover {
+            border-color: rgba(28, 78, 216, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .workflow-step-card {
+            background: rgba(4, 6, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            transition: all 0.25s ease;
+        }
+
+        .workflow-step-card:hover {
+            border-color: rgba(28, 78, 216, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .workflow-step-number {
+            font-family: var(--font-mono, monospace);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--system-blue);
+            background: rgba(28, 78, 216, 0.15);
+            border: 1px solid rgba(28, 78, 216, 0.3);
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .workflow-step-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-pure);
+            margin-bottom: 10px;
+        }
+
+        .workflow-step-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-silver);
+        }
+
+        .branch-badge {
+            display: inline-block;
+            font-family: var(--font-mono, monospace);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        .branch-new {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid #10b981;
+            color: #10b981;
+        }
+
+        .branch-dup {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid #f59e0b;
+            color: #f59e0b;
+        }
+
+        .tech-pill {
+            font-family: var(--font-mono, monospace);
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 100px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-pills-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .code-snippet-box {
+            background: #020307;
+            border: 1px solid rgba(28, 78, 216, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: var(--font-mono, monospace);
+            font-size: 12px;
+            line-height: 1.6;
+            color: #60a5fa;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 960px) {
+            section.systems-hero {
+                padding-top: 112px !important;
+                padding-bottom: 64px;
+            }
+            .hero-split-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .case-study-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .tab-bullets {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Global Glow System -->
+    <div class="glow-background">
+        <div class="glow-orb glow-top-right"></div>
+        <div class="glow-orb glow-bottom-left"></div>
+    </div>
+
+    <!-- 1. Navigation: Floating Architectural Shell -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="./" class="nav-brand" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+                <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
+                    <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+                </div>
+                Nitin Mishra
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">
+                <span class="icon-menu">☰</span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="systems-library.html">Systems</a></li>
+                <li><a href="index.html#process">Process</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li class="mobile-only"><a href="index.html#contact" class="btn btn-primary" style="width: 100%;">Book Audit</a></li>
+            </ul>
+            <a href="index.html#contact" class="btn btn-primary nav-cta">Book Audit</a>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section: Standard Spacing Rhythm (170px Desktop / 112px Mobile) -->
+    <section class="systems-hero">
+        <div class="container-nav-align systems-hero-content">
+            <div class="hero-split-grid">
+                <!-- Left Column: Systems Copy & Details -->
+                <div class="reveal-on-load">
+                    <span class="section-badge">Portfolio System</span>
+                    
+                    <h1 class="hero-title">Lead Intake & Duplicate Verification System</h1>
+                    
+                    <p class="hero-desc">
+                        A portfolio-grade operational intake engine that intercepts form submissions, performs real-time duplicate verification, structures database payloads, automates multi-channel CRM updates, and presents intent-driven calendar booking options without polluting sales pipelines.
+                    </p>
+
+                    <!-- Compact Status Metrics Row -->
+                    <div class="hero-compact-metrics">
+                        <div class="metric-item">
+                            <span>Duplication:</span> <strong>0% Pollution</strong>
+                        </div>
+                        <span class="metric-divider">•</span>
+                        <div class="metric-item">
+                            <span>Verification Guard:</span> <strong>&lt; 3.0s Timeout</strong>
+                        </div>
+                        <span class="metric-divider">•</span>
+                        <div class="metric-item">
+                            <span>Continuity:</span> <strong>100% Fail-Open</strong>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#workflow-logic" class="btn btn-primary">Explore Workflow Logic</a>
+                        <a href="systems-library.html" class="btn btn-secondary">Back to Systems Library</a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Blueprint Visual Schematic -->
+                <div class="visual-schematic-card reveal-on-load">
+                    <div class="category-heading" style="font-size: 0.8rem; margin-bottom: 12px;">// LIVE ARCHITECTURE NODE MAP</div>
+                    
+                    <div class="schematic-container" style="display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 1;">
+                        <!-- Node 1: Webhook Ingest -->
+                        <div style="background: rgba(28, 78, 216, 0.08); border: 1px solid rgba(28, 78, 216, 0.3); border-radius: 10px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span style="font-family: var(--font-mono, monospace); font-size: 8px; color: var(--system-blue); font-weight: 700;">[ INGESTION LAYER ]</span>
+                                <div style="font-size: 12px; color: #fff; font-weight: 600;">HTML Form + Webhook POST</div>
+                            </div>
+                            <span style="font-family: var(--font-mono, monospace); font-size: 9px; color: #10b981; font-weight: 700;">ACTIVE</span>
+                        </div>
+
+                        <!-- Node 2: Verification Engine -->
+                        <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span style="font-family: var(--font-mono, monospace); font-size: 8px; color: #f59e0b; font-weight: 700;">[ CHECK ENGINE ]</span>
+                                <div style="font-size: 12px; color: #fff; font-weight: 600;">Make.com GET Query + Timeout</div>
+                            </div>
+                            <span style="font-family: var(--font-mono, monospace); font-size: 9px; color: #f59e0b; font-weight: 700;">3000ms MAX</span>
+                        </div>
+
+                        <!-- Node 3 Split: Dual Branches -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <!-- New Lead Path -->
+                            <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 10px;">
+                                <span style="font-family: var(--font-mono, monospace); font-size: 8px; color: #10b981; font-weight: 700;">[ NEW LEAD ]</span>
+                                <div style="font-size: 10.5px; color: #fff; margin-top: 2px;">Airtable + HubSpot CRM Sync</div>
+                            </div>
+                            <!-- Duplicate Lead Path -->
+                            <div style="background: rgba(239, 68, 68, 0.06); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 8px; padding: 10px;">
+                                <span style="font-family: var(--font-mono, monospace); font-size: 8px; color: #ef4444; font-weight: 700;">[ DUPLICATE ]</span>
+                                <div style="font-size: 10.5px; color: #fff; margin-top: 2px;">Modal Popup + Overwrite Option</div>
+                            </div>
+                        </div>
+
+                        <!-- Node 4: Clean Routing & Cal.com -->
+                        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <span style="font-family: var(--font-mono, monospace); font-size: 8px; color: rgba(255, 255, 255, 0.5); font-weight: 700;">[ DESTINATION ]</span>
+                                <div style="font-size: 12px; color: #fff; font-weight: 600;">Clean /thank-you + Cal.com Modal</div>
+                            </div>
+                            <span style="font-family: var(--font-mono, monospace); font-size: 9px; color: #60a5fa; font-weight: 700;">INTENT DRIVEN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Section: Problem Statement & Operational Challenge -->
+    <section class="case-study-section">
+        <div class="container-nav-align">
+            <div class="category-heading">OPERATIONAL CHALLENGE</div>
+            <h2 class="section-title">The Hidden Cost of Duplicate & Unverified Submissions</h2>
+            
+            <div class="case-study-grid">
+                <div>
+                    <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text-silver); margin-bottom: 20px;">
+                        In standard web forms, when a prospect submits an inquiry multiple times or when an existing contact submits a second request, traditional web forms blindly execute duplicate entries into CRMs. 
+                    </p>
+                    <p style="font-size: 1rem; line-height: 1.65; color: var(--text-muted);">
+                        This creates duplicate contacts inside sales databases, inflates software costs, confuses account managers with redundant notifications, and obscures the true history of lead engagement.
+                    </p>
+                </div>
+
+                <div class="why-matters-box">
+                    <h5>System Principles Applied</h5>
+                    <p>
+                        Intake forms should never be silent black holes. A modern lead infrastructure must verify submission state synchronously before committing database updates, while ensuring zero friction for legitimate leads.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Section: Complete Step-by-Step Workflow Architecture -->
+    <section class="case-study-section" id="workflow-logic" style="background: rgba(2, 3, 7, 0.4);">
+        <div class="container-nav-align">
+            <div class="category-heading">SYSTEM ARCHITECTURE & EXECUTION FLOW</div>
+            <h2 class="section-title">Step-by-Step Ingestion & Branching Logic</h2>
+
+            <div style="margin-top: 40px;">
+                <!-- Step 1 -->
+                <div class="workflow-step-card">
+                    <span class="workflow-step-number">STEP 01</span>
+                    <h3 class="workflow-step-title">Form Ingestion & Email Normalization</h3>
+                    <p class="workflow-step-desc">
+                        The visitor completes the lead intake form on the portfolio landing page. Upon clicking submit, JavaScript intercepts the event, validates required inputs, normalizes the email address to lowercase, and generates a dynamic Submission ID.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="workflow-step-card">
+                    <span class="workflow-step-number">STEP 02</span>
+                    <h3 class="workflow-step-title">Synchronous Duplicate Verification Query</h3>
+                    <p class="workflow-step-desc">
+                        Before making database commits, the frontend script fires a synchronous query to the verification webhook with a 3-second timeout guard attached. If the verification response is received within 3 seconds, the payload is evaluated. If the webhook times out or encounters a network error, the system triggers a Fail-Open Rule to submit the lead normally without blocking the user.
+                    </p>
+                </div>
+
+                <!-- Step 3: Branch A (New Lead) -->
+                <div class="workflow-step-card" style="border-left: 3px solid #10b981;">
+                    <span class="workflow-step-number" style="background: rgba(16, 185, 129, 0.15); color: #10b981; border-color: #10b981;">BRANCH A <span class="branch-badge branch-new">New Lead</span></span>
+                    <h3 class="workflow-step-title">Database Storage & Multi-Channel CRM Sync</h3>
+                    <p class="workflow-step-desc">
+                        If the verification check confirms the record is new, the system immediately:
+                    </p>
+                    <ul style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.7; margin-top: 10px; margin-left: 20px;">
+                        <li>Stores the complete raw submission payload in Airtable (First Submission Date, Contact Details, Tools, Operational Challenge).</li>
+                        <li>Creates or updates the Lead Contact record in HubSpot CRM with lifecycle tracking.</li>
+                        <li>Triggers an automated transactional confirmation email to the prospect.</li>
+                        <li>Sends an instant alert email to the site administrator.</li>
+                        <li>Redirects the visitor to the clean thank-you page with intent cohort routing.</li>
+                    </ul>
+                </div>
+
+                <!-- Step 4: Branch B (Duplicate Lead) -->
+                <div class="workflow-step-card" style="border-left: 3px solid #f59e0b;">
+                    <span class="workflow-step-number" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border-color: #f59e0b;">BRANCH B <span class="branch-badge branch-dup">Duplicate Lead (&lt;24 Hours)</span></span>
+                    <h3 class="workflow-step-title">Interactive Modal Overlay & User Intent Options</h3>
+                    <p class="workflow-step-desc">
+                        If the verification check confirms an inquiry was already submitted within a 24-hour window, the form submission pauses and opens the customized modal overlay. The modal dynamically renders the previous submission timestamp in local time and provides three clear user choices:
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px;">
+                        <div style="background: rgba(28, 78, 216, 0.08); border: 1px solid rgba(28, 78, 216, 0.2); padding: 14px; border-radius: 8px;">
+                            <strong style="color: #fff; font-size: 0.9rem;">1. Update Request</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-silver); margin-top: 4px;">Overwrites previous information in Airtable/HubSpot and continues processing.</p>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px; border-radius: 8px;">
+                            <strong style="color: #fff; font-size: 0.9rem;">2. Direct Email</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-silver); margin-top: 4px;">Triggers direct mailto client pre-addressed to the administrator email address.</p>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px; border-radius: 8px;">
+                            <strong style="color: #fff; font-size: 0.85rem;">3. Cancel / Close</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-silver); margin-top: 4px;">Closes modal overlay and restores form button states cleanly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Intent Routing & Cal.com -->
+                <div class="workflow-step-card">
+                    <span class="workflow-step-number">STEP 05</span>
+                    <h3 class="workflow-step-title">Intent-Based Routing & Cal.com Booking Modal</h3>
+                    <p class="workflow-step-desc">
+                        Upon successful submission, session state passes the requested service category to the thank-you page. High-intent services dynamically render the booking CTA which launches the embedded Cal.com scheduling modal styled to match the dark portfolio aesthetic, providing seamless calendar booking, automated confirmation emails, meeting links, and self-service reschedule links.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Interactive Proof Infrastructure: Tabbed Screenshot & Interface Viewer -->
+    <section class="case-study-section section-matte section-glow-separator-top">
+        <div class="container-nav-align">
+            <span class="category-heading">System Verification & Proof</span>
+            <h2 style="font-family: 'Outfit', sans-serif; font-size: 2.25rem; font-weight: 700; color: var(--text-pure); margin-bottom: 16px;">System Proof & Interface Blueprints</h2>
+            <p style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.6; max-width: 800px;">
+                Select below to inspect each configured interface, database record, Make.com scenario blueprint, and email notification workflow.
+            </p>
+
+            <!-- Interactive Tabbed Screenshot Viewer -->
+            <div class="data-foundation-tabs">
+                <div class="tab-list" role="tablist">
+                    <button class="tab-btn active" role="tab" onclick="switchProofTab(0)">1. Intake Form</button>
+                    <button class="tab-btn" role="tab" onclick="switchProofTab(1)">2. Duplicate Modal</button>
+                    <button class="tab-btn" role="tab" onclick="switchProofTab(2)">3. Thank You Page</button>
+                    <button class="tab-btn" role="tab" onclick="switchProofTab(3)">4. Cal Calendar</button>
+                    <button class="tab-btn" role="tab" onclick="switchProofTab(4)">5. Verification Scenario</button>
+                    <button class="tab-btn" role="tab" onclick="switchProofTab(5)">6. Intake Scenario</button>
+                    <button class="tab-btn" role="tab" onclick="switchProofTab(6)">7. Airtable Base</button>
+                    <button class="tab-btn" role="tab" onclick="switchProofTab(7)">8. HubSpot Contacts</button>
+                    <button class="tab-btn" role="tab" onclick="switchProofTab(8)">9. Prospect Email</button>
+                    <button class="tab-btn" role="tab" onclick="switchProofTab(9)">10. Admin Email</button>
+                </div>
+
+                <div class="tab-content-container">
+                    <!-- Tab 1: Intake Form -->
+                    <div class="tab-content active" id="proof-tab-0">
+                        <div class="tab-narrative">
+                            <h4>1. Lead Intake Form Interface</h4>
+                            <p>Captures validated customer information (Name, Email, Business Type, Service Requested, Operational Challenge, and Current Tools).</p>
+                            <div class="tab-bullets">
+                                <div class="bullet-item"><strong>Ingestion:</strong> Input-validated HTML Form</div>
+                                <div class="bullet-item"><strong>Validation:</strong> Lowercase Email Normalization</div>
+                            </div>
+                        </div>
+                        <div class="tab-screenshot-wrapper">
+                            <img src="projects/lead-intake-duplicate-verification/intake-layer/intake-form.png" alt="Lead Intake Form Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="placeholder-box" style="display: none;">
+                                [ SCREENSHOT PLACEHOLDER: projects/lead-intake-duplicate-verification/intake-layer/intake-form.png ]
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Duplicate Modal -->
+                    <div class="tab-content" id="proof-tab-1">
+                        <div class="tab-narrative">
+                            <h4>2. Duplicate Inquiry Overlay Modal</h4>
+                            <p>Triggered when a lead resubmits within 24 hours. Displays the previous submission date/time in local time with Update/Email choices.</p>
+                            <div class="tab-bullets">
+                                <div class="bullet-item"><strong>Trigger:</strong> Synchronous Duplicate Check (`exists: true`)</div>
+                                <div class="bullet-item"><strong>UX Options:</strong> Update Request | Direct Mailto | Cancel</div>
+                            </div>
+                        </div>
+                        <div class="tab-screenshot-wrapper">
+                            <img src="projects/lead-intake-duplicate-verification/verification-layer/duplicate-popup.png" alt="Duplicate Inquiry Overlay Modal Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="placeholder-box" style="display: none;">
+                                [ SCREENSHOT PLACEHOLDER: projects/lead-intake-duplicate-verification/verification-layer/duplicate-popup.png ]
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Thank You Page -->
+                    <div class="tab-content" id="proof-tab-2">
+                        <div class="tab-narrative">
+                            <h4>3. Clean Thank-You Redirect Page</h4>
+                            <p>Clean URL destination (`/thank-you`) that receives intent state and dynamically renders cohort-specific actions.</p>
+                            <div class="tab-bullets">
+                                <div class="bullet-item"><strong>URL Format:</strong> Clean `/thank-you` without `.html`</div>
+                                <div class="bullet-item"><strong>State Handling:</strong> Session-based intent cohort routing</div>
+                            </div>
+                        </div>
+                        <div class="tab-screenshot-wrapper">
+                            <img src="projects/lead-intake-duplicate-verification/routing-layer/thank-you-page.png" alt="Thank You Page Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="placeholder-box" style="display: none;">
+                                [ SCREENSHOT PLACEHOLDER: projects/lead-intake-duplicate-verification/routing-layer/thank-you-page.png ]
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Cal Calendar -->
+                    <div class="tab-content" id="proof-tab-3">
+                        <div class="tab-narrative">
+                            <h4>4. Embedded Cal.com Booking Modal</h4>
+                            <p>Custom dark-themed Cal.com widget (`nitinmishra/30min`) enabling high-intent prospects to select meeting slots instantly.</p>
+                            <div class="tab-bullets">
+                                <div class="bullet-item"><strong>Brand Accent:</strong> Dark minimalist theme matching portfolio UI</div>
+                                <div class="bullet-item"><strong>Integrations:</strong> Two-way calendar sync & meeting links</div>
+                            </div>
+                        </div>
+                        <div class="tab-screenshot-wrapper">
+                            <img src="projects/lead-intake-duplicate-verification/booking-layer/cal-calendar.png" alt="Cal.com Booking Modal Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="placeholder-box" style="display: none;">
+                                [ SCREENSHOT PLACEHOLDER: projects/lead-intake-duplicate-verification/booking-layer/cal-calendar.png ]
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 5: Verification Scenario -->
+                    <div class="tab-content" id="proof-tab-4">
+                        <div class="tab-narrative">
+                            <h4>5. Make.com Scenario 1: Duplicate Verification Engine</h4>
+                            <p>Webhook endpoint scenario that queries Airtable for matching emails and returns `exists` status within 3000ms.</p>
+                            <div class="tab-bullets">
+                                <div class="bullet-item"><strong>Query Type:</strong> GET request with email payload</div>
+                                <div class="bullet-item"><strong>Response:</strong> Real-time JSON validation status</div>
+                            </div>
+                        </div>
+                        <div class="tab-screenshot-wrapper">
+                            <img src="projects/lead-intake-duplicate-verification/make-scenarios/make-scenario-verification.png" alt="Make.com Verification Scenario Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="placeholder-box" style="display: none;">
+                                [ SCREENSHOT PLACEHOLDER: projects/lead-intake-duplicate-verification/make-scenarios/make-scenario-verification.png ]
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 6: Intake Scenario -->
+                    <div class="tab-content" id="proof-tab-5">
+                        <div class="tab-narrative">
+                            <h4>6. Make.com Scenario 2: Data Routing & CRM Engine</h4>
+                            <p>Main ingestion scenario that processes submitted leads, creates/updates records in Airtable & HubSpot, and sends emails.</p>
+                            <div class="tab-bullets">
+                                <div class="bullet-item"><strong>Ingestion:</strong> POST webhook listener</div>
+                                <div class="bullet-item"><strong>Outlets:</strong> Airtable Base | HubSpot CRM | Email Routers</div>
+                            </div>
+                        </div>
+                        <div class="tab-screenshot-wrapper">
+                            <img src="projects/lead-intake-duplicate-verification/make-scenarios/make-scenario-intake.png" alt="Make.com Intake Scenario Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="placeholder-box" style="display: none;">
+                                [ SCREENSHOT PLACEHOLDER: projects/lead-intake-duplicate-verification/make-scenarios/make-scenario-intake.png ]
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 7: Airtable Base -->
+                    <div class="tab-content" id="proof-tab-6">
+                        <div class="tab-narrative">
+                            <h4>7. Airtable Ingestion Database Base</h4>
+                            <p>Central operational database recording First Submission Date, Last Submission Date, Submission ID, and full lead properties.</p>
+                            <div class="tab-bullets">
+                                <div class="bullet-item"><strong>Fields:</strong> Submission ID, First/Last Date, Challenge, Decision</div>
+                                <div class="bullet-item"><strong>Timezone:</strong> ISO UTC Storage with Local View</div>
+                            </div>
+                        </div>
+                        <div class="tab-screenshot-wrapper">
+                            <img src="projects/lead-intake-duplicate-verification/data-layer/airtable-records.png" alt="Airtable Database Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="placeholder-box" style="display: none;">
+                                [ SCREENSHOT PLACEHOLDER: projects/lead-intake-duplicate-verification/data-layer/airtable-records.png ]
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 8: HubSpot Contacts -->
+                    <div class="tab-content" id="proof-tab-7">
+                        <div class="tab-narrative">
+                            <h4>8. HubSpot CRM Contact Records</h4>
+                            <p>Automated contact creation in HubSpot CRM, ensuring sales reps have immediate access to clean lead properties.</p>
+                            <div class="tab-bullets">
+                                <div class="bullet-item"><strong>Sync Object:</strong> Contact Record with Custom Field Properties</div>
+                                <div class="bullet-item"><strong>Lifecycle:</strong> Lead / Prospect Lifecycle Stage</div>
+                            </div>
+                        </div>
+                        <div class="tab-screenshot-wrapper">
+                            <img src="projects/lead-intake-duplicate-verification/crm-layer/hubspot-contacts.png" alt="HubSpot CRM Contacts Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="placeholder-box" style="display: none;">
+                                [ SCREENSHOT PLACEHOLDER: projects/lead-intake-duplicate-verification/crm-layer/hubspot-contacts.png ]
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 9: Prospect Email -->
+                    <div class="tab-content" id="proof-tab-8">
+                        <div class="tab-narrative">
+                            <h4>9. Prospect Transactional Confirmation Email</h4>
+                            <p>Automated confirmation email dispatched to the prospect confirming submission receipt and next steps.</p>
+                            <div class="tab-bullets">
+                                <div class="bullet-item"><strong>Recipient:</strong> Submitted Lead Email</div>
+                                <div class="bullet-item"><strong>Content:</strong> Confirmation receipt & access link</div>
+                            </div>
+                        </div>
+                        <div class="tab-screenshot-wrapper">
+                            <img src="projects/lead-intake-duplicate-verification/email-layer/client-confirmation-email.png" alt="Prospect Confirmation Email Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="placeholder-box" style="display: none;">
+                                [ SCREENSHOT PLACEHOLDER: projects/lead-intake-duplicate-verification/email-layer/client-confirmation-email.png ]
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 10: Admin Email -->
+                    <div class="tab-content" id="proof-tab-9">
+                        <div class="tab-narrative">
+                            <h4>10. Administrator Notification Email Alert</h4>
+                            <p>Real-time notification alert dispatched to the site administrator containing full lead details for immediate action.</p>
+                            <div class="tab-bullets">
+                                <div class="bullet-item"><strong>Recipient:</strong> System Administrator</div>
+                                <div class="bullet-item"><strong>Content:</strong> Full Payload Summary & Form Intent</div>
+                            </div>
+                        </div>
+                        <div class="tab-screenshot-wrapper">
+                            <img src="projects/lead-intake-duplicate-verification/email-layer/owner-alert-email.png" alt="Admin Notification Email Screenshot" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="placeholder-box" style="display: none;">
+                                [ SCREENSHOT PLACEHOLDER: projects/lead-intake-duplicate-verification/email-layer/owner-alert-email.png ]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Section: Technology Stack & Technical Safeguards -->
+    <section class="case-study-section">
+        <div class="container-nav-align">
+            <div class="category-heading">INFRASTRUCTURE & RELIABILITY SAFEGUARDS</div>
+            <h2 class="section-title">Technology Stack & Technical Implementation</h2>
+
+            <div class="case-study-grid">
+                <div>
+                    <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; color: #fff; margin-bottom: 16px;">Core Infrastructure Stack</h4>
+                    <div class="tech-pills-row">
+                        <span class="tech-pill"><span style="color: #60a5fa;">●</span> Custom JavaScript</span>
+                        <span class="tech-pill"><span style="color: #f59e0b;">●</span> Make.com Scenarios</span>
+                        <span class="tech-pill"><span style="color: #10b981;">●</span> Airtable Databases</span>
+                        <span class="tech-pill"><span style="color: #ff7a59;">●</span> HubSpot CRM</span>
+                        <span class="tech-pill"><span style="color: #3B82F6;">●</span> Cal.com Embed Engine</span>
+                    </div>
+
+                    <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; color: #fff; margin-top: 36px; margin-bottom: 16px;">Technical Safeguards Built-In</h4>
+                    <ul style="color: var(--text-silver); font-size: 0.95rem; line-height: 1.7; margin-left: 20px;">
+                        <li><strong>Fail-Open Timeout Safeguard</strong>: If duplicate verification fails or exceeds 3000ms, the system fails open so zero legitimate leads are ever lost.</li>
+                        <li><strong>Normalized Payload Standards</strong>: All email inputs are lowercase-normalized before hashing and verification.</li>
+                        <li><strong>Universal ISO Timestamps</strong>: Submissions send ISO UTC timestamps ensuring precise global ordering across timezones.</li>
+                        <li><strong>CORS Preflight Bypass</strong>: Payload conversion via URLSearchParams avoids heavy OPTIONS preflight latency.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; color: #fff; margin-bottom: 16px;">System Data Payload Schema</h4>
+                    <div class="code-snippet-box">
+<pre>{
+  "submission_id": "SUB-8F3A9C12-847291",
+  "name": "Jane Doe",
+  "email": "jane@company.com",
+  "business_type": "Healthcare / Med Spa",
+  "service_type": "Booking & Intake Workflows",
+  "operational_challenge": "Duplicate intake entries",
+  "current_tools": "HubSpot, Google Sheets",
+  "duplicate_decision": "New Inquiry",
+  "duplicate_check_source": "New Email",
+  "browser_information": "Mozilla/5.0...",
+  "submission_timestamp": "2026-07-23T13:12:00.000Z",
+  "source_page": "Portfolio Landing Page"
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Section: Case Study Documentation & PDF Vault -->
+    <section class="case-study-section documentation-section section-gradient-b section-glow-separator-top" id="pdf-documentation">
+        <div class="container-nav-align" style="max-width: 850px;">
+            <div class="documentation-header" style="max-width: 760px; margin: 0 auto; text-align: center;">
+                <span class="category-heading" style="justify-content: center; margin-bottom: var(--sp-16);">Case Study Resources</span>
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: 2.25rem; margin-bottom: 24px; color: var(--text-pure); text-align: center;">System Documentation & Diagrams</h2>
+                
+                <p style="color: var(--text-silver); font-size: 1.02rem; line-height: 1.75; margin-bottom: 48px; opacity: 0.95; text-align: center;">
+                    This implementation case study documents the design, configuration, and verification of the Lead Intake & Duplicate Verification System. The documentation presents the complete technical approach, including system architecture diagrams, operational flow maps, and downloadable case study assets.
+                </p>
+                
+                <!-- System Documentation Metadata Bar -->
+                <div class="doc-metadata-bar" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; max-width: 760px; margin: 40px auto 0 auto; padding: 24px 32px; background: rgba(255, 255, 255, 0.015); border-top: 1px solid rgba(255, 255, 255, 0.06); border-left: 1px solid rgba(255, 255, 255, 0.06); border-right: 1px solid rgba(255, 255, 255, 0.06); border-top-left-radius: 16px; border-top-right-radius: 16px; text-align: left; box-sizing: border-box;">
+                    <div>
+                        <span style="font-family: monospace; font-size: 0.7rem; color: #64748B; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">System Category</span>
+                        <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-pure);">Operational Intake</span>
+                    </div>
+                    <div>
+                        <span style="font-family: monospace; font-size: 0.7rem; color: #64748B; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">Stack</span>
+                        <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-pure);">Make / Airtable / HubSpot</span>
+                    </div>
+                    <div>
+                        <span style="font-family: monospace; font-size: 0.7rem; color: #64748B; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">Safeguard</span>
+                        <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-pure);">3.0s Fail-Open Guard</span>
+                    </div>
+                    <div>
+                        <span style="font-family: monospace; font-size: 0.7rem; color: #64748B; font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 0.05em;">Execution Status</span>
+                        <span style="font-size: 0.88rem; font-weight: 600; color: #3B82F6; display: flex; align-items: center; gap: 6px;">
+                            <span style="width: 6px; height: 6px; background: #3B82F6; border-radius: 50%;"></span>
+                            Verified System
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Premium Documentation Vault Panel -->
+                <div style="background: rgba(4, 6, 18, 0.6); border: 1px solid rgba(28, 78, 216, 0.25); border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; padding: 28px; backdrop-filter: blur(12px);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <span style="font-family: var(--font-mono, monospace); font-size: 11px; color: #60a5fa; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">DOCUMENTATION VAULT & ASSETS</span>
+                        <span style="font-family: var(--font-mono, monospace); font-size: 11px; color: var(--text-muted);">DELIVERABLE ID: INTAKE-DUP-03</span>
+                    </div>
+
+                    <div class="decision-grid" style="margin-top: 0;">
+                        <!-- Architecture Diagram -->
+                        <div class="decision-card">
+                            <h5 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;">Architecture Diagram</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-silver); line-height: 1.5; margin-bottom: 16px;">Visual schematic mapping frontend form triggers, Make.com webhook queries, Airtable database updates, and HubSpot CRM sync.</p>
+                            <a href="projects/lead-intake-duplicate-verification/diagrams/architecture-diagram.png" target="_blank" class="btn btn-secondary" style="font-size: 12px; padding: 8px 14px;">View Architecture Diagram</a>
+                        </div>
+
+                        <!-- Operational Flow Diagram -->
+                        <div class="decision-card">
+                            <h5 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;">Operational Flow Diagram</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-silver); line-height: 1.5; margin-bottom: 16px;">Detailed step-by-step logic map for duplicate checking (`exists: true / false`), timeout abort controllers, and intent cohort routing.</p>
+                            <a href="projects/lead-intake-duplicate-verification/diagrams/operational-diagram.png" target="_blank" class="btn btn-secondary" style="font-size: 12px; padding: 8px 14px;">View Operational Diagram</a>
+                        </div>
+
+                        <!-- Case Study PDF -->
+                        <div class="decision-card" style="grid-column: 1 / -1;">
+                            <h5 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;">Complete Implementation Case Study (PDF)</h5>
+                            <p style="font-size: 0.85rem; color: var(--text-silver); line-height: 1.5; margin-bottom: 16px;">Full technical documentation report detailing system specifications, payload dictionaries, error safeguards, and operational results.</p>
+                            <a href="projects/lead-intake-duplicate-verification/case-study/lead-intake-duplicate-verification-case-study.pdf" download class="btn btn-primary" style="font-size: 12px; padding: 10px 18px; display: inline-flex; align-items: center; gap: 8px;">Download Full Case Study (PDF)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Section: Case Study Conclusion & Navigation -->
+    <section class="case-study-section" style="background: rgba(28, 78, 216, 0.04); border-top: 1px solid rgba(28, 78, 216, 0.2);">
+        <div class="container-nav-align" style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <div class="category-heading" style="justify-content: center; margin-bottom: 12px;">SYSTEM CASE STUDY CONCLUSION</div>
+            <h2 class="section-title" style="font-size: clamp(1.8rem, 3vw, 2.3rem); margin-bottom: 16px;">Operational Intake Architecture Completed</h2>
+            <p style="font-size: 0.98rem; color: var(--text-silver); line-height: 1.6; margin-bottom: 28px;">
+                This system demonstrates how combining synchronous duplicate verification, fail-open safeguards, structured database logging, and intent-driven scheduling creates a reliable, zero-friction intake engine.
+            </p>
+            <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+                <a href="systems-library.html" class="btn btn-primary">Explore Systems Library</a>
+                <a href="index.html#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Standardized Consistent Footer -->
+    <footer class="section border-top" style="padding: 56px 0 48px;">
+        <div class="container-nav-align footer-responsive">
+            <a href="./" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
+                <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
+                    <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+                </div>
+                Nitin Mishra
+            </a>
+            <p class="footer-desc" style="color: var(--text-muted); font-size: 14px; max-width: 400px; margin-bottom: 1rem;">Structured workflow systems for operational clarity and scalable lead management.</p>
+            <div class="footer-copyright" style="margin-top: 2rem;">
+                <p style="color: var(--text-muted); font-size: 13px;">&copy; 2026 Nitin Mishra. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Interactive Proof Tab Switcher
+        function switchProofTab(index) {
+            const tabs = document.querySelectorAll('.tab-list .tab-btn');
+            const contents = document.querySelectorAll('.tab-content-container .tab-content');
+            
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            contents.forEach((content, i) => {
+                if (i === index) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

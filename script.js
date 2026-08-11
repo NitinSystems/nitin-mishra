@@ -427,7 +427,7 @@ function initIntakeForm() {
 
     modalEmailBtn.addEventListener('click', () => {
         closeModal();
-        window.location.href = 'mailto:NitinMishra.me@outlook.com?subject=Additional%20Information%20-%20Portfolio%20Inquiry';
+        window.location.href = 'mailto:NitinMishraNM@outlook.com?subject=Additional%20Information%20-%20Portfolio%20Inquiry';
     });
 
     modalCancelBtn.addEventListener('click', () => {

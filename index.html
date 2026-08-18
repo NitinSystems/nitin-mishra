@@ -237,7 +237,15 @@
                 <li><a href="index.html#contact">Contact</a></li>
                 <li class="mobile-only"><a href="index.html#contact" class="btn btn-primary" style="width: 100%;">Book Audit</a></li>
             </ul>
-            <a href="#contact" class="btn btn-primary nav-cta">Book Audit</a>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <a href="mailto:NitinSystems@outlook.com" class="nav-email-btn" title="Email Nitin Directly" aria-label="Email Nitin">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="16" x="2" y="4" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                </a>
+                <a href="#contact" class="btn btn-primary nav-cta">Book Audit</a>
+            </div>
         </div>
     </nav>
 
@@ -964,9 +972,9 @@
                     </div>
                 </div>
 
-                <!-- Layer 02: Integration & Automation Engine -->
+                <!-- Layer 02: Flagship Operational Credentials -->
                 <div class="authority-layer reveal-on-scroll">
-                    <div class="authority-label">Integration & Automation Engine</div>
+                    <div class="authority-label">Flagship Operational Credentials</div>
                     <div class="cert-proof-grid">
                         <!-- 01 -->
                         <div class="cert-card-mini">
@@ -981,33 +989,6 @@
                         <!-- 02 -->
                         <div class="cert-card-mini">
                             <div class="cert-preview">
-                                <img src="assets/certifications/building-intermediate-zaps.png" alt="Zapier Intermediate Certification" loading="lazy">
-                            </div>
-                            <div class="cert-info">
-                                <h3 class="cert-name">Zapier Intermediate</h3>
-                                <p class="cert-explanation">Complex conditional logic, data formatting, and multi-step workflows.</p>
-                            </div>
-                        </div>
-                        <!-- 03 -->
-                        <div class="cert-card-mini">
-                            <div class="cert-preview">
-                                <img src="assets/certifications/building-ai-agents.png" alt="Zapier AI Agent Builder" loading="lazy">
-                            </div>
-                            <div class="cert-info">
-                                <h3 class="cert-name">Zapier AI Agent Builder</h3>
-                                <p class="cert-explanation">Modern LLM-assisted workflow automation.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Layer 03: CRM & Lifecycle Systems -->
-                <div class="authority-layer reveal-on-scroll">
-                    <div class="authority-label">CRM & Lifecycle Systems</div>
-                    <div class="cert-proof-grid">
-                        <!-- 01 -->
-                        <div class="cert-card-mini">
-                            <div class="cert-preview">
                                 <img src="assets/certifications/hubspot_sales hub_software_certified.png" alt="HubSpot Sales Hub Software" loading="lazy">
                             </div>
                             <div class="cert-info">
@@ -1015,26 +996,22 @@
                                 <p class="cert-explanation">CRM pipeline operations and database schema engineering.</p>
                             </div>
                         </div>
-                        <!-- 02 -->
-                        <div class="cert-card-mini">
-                            <div class="cert-preview">
-                                <img src="assets/certifications/email_Marketing_certificate_hubspot.png" alt="HubSpot Email Marketing" loading="lazy">
-                            </div>
-                            <div class="cert-info">
-                                <h3 class="cert-name">HubSpot Email Marketing</h3>
-                                <p class="cert-explanation">Lifecycle communications and automated trigger workflows.</p>
-                            </div>
-                        </div>
                         <!-- 03 -->
                         <div class="cert-card-mini">
                             <div class="cert-preview">
-                                <img src="assets/certifications/google-ai-essential-certification.png" alt="Google AI Essentials" loading="lazy">
+                                <img src="assets/certifications/google-prompting-essentials.png" alt="Google Prompting Essentials" loading="lazy">
                             </div>
                             <div class="cert-info">
-                                <h3 class="cert-name">Google AI Essentials</h3>
-                                <p class="cert-explanation">General AI business strategy, ethics, and prompt compliance.</p>
+                                <h3 class="cert-name">Google Prompting Essentials</h3>
+                                <p class="cert-explanation">Advanced prompt engineering, context structuring, and LLM behavior control.</p>
                             </div>
                         </div>
+                    </div>
+
+                    <div style="margin-top: 36px; text-align: center;">
+                        <a href="about.html#authority" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 8px;">
+                            View Full Credential Vault <span>&rarr;</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1151,6 +1128,18 @@
                     </div>
                     <button type="submit" id="intakeSubmitBtn" class="btn btn-primary btn-full">Start The Conversation</button>
                     <div class="form-feedback" id="formFeedback" style="display: none; margin-top: 16px; font-family: var(--font-mono, monospace); font-size: 13px; line-height: 1.5; letter-spacing: -0.01em;"></div>
+                    
+                    <!-- Direct Email Fallback Pill -->
+                    <div class="direct-email-fallback" style="margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                        <span style="color: var(--text-muted); font-size: 13px;">Prefer direct email communication?</span>
+                        <a href="mailto:NitinSystems@outlook.com" class="direct-email-pill">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--system-blue);">
+                                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                            </svg>
+                            <span>NitinSystems@outlook.com</span>
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -1158,17 +1147,59 @@
     </main>
 
     <!-- 10. Footer -->
-    <footer class="section border-top" style="margin-left: auto; margin-right: auto;">
+    <footer class="section border-top" style="padding: 56px 0 48px; margin-left: auto; margin-right: auto;">
         <div class="container-nav-align footer-responsive">
-            <a href="./" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
-                <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
-                    <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img" loading="lazy">
+            <div class="footer-nav-grid">
+                <div class="footer-brand-wrap">
+                    <a href="./" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
+                        <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
+                            <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img" loading="lazy">
+                        </div>
+                        Nitin Mishra
+                    </a>
+                    <p class="footer-desc" style="color: var(--text-muted); font-size: 14px; max-width: 360px; margin-bottom: 1.25rem;">Structured workflow systems for operational clarity and scalable lead management.</p>
+                    <div>
+                        <a href="mailto:NitinSystems@outlook.com" class="direct-email-pill">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--system-blue);">
+                                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                            </svg>
+                            <span>NitinSystems@outlook.com</span>
+                        </a>
+                    </div>
                 </div>
-                Nitin Mishra
-            </a>
-            <p class="footer-desc" style="color: var(--text-muted); font-size: 14px; max-width: 400px; margin-bottom: 1rem;">Structured workflow systems for operational clarity and scalable lead management.</p>
-            <div class="footer-copyright" style="margin-top: 2rem;">
-                <p style="color: var(--text-muted); font-size: 13px;">&copy; 2026 Nitin Mishra. All Rights Reserved.</p>
+
+                <div class="footer-nav-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html#home">Home Overview</a></li>
+                        <li><a href="systems-library.html">Systems Library</a></li>
+                        <li><a href="index.html#process">Process Breakdown</a></li>
+                        <li><a href="about.html">About Nitin</a></li>
+                        <li><a href="index.html#contact">Contact &amp; Audit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div class="footer-copyright-wrap">
+                    <p style="color: var(--text-muted); font-size: 13px; margin: 0;">&copy; 2026 Nitin Mishra. All Rights Reserved.</p>
+                </div>
+                
+                <div class="footer-legal-links">
+                    <a class="privacy-modal-trigger">Privacy Policy</a>
+                    <span style="color: rgba(255,255,255,0.2);">•</span>
+                    <a class="terms-modal-trigger">Terms of Service</a>
+                </div>
+
+                <div class="back-to-top-wrap">
+                    <a href="#top" class="back-to-top-btn" title="Scroll back to top">
+                        <span>Back to top</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m18 15-6-6-6 6"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
@@ -1201,18 +1232,78 @@
 
     <!-- Duplicate Inquiry Modal Popup (Fail-Open Verification System) -->
     <div id="inquiryModal" class="inquiry-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="inquiryModalTitle">
+        <div class="inquiry-modal-backdrop"></div>
         <div class="inquiry-modal-container">
-            <h3 id="inquiryModalTitle">We've already received an inquiry from this email address.</h3>
-            <div class="inquiry-modal-timestamp">
-                Last inquiry received: <span id="modalLastSubmissionDate">--/--/----</span>
-            </div>
+            <div class="inquiry-modal-timestamp" id="modalTimestamp">Matched Inquiry Detected</div>
+            <h3 id="inquiryModalTitle">We Notice You Recently Requested an Audit</h3>
             <p class="inquiry-modal-text">
-                We already have an inquiry associated with this email address.<br><br>If you'd like to update your information or submit another request, you can continue below.
+                Our system detected a submission from this email address within the last 24 hours. Your request is already prioritized in Nitin’s audit queue.
             </p>
             <div class="inquiry-modal-actions">
                 <button type="button" id="modalSubmitBtn" class="btn btn-primary btn-full">Update My Request</button>
                 <button type="button" id="modalEmailBtn" class="btn btn-secondary btn-full">Email Me Directly</button>
                 <button type="button" id="modalCancelBtn" class="btn btn-secondary btn-full cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal Window -->
+    <div id="privacyModal" class="legal-modal-overlay" aria-hidden="true" role="dialog">
+        <div class="legal-modal-backdrop"></div>
+        <div class="legal-modal-container">
+            <div class="legal-modal-header">
+                <h2>Privacy Policy</h2>
+                <button type="button" class="legal-modal-close">[ Close ]</button>
+            </div>
+            <div class="legal-modal-body">
+                <p><strong>Effective Date:</strong> January 1, 2026 | <strong>Entity:</strong> Nitin Mishra | <strong>Owner:</strong> Nitin Mishra</p>
+                
+                <h3>1. Overview &amp; Commitment</h3>
+                <p>At <strong>Nitin Mishra</strong>, your privacy and data confidentiality are taken with complete seriousness. This Privacy Policy outlines how information collected across all web pages, intake forms, sales landing pages, and direct email inquiries under this domain is handled.</p>
+
+                <h3>2. Information We Collect</h3>
+                <p>We collect minimal, high-intent operational information necessary to evaluate your automation needs:</p>
+                <ul>
+                    <li><strong>Contact Information:</strong> Full Name, Work Email Address.</li>
+                    <li><strong>Operational Context:</strong> Business Type / Industry, Primary System Need, Current Software Stack (HubSpot, Make.com, GoHighLevel, Airtable, etc.), and operational bottleneck descriptions.</li>
+                </ul>
+
+                <h3>3. How Your Information Is Used</h3>
+                <p>Information submitted via intake forms, audit request pages, or direct email is used <strong>exclusively</strong> to review your operational workflow gaps, prepare personalized system diagnostic audits, and communicate directly regarding system implementation engagements with Nitin Mishra.</p>
+
+                <h3>4. 100% Data Confidentiality Guarantee</h3>
+                <p><strong>Direct Access Only:</strong> All submitted data is reviewed exclusively by Nitin Mishra. No junior staff, external agencies, or third parties have access to your submission.</p>
+                <p><strong>No Selling or Sharing:</strong> We <strong>never</strong> sell, rent, trade, or share your business data, contact email, or operational information with any third party under any circumstances.</p>
+
+                <h3>5. Cookies &amp; Security</h3>
+                <p>This website uses minimal, non-intrusive performance analytics to understand page load performance. If you wish to request complete deletion of your intake submission, email Nitin Mishra directly at <a href="mailto:NitinSystems@outlook.com" style="color: var(--system-blue);">NitinSystems@outlook.com</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal Window -->
+    <div id="termsModal" class="legal-modal-overlay" aria-hidden="true" role="dialog">
+        <div class="legal-modal-backdrop"></div>
+        <div class="legal-modal-container">
+            <div class="legal-modal-header">
+                <h2>Terms of Service</h2>
+                <button type="button" class="legal-modal-close">[ Close ]</button>
+            </div>
+            <div class="legal-modal-body">
+                <p><strong>Effective Date:</strong> January 1, 2026 | <strong>Entity:</strong> Nitin Mishra | <strong>Owner:</strong> Nitin Mishra</p>
+                
+                <h3>1. Acceptance of Terms</h3>
+                <p>By accessing or using any web page, landing page, or service presented under this domain by <strong>Nitin Mishra</strong>, you agree to comply with and be bound by these Terms of Service.</p>
+
+                <h3>2. Purpose of Site &amp; Intellectual Property</h3>
+                <p><strong>Informational &amp; Service Scope:</strong> All content, case studies, system architecture diagrams, sales offers, technical documentation, and visual workflows presented across this website are for demonstration, educational, and service consulting presentation purposes.</p>
+                <p><strong>Intellectual Property Rights:</strong> All text, graphics, system design blueprints, logos, and custom code on this site are the intellectual property of Nitin Mishra. Unauthorized reproduction or commercial redistribution without explicit written consent is prohibited.</p>
+
+                <h3>3. Service Scope &amp; Client Engagements</h3>
+                <p>Submitting an intake form or requesting a system audit does not automatically create a formal client-consultant relationship. All official consulting engagements and implementation deliverables are governed by separate, mutually executed Master Services Agreements (MSA).</p>
+
+                <h3>4. Limitation of Liability</h3>
+                <p>While every effort is made to maintain 100% uptime and accurate system information, this website and its contents are provided "as is." Nitin Mishra is not liable for indirect decisions made based on informational blueprints prior to entering a formal consulting agreement.</p>
             </div>
         </div>
     </div>

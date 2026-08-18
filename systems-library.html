@@ -451,7 +451,15 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
-            <a href="index.html#contact" class="btn btn-primary nav-cta">Book Audit</a>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <a href="mailto:NitinSystems@outlook.com" class="nav-email-btn" title="Email Nitin Directly" aria-label="Email Nitin">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="16" x="2" y="4" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                </a>
+                <a href="index.html#contact" class="btn btn-primary nav-cta">Book Audit</a>
+            </div>
         </div>
     </nav>
 
@@ -736,15 +744,57 @@
     <!-- Footer -->
     <footer class="section border-top" style="padding: 56px 0 48px; margin-left: auto; margin-right: auto;">
         <div class="container-nav-align footer-responsive">
-            <a href="./" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
-                <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
-                    <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+            <div class="footer-nav-grid">
+                <div class="footer-brand-wrap">
+                    <a href="./" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
+                        <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
+                            <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+                        </div>
+                        Nitin Mishra
+                    </a>
+                    <p class="footer-desc" style="color: var(--text-muted); font-size: 14px; max-width: 360px; margin-bottom: 1.25rem;">Structured workflow systems for operational clarity and scalable lead management.</p>
+                    <div>
+                        <a href="mailto:NitinSystems@outlook.com" class="direct-email-pill">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--system-blue);">
+                                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                            </svg>
+                            <span>NitinSystems@outlook.com</span>
+                        </a>
+                    </div>
                 </div>
-                Nitin Mishra
-            </a>
-            <p class="footer-desc" style="color: var(--text-muted); font-size: 14px; max-width: 400px; margin-bottom: 1rem;">Structured workflow systems for operational clarity and scalable lead management.</p>
-            <div class="footer-copyright" style="margin-top: 2rem;">
-                <p style="color: var(--text-muted); font-size: 13px;">&copy; 2026 Nitin Mishra. All Rights Reserved.</p>
+
+                <div class="footer-nav-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html#home">Home Overview</a></li>
+                        <li><a href="systems-library.html">Systems Library</a></li>
+                        <li><a href="index.html#process">Process Breakdown</a></li>
+                        <li><a href="about.html">About Nitin</a></li>
+                        <li><a href="index.html#contact">Contact &amp; Audit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div class="footer-copyright-wrap">
+                    <p style="color: var(--text-muted); font-size: 13px; margin: 0;">&copy; 2026 Nitin Mishra. All Rights Reserved.</p>
+                </div>
+                
+                <div class="footer-legal-links">
+                    <a href="index.html#privacy">Privacy Policy</a>
+                    <span style="color: rgba(255,255,255,0.2);">•</span>
+                    <a href="index.html#terms">Terms of Service</a>
+                </div>
+
+                <div class="back-to-top-wrap">
+                    <a href="#top" class="back-to-top-btn" title="Scroll back to top">
+                        <span>Back to top</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m18 15-6-6-6 6"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>

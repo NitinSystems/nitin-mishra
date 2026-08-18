@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSystemModal();
     initIntakeForm();
     initCertModal();
+    initLegalModals();
 });
 
 /**
@@ -427,7 +428,7 @@ function initIntakeForm() {
 
     modalEmailBtn.addEventListener('click', () => {
         closeModal();
-        window.location.href = 'mailto:NitinMishraNM@outlook.com?subject=Additional%20Information%20-%20Portfolio%20Inquiry';
+        window.location.href = 'mailto:NitinSystems@outlook.com?subject=Additional%20Information%20-%20Portfolio%20Inquiry';
     });
 
     modalCancelBtn.addEventListener('click', () => {
@@ -708,6 +709,69 @@ function initCertModal() {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('active')) {
             closeModal();
+        }
+    });
+}
+
+/**
+ * Legal Modals (Privacy Policy & Terms of Service) & Back-to-Top Handler
+ */
+function initLegalModals() {
+    // Back to top smooth scroll
+    const backToTopBtns = document.querySelectorAll('.back-to-top-btn, a[href="#top"]');
+    backToTopBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
+    // Privacy & Terms modal triggers
+    const privacyBtns = document.querySelectorAll('.privacy-modal-trigger');
+    const termsBtns = document.querySelectorAll('.terms-modal-trigger');
+    const privacyModal = document.getElementById('privacyModal');
+    const termsModal = document.getElementById('termsModal');
+
+    const openLegalModal = (modal) => {
+        if (!modal) return;
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeLegalModal = (modal) => {
+        if (!modal) return;
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    };
+
+    privacyBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLegalModal(privacyModal);
+        });
+    });
+
+    termsBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLegalModal(termsModal);
+        });
+    });
+
+    // Close buttons and backdrop clicks
+    document.querySelectorAll('.legal-modal-close, .legal-modal-backdrop').forEach(el => {
+        el.addEventListener('click', () => {
+            closeLegalModal(privacyModal);
+            closeLegalModal(termsModal);
+        });
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeLegalModal(privacyModal);
+            closeLegalModal(termsModal);
         }
     });
 }

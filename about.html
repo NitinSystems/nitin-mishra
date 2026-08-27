@@ -33,8 +33,14 @@
     }
     </script>    
     <!-- Favicon Infrastructure -->
-    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
-    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/icons/nitin_mishra_favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/nitin_mishra_favicon.png">
+    <link rel="apple-touch-icon" href="assets/icons/nitin_mishra_favicon.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=optional" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 
@@ -55,24 +61,63 @@
         <div class="glow-orb glow-bottom-left"></div>
     </div>
 
-    <!-- 1. Navigation: Floating Architectural Shell -->
+        <!-- 1. Navigation: Floating Architectural Shell -->
+        <!-- 1. Navigation: Floating Architectural Shell -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="./" class="nav-brand" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+            <a href="index.html" class="nav-brand" style="display: flex; align-items: center; justify-content: center; gap: 12px;">
                 <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
-                    <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+                    <img src="logo/nitin_mishra_master_logo.png" alt="Nitin Mishra Logo" class="nm-monogram-img">
                 </div>
-                Nitin Mishra
+                <span style="display: flex; align-items: center; line-height: 1;">Nitin Mishra</span>
             </a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">
                 <span class="icon-menu">☰</span>
             </button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html#home">Home</a></li>
-                <li><a href="systems-library.html">Systems</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="systems-library.html" class="nav-link-dropdown-trigger">
+                        Systems
+                        <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <div class="nav-dropdown-header">
+                            <span class="dropdown-category-label">// FLAGSHIP SYSTEMS</span>
+                        </div>
+                        <a href="lead-capture-to-booking.html" class="nav-dropdown-item">
+                            <span class="dropdown-item-num">01</span>
+                            <div class="dropdown-item-body">
+                                <span class="dropdown-item-title">Lead Capture to Booking System</span>
+                                <span class="dropdown-item-desc">GoHighLevel · Multi-Channel Sync · Follow-ups</span>
+                            </div>
+                        </a>
+                        <a href="lead-intake-duplicate-verification.html" class="nav-dropdown-item">
+                            <span class="dropdown-item-num">02</span>
+                            <div class="dropdown-item-body">
+                                <span class="dropdown-item-title">Lead Intake &amp; Duplicate Verification</span>
+                                <span class="dropdown-item-desc">Make.com · Webhook Logic · Fail-Open CRM</span>
+                            </div>
+                        </a>
+                        <a href="ai-customer-journey-operations-recovery.html" class="nav-dropdown-item">
+                            <span class="dropdown-item-num">03</span>
+                            <div class="dropdown-item-body">
+                                <span class="dropdown-item-title">AI Customer Journey Recovery System</span>
+                                <span class="dropdown-item-desc">AI Triage · State Audit · Human Escalation</span>
+                            </div>
+                        </a>
+                        <div class="nav-dropdown-footer">
+                            <a href="systems-library.html" class="dropdown-footer-link">
+                                <span>Explore Systems Library</span>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </li>
                 <li><a href="index.html#process">Process</a></li>
-                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
+                <li class="mobile-only"><a href="index.html#contact" class="btn btn-primary" style="width: 100%;">Book Audit</a></li>
             </ul>
             <div style="display: flex; align-items: center; gap: 10px;">
                 <a href="mailto:NitinSystems@outlook.com" class="nav-email-btn" title="Email Nitin Directly" aria-label="Email Nitin">
@@ -81,7 +126,7 @@
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                     </svg>
                 </a>
-                <a href="index.html#contact" class="btn btn-primary nav-cta">Review Workflow</a>
+                <button type="button" onclick="openCalModal(event)" class="btn btn-primary nav-cta">Book 20-Min Call</button>
             </div>
         </div>
     </nav>
@@ -298,47 +343,47 @@
                     <div class="authority-layer reveal-on-scroll">
                         <div class="authority-label">Platform Environments</div>
                         <div class="platform-env-grid">
-                            <!-- Make -->
-                            <div class="platform-env-card">
-                                <img src="assets/platform-logos/make.png" alt="Make" class="env-logo" loading="lazy">
-                                <div class="env-info">
-                                    <span class="env-name">Make</span>
-                                    <span class="env-role">Workflow Orchestration</span>
-                                </div>
-                            </div>
-                            <!-- HubSpot -->
-                            <div class="platform-env-card">
-                                <img src="assets/platform-logos/hubspot.png" alt="HubSpot" class="env-logo" loading="lazy">
-                                <div class="env-info">
-                                    <span class="env-name">HubSpot</span>
-                                    <span class="env-role">CRM Lifecycle Systems</span>
-                                </div>
-                            </div>
-                            <!-- GHL -->
-                            <div class="platform-env-card">
-                                <img src="assets/platform-logos/gohighlevel.png" alt="GoHighLevel" class="env-logo" loading="lazy">
-                                <div class="env-info">
-                                    <span class="env-name">GoHighLevel</span>
-                                    <span class="env-role">Pipeline Operations</span>
-                                </div>
-                            </div>
-                            <!-- Zapier -->
-                            <div class="platform-env-card">
-                                <img src="assets/platform-logos/zapier.svg" alt="Zapier" class="env-logo" loading="lazy">
-                                <div class="env-info">
-                                    <span class="env-name">Zapier</span>
-                                    <span class="env-role">Cross-Platform Automation</span>
-                                </div>
-                            </div>
-                            <!-- Airtable -->
-                            <div class="platform-env-card">
-                                <img src="assets/platform-logos/airtable.png" alt="Airtable" class="env-logo" loading="lazy">
-                                <div class="env-info">
-                                    <span class="env-name">Airtable</span>
-                                    <span class="env-role">Structured Operational Data</span>
-                                </div>
+                        <!-- GHL -->
+                        <div class="platform-env-card">
+                            <img src="assets/platform-logos/gohighlevel.png" alt="GoHighLevel" class="env-logo" loading="lazy">
+                            <div class="env-info">
+                                <span class="env-name">GoHighLevel</span>
+                                <span class="env-role">Pipeline Operations</span>
                             </div>
                         </div>
+                        <!-- Make -->
+                        <div class="platform-env-card">
+                            <img src="assets/platform-logos/make.png" alt="Make" class="env-logo" loading="lazy">
+                            <div class="env-info">
+                                <span class="env-name">Make.com</span>
+                                <span class="env-role">Workflow Orchestration</span>
+                            </div>
+                        </div>
+                        <!-- Airtable -->
+                        <div class="platform-env-card">
+                            <img src="assets/platform-logos/airtable.png" alt="Airtable" class="env-logo" loading="lazy">
+                            <div class="env-info">
+                                <span class="env-name">Airtable</span>
+                                <span class="env-role">Structured Operational Data</span>
+                            </div>
+                        </div>
+                        <!-- Zapier -->
+                        <div class="platform-env-card">
+                            <img src="assets/platform-logos/zapier.svg" alt="Zapier" class="env-logo" loading="lazy">
+                            <div class="env-info">
+                                <span class="env-name">Zapier</span>
+                                <span class="env-role">Cross-Platform Automation</span>
+                            </div>
+                        </div>
+                        <!-- HubSpot -->
+                        <div class="platform-env-card">
+                            <img src="assets/platform-logos/hubspot.png" alt="HubSpot" class="env-logo" loading="lazy">
+                            <div class="env-info">
+                                <span class="env-name">HubSpot</span>
+                                <span class="env-role">CRM Lifecycle Systems</span>
+                            </div>
+                        </div>
+                    </div>
                     </div>
 
                     <!-- Layer 02: Integration & Automation Engine -->
@@ -441,7 +486,7 @@
         <div class="container-nav-align footer-responsive">
             <div class="footer-nav-grid">
                 <div class="footer-brand-wrap">
-                    <a href="./" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
+                    <a href="index.html" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
                         <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
                             <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
                         </div>
@@ -495,5 +540,19 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <!-- BULLETPROOF INLINE CALENDAR MODAL CONTAINER (PLACED DIRECTLY AT BODY ROOT LEVEL) -->
+    <div class="custom-cal-modal-backdrop" id="customCalModal" onclick="handleCalModalBackdropClick(event)">
+        <div class="custom-cal-modal-container">
+            <div class="custom-cal-modal-header">
+                <h4>Nitin Mishra • 20-Min Workflow Review</h4>
+                <button type="button" class="custom-cal-modal-close" onclick="closeCalModal()">✕ Close</button>
+            </div>
+            <div class="custom-cal-modal-body">
+                <iframe src="about:blank" id="calEmbedIframe" title="Cal.com Booking Modal"></iframe>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

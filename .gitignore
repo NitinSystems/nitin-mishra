@@ -1,0 +1,20 @@
+# Working / Development Files
+*-working.html
+*-working.css
+*-working.js
+
+# Backup & Archive Directories
+archive/
+rollback-backups/
+Systems/
+
+# AI Agent & System Directories
+.agents/
+.gemini/
+scratch/
+
+# Cloud Sync Artifacts
+.tmp.drivedownload/
+.tmp.driveupload/
+.DS_Store
+Thumbs.db

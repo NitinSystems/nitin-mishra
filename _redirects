@@ -1,0 +1,27 @@
+# Netlify Clean URL Rules
+/thank-you.html   /thank-you        301!
+/thank-you        /thank-you.html   200
+
+# Systems Library
+/systems-library.html /systems-library 301!
+/systems-library      /systems-library.html 200
+
+# About
+/about.html /about 301!
+/about      /about.html 200
+
+# Case Study 1: Lead Capture
+/lead-capture-to-booking.html /lead-capture-to-booking 301!
+/lead-capture-to-booking      /lead-capture-to-booking.html 200
+
+# Case Study 2: Lead Intake
+/lead-intake-duplicate-verification.html /lead-intake-duplicate-verification 301!
+/lead-intake-duplicate-verification      /lead-intake-duplicate-verification.html 200
+
+# Case Study 3: AI Customer Journey
+/ai-customer-journey-operations-recovery.html /ai-customer-journey-operations-recovery 301!
+/ai-customer-journey-operations-recovery      /ai-customer-journey-operations-recovery.html 200
+
+# Legacy URL Fallbacks
+/ai-customer-journey-leak-recovery.html /ai-customer-journey-operations-recovery 301!
+/ai-customer-journey-leak-recovery      /ai-customer-journey-operations-recovery 301!

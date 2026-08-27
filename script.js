@@ -4,6 +4,7 @@
 */
 
 document.addEventListener('DOMContentLoaded', () => {
+    initPageSmoothEntrance();
     initGlowMotion();
     initNavbarScroll();
     initMobileMenu();
@@ -16,6 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
     initCertModal();
     initLegalModals();
 });
+
+function initPageSmoothEntrance() {
+    document.body.classList.add('page-load-smooth');
+    requestAnimationFrame(() => {
+        document.body.classList.add('page-loaded');
+    });
+}
 
 /**
  * FAQ Interaction
@@ -136,10 +144,28 @@ function initMobileMenu() {
             }
         });
 
-        // Close on link click
-        navLinks.querySelectorAll('a').forEach(link => {
+        // Mobile dropdown toggle support
+        const dropdownItems = navLinks.querySelectorAll('.nav-item-dropdown');
+        dropdownItems.forEach(item => {
+            const trigger = item.querySelector('.nav-link-dropdown-trigger');
+            if (trigger) {
+                trigger.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 960) {
+                        const isExpanded = item.classList.contains('mobile-expanded');
+                        if (!isExpanded) {
+                            e.preventDefault();
+                            item.classList.add('mobile-expanded');
+                        }
+                    }
+                });
+            }
+        });
+
+        // Close on leaf link click (links that are not triggers)
+        navLinks.querySelectorAll('a:not(.nav-link-dropdown-trigger)').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                dropdownItems.forEach(item => item.classList.remove('mobile-expanded'));
                 const icon = navToggle.querySelector('span');
                 if (icon) icon.textContent = '☰';
             });
@@ -775,4 +801,43 @@ function initLegalModals() {
         }
     });
 }
+
+
+
+/* ==========================================================================
+   GLOBAL CALENDAR MODAL LOGIC
+   ========================================================================== */
+function openCalModal(e) {
+    if (e && e.stopPropagation) {
+        e.stopPropagation();
+    }
+    const modal = document.getElementById('customCalModal');
+    if (!modal) {
+        window.open('https://cal.com/nitinmishra/30min', '_blank');
+        return;
+    }
+    const iframe = document.getElementById('calEmbedIframe');
+    
+    if (iframe && (!iframe.src || iframe.src.endsWith('about:blank'))) {
+        iframe.src = 'https://cal.com/nitinmishra/30min?embed=true&layout=month_view&theme=dark';
+    }
+    
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCalModal() {
+    const modal = document.getElementById('customCalModal');
+    if(modal) modal.style.display = 'none';
+    document.body.style.overflow = '';
+}
+
+function handleCalModalBackdropClick(e) {
+    if (e.target.id === 'customCalModal') {
+        closeCalModal();
+    }
+}
+window.openCalModal = openCalModal;
+window.closeCalModal = closeCalModal;
+window.handleCalModalBackdropClick = handleCalModalBackdropClick;
 

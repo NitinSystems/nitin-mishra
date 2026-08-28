@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initIntakeForm();
     initCertModal();
     initLegalModals();
+    initLightbox();
 });
 
 function initPageSmoothEntrance() {
@@ -151,10 +152,12 @@ function initMobileMenu() {
             if (trigger) {
                 trigger.addEventListener('click', (e) => {
                     if (window.innerWidth <= 960) {
-                        const isExpanded = item.classList.contains('mobile-expanded');
-                        if (!isExpanded) {
+                        // Check if they clicked the arrow specifically
+                        if (e.target.closest('svg')) {
                             e.preventDefault();
-                            item.classList.add('mobile-expanded');
+                            item.classList.toggle('mobile-expanded');
+                        } else {
+                            // If they clicked the text "Systems", do not prevent default, let it navigate!
                         }
                     }
                 });
@@ -841,3 +844,33 @@ window.openCalModal = openCalModal;
 window.closeCalModal = closeCalModal;
 window.handleCalModalBackdropClick = handleCalModalBackdropClick;
 
+
+
+// Initialize Image Lightbox for Mobile Zoom
+function initLightbox() {
+    const triggers = document.querySelectorAll('img');
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+    const imgEl = document.createElement('img');
+    imgEl.className = 'lightbox-img';
+    overlay.appendChild(imgEl);
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', () => {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    triggers.forEach(img => {
+        if(img.classList.contains('nm-monogram-img') || img.closest('.nav-container') || img.closest('.footer-brand')) return;
+        
+        img.classList.add('lightbox-trigger');
+        img.addEventListener('click', (e) => {
+            e.stopPropagation();
+            imgEl.src = img.src;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+}

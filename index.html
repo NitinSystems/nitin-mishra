@@ -68,7 +68,7 @@
         }
         
         .intake-card-wrapper {
-            max-width: 680px;
+            max-width: 1100px;
             margin: 0 auto;
             background: linear-gradient(135deg, rgba(11, 17, 36, 0.5) 0%, rgba(7, 10, 24, 0.7) 100%);
             border: 1px solid rgba(28, 78, 216, 0.2);
@@ -225,9 +225,7 @@
                 </div>
                 <span style="display: flex; align-items: center; line-height: 1;">Nitin Mishra</span>
             </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">
-                <span class="icon-menu">☰</span>
-            </button>
+            
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html#home">Home</a></li>
                 <li class="nav-item-dropdown">
@@ -281,6 +279,10 @@
                     </svg>
                 </a>
                 <button type="button" onclick="openCalModal(event)" class="btn btn-primary nav-cta">Book 20-Min Call</button>
+            
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu">
+                <span class="icon-menu">☰</span>
+            </button>
             </div>
         </div>
     </nav>
@@ -294,26 +296,14 @@
                 <h1 class="reveal-on-load reveal-delay-1" style="font-size: calc(var(--fs-h1) * var(--hero-h1-scale, 1.02)) !important; font-weight: var(--hero-h1-weight, 700) !important; line-height: calc(var(--lh-h1) * 1.05) !important; max-width: 610px;">Automation Systems for<br class="desktop-only"> <span class="text-animate-gradient">B2B Service Businesses</span></h1>
                 <p class="reveal-on-load reveal-delay-2" style="font-size: calc(var(--fs-body) * 0.90); line-height: 1.6;">I design and build automation systems for B2B service businesses that streamline operations, reduce manual coordination, improve visibility, and build more reliable operational processes.</p>
                 <div class="hero-actions reveal-on-load reveal-delay-3" style="display: flex; gap: 16px; flex-wrap: wrap;">
-                    <button type="button" onclick="openCalModal(event)" class="btn btn-primary" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                        Book 20-Min Call
-                    </button>
-                    <a href="#contact" class="btn btn-secondary" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                    <a href="#contact" class="btn btn-primary" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                        Work With Me
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                        Submit Your Inquiry
                     </a>
-                </div>
-                <!-- Premium Hero Trust Micro-copy layer -->
-                <div class="hero-trust-micro reveal-on-load reveal-delay-3" style="margin-top: 28px; text-align: left; display: flex; flex-direction: column; gap: 6px;">
-                    <div class="trust-line-1" style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em; color: rgba(255, 255, 255, 0.60); line-height: 1.2;">
-                        No commitment. Just a 15-min diagnostic.
-                    </div>
-                    <div class="trust-line-2" style="font-size: 12px; font-weight: 500; color: rgba(255, 255, 255, 0.45); line-height: 1.4; letter-spacing: -0.01em;">
-                        Find operational gaps before they become problems.
-                    </div>
-                    <div class="trust-line-3" style="font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.6); line-height: 1.4; margin-top: 8px;">
-                        Prefer to write it out first? <a href="#contact" style="color: var(--system-blue); text-decoration: none; border-bottom: 1px solid rgba(28, 78, 216, 0.5); padding-bottom: 1px; transition: all 0.2s;">Submit an intake form &rarr;</a>
-                    </div>
+                    <a href="systems-library.html" class="btn btn-secondary" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                        Explore Systems
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
                 </div>
             </div>
             <div class="hero-visual-area reveal-on-load">
@@ -1128,68 +1118,80 @@
     <!-- 09. Dedicated System Intake Section -->
     <section class="section border-top" id="contact">
         <div class="container-standard">
-            <div class="intake-card-wrapper reveal-on-scroll">
-                <div class="section-header">
-                    <span class="section-badge">SYSTEM INTAKE</span>
-                    <h2>Start the Conversation</h2>
-                    <p>Prefer to provide context first? Fill out the brief intake form below.<br>
-                    <span style="display: inline-block; margin-top: 12px; padding: 12px 16px; background: rgba(28, 78, 216, 0.1); border: 1px solid rgba(28, 78, 216, 0.2); border-radius: 8px;">
-                        <strong>Don't want to wait?</strong> <a href="https://cal.com/nitinmishra/30min" target="_blank" style="color: var(--system-blue); font-weight: 600; text-decoration: none; margin-left: 6px; display: inline-flex; align-items: center; gap: 4px;">Book a 20-Min Call Directly <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-                    </span>
-                    </p>
+            <div class="intake-card-wrapper reveal-on-scroll" style="background: transparent; border: none; padding: 0; box-shadow: none;">
+                <div class="section-header" style="text-align: center; margin-bottom: 48px;">
+                    <span class="section-badge">WORK WITH ME</span>
+                    <h2>Let's Build Your System</h2>
+                    <p style="max-width: 600px; margin: 0 auto;">Choose the best way to get started. Book a direct diagnostic call to discuss your bottlenecks, or submit your project details below.</p>
                 </div>
                 
-                <form class="operational-form" id="operationalForm" novalidate>
-                    <div class="form-group">
-                        <label for="intakeName" class="visually-hidden">Name</label>
-                        <input type="text" id="intakeName" name="name" placeholder="Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="intakeEmail" class="visually-hidden">Email</label>
-                        <input type="email" id="intakeEmail" name="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="intakeBusinessType" class="visually-hidden">Business / Project Type</label>
-                        <input type="text" id="intakeBusinessType" name="business_type" placeholder="Business / Project Type" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="intakeHelp" class="visually-hidden">What do you need help with?</label>
-                        <select id="intakeHelp" name="help_type" required>
-                            <option value="" disabled selected>What do you need help with?</option>
-                            <option value="Lead Capture & Intake">Lead Capture & Intake</option>
-                            <option value="CRM Setup & Organization">CRM Setup & Organization</option>
-                            <option value="Follow-Up Automation">Follow-Up Automation</option>
-                            <option value="Lead Routing & Qualification">Lead Routing & Qualification</option>
-                            <option value="Booking & Intake Workflows">Booking & Intake Workflows</option>
-                            <option value="Integration / Workflow Support">Integration / Workflow Support</option>
-                            <option value="Process Optimization">Process Optimization</option>
-                            <option value="Other Business System Need">Other Business System Need</option>
-                            <option value="Not Sure, Need Guidance">Not Sure, Need Guidance</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="intakeChallenge" class="visually-hidden">What’s breaking right now?</label>
-                        <textarea id="intakeChallenge" name="operational_challenge" placeholder="What’s breaking right now?" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="intakeTools" class="visually-hidden">Current Tools / CRM</label>
-                        <input type="text" id="intakeTools" name="current_tools" placeholder="Current Tools / CRM (Optional: HubSpot, Airtable, etc.)">
-                    </div>
-                    <button type="submit" id="intakeSubmitBtn" class="btn btn-primary btn-full">Start The Conversation</button>
-                    <div class="form-feedback" id="formFeedback" style="display: none; margin-top: 16px; font-family: var(--font-mono, monospace); font-size: 13px; line-height: 1.5; letter-spacing: -0.01em;"></div>
+                <div class="contact-split-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch;">
                     
-                    <!-- Direct Email Fallback Pill -->
-                    <div class="direct-email-fallback" style="margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                        <span style="color: var(--text-muted); font-size: 13px;">Prefer direct email communication?</span>
-                        <a href="mailto:NitinSystems@outlook.com" class="direct-email-pill">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--system-blue);">
-                                <rect width="20" height="16" x="2" y="4" rx="2"/>
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                            </svg>
-                            <span>NitinSystems@outlook.com</span>
-                        </a>
+                    <!-- Option 1: Talk it out -->
+                    <div class="contact-call-box" style="background: rgba(7, 9, 17, 0.6); border: 1px solid rgba(43, 128, 235, 0.15); padding: 40px; border-radius: 24px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; text-align: left;">
+                        <div style="width: 48px; height: 48px; background: rgba(28, 78, 216, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--system-blue);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        </div>
+                        <h3 style="font-size: 24px; color: #FFFFFF; margin-bottom: 12px; font-weight: 600;">Talk it out</h3>
+                        <p style="color: rgba(255, 255, 255, 0.6); font-size: 15px; margin-bottom: 32px; line-height: 1.6;">Jump on a quick 20-minute diagnostic call. We'll audit your current operational bottlenecks and map out a potential system architecture.</p>
+                        
+                        <div style="margin-top: auto; width: 100%;">
+                            <button type="button" onclick="openCalModal(event)" class="btn btn-primary" style="width: 100%; display: flex; justify-content: center; padding: 14px 24px;">
+                                Book 20-Min Call
+                            </button>
+                            <p style="font-family: var(--font-mono, monospace); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.4); text-transform: uppercase; margin-top: 16px; text-align: center; width: 100%;">NO COMMITMENT</p>
+                        </div>
                     </div>
-                </form>
+
+                    <!-- Option 2: Write it out -->
+                    <div class="contact-form-box" style="background: rgba(7, 9, 17, 0.6); border: 1px solid rgba(43, 128, 235, 0.15); padding: 40px; border-radius: 24px; display: flex; flex-direction: column;">
+                        <div style="width: 48px; height: 48px; background: rgba(28, 78, 216, 0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--system-blue);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        </div>
+                        <h3 style="font-size: 24px; color: #FFFFFF; margin-bottom: 12px; font-weight: 600;">Write it out</h3>
+                        <p style="color: rgba(255, 255, 255, 0.6); font-size: 15px; margin-bottom: 32px; line-height: 1.6;">Prefer to provide context first? Fill out the brief intake form below and I will review your requirements.</p>
+                        
+                        <form class="operational-form" id="operationalForm" novalidate style="margin-top: auto; padding: 0; border: none; background: transparent; max-width: 100%;">
+                            <div class="form-group" style="margin-bottom: 16px;">
+                                <label for="intakeName" class="visually-hidden">Name</label>
+                                <input type="text" id="intakeName" name="name" placeholder="Name" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 16px;">
+                                <label for="intakeEmail" class="visually-hidden">Email</label>
+                                <input type="email" id="intakeEmail" name="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 16px;">
+                                <label for="intakeBusinessType" class="visually-hidden">Business / Project Type</label>
+                                <input type="text" id="intakeBusinessType" name="business_type" placeholder="Business / Project Type" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 16px;">
+                                <label for="intakeHelp" class="visually-hidden">What do you need help with?</label>
+                                <select id="intakeHelp" name="help_type" required>
+                                    <option value="" disabled selected>What do you need help with?</option>
+                                    <option value="Lead Capture & Intake">Lead Capture & Intake</option>
+                                    <option value="CRM Setup & Organization">CRM Setup & Organization</option>
+                                    <option value="Follow-Up Automation">Follow-Up Automation</option>
+                                    <option value="Lead Routing & Qualification">Lead Routing & Qualification</option>
+                                    <option value="Booking & Intake Workflows">Booking & Intake Workflows</option>
+                                    <option value="Integration / Workflow Support">Integration / Workflow Support</option>
+                                    <option value="Process Optimization">Process Optimization</option>
+                                    <option value="Other Business System Need">Other Business System Need</option>
+                                    <option value="Not Sure, Need Guidance">Not Sure, Need Guidance</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 24px;">
+                                <label for="intakeChallenge" class="visually-hidden">What’s breaking right now?</label>
+                                <textarea id="intakeChallenge" name="operational_challenge" placeholder="What’s breaking right now?" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 24px;">
+                                <label for="intakeTools" class="visually-hidden">Current Tools / CRM</label>
+                                <input type="text" id="intakeTools" name="current_tools" placeholder="Current Tools / CRM (Optional: HubSpot, Airtable, etc.)">
+                            </div>
+                            <button type="submit" id="intakeSubmitBtn" class="btn btn-secondary" style="width: 100%; display: flex; justify-content: center; padding: 14px 24px;">Submit Inquiry</button>
+                        </form>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>

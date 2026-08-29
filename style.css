@@ -3075,8 +3075,8 @@ textarea.input-premium {
 
 .about-grid-split {
     display: grid;
-    grid-template-columns: 39fr 61fr;
-    gap: 48px;
+    grid-template-columns: 32fr 68fr; /* Shrunk image column to make it professional */
+    gap: 64px;
     align-items: center;
 }
 
@@ -5466,4 +5466,13 @@ body.page-load-smooth.page-loaded {
     opacity: 0.5 !important;
     cursor: not-allowed !important;
     pointer-events: none !important;
+}
+
+/* --- ULTRA PREMIUM ABOUT OVERRIDE --- */
+@media (min-width: 1025px) {
+    .about-grid-split {
+        grid-template-columns: 280px 1fr !important;
+        gap: 64px !important;
+        align-items: flex-start !important;
+    }
 }

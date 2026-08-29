@@ -844,7 +844,7 @@
                                 <p style="font-weight: 400;">Records AI-generated re-engagement drafts, confidence scoring, and dispatch status.</p>
                             </div>
                             <div class="constrained-image-container">
-                                <img src="projects/ai-customer-journey-leak-recovery/architecture-diagrams/AI Customer Journey Operations &amp; Recovery System - operational-data-architecture-diagram.png" alt="Recovery Outbound Log">
+                                <img src="projects/ai-customer-journey-leak-recovery/airtable-screenshots/03-recovery-actions.png" alt="Recovery Outbound Log">
                             </div>
                         </div>
 
@@ -854,7 +854,7 @@
                                 <p style="font-weight: 400;">Logs high-ticket stalls routed to Slack with account context and one-click owner approval paths.</p>
                             </div>
                             <div class="constrained-image-container">
-                                <img src="projects/ai-customer-journey-leak-recovery/architecture-diagrams/AI Customer Journey Operations &amp; Recovery System - operational-data-architecture-diagram.png" alt="Escalation Triage Log">
+                                <img src="projects/ai-customer-journey-leak-recovery/airtable-screenshots/04-escalation-records.png" alt="Escalation Triage Log">
                             </div>
                         </div>
                     </div>
@@ -878,7 +878,7 @@
                             </div>
                             <div style="display: flex; align-items: center; gap: 10px;">
                                 <span style="font-family: var(--font-mono, monospace); font-size: 11px; color: #10B981;">[ DESIGNED ]</span>
-                                <span class="btn btn-secondary" style="font-size: 11px; padding: 6px 12px;">VIEW BLUEPRINT +</span>
+                                <span class="btn btn-secondary" style="font-size: 11px; padding: 6px 12px;">CLOSE BLUEPRINT -</span>
                             </div>
                         </div>
                         <div class="scenario-card-content">
@@ -902,7 +902,7 @@
                             </div>
                             <div class="scenario-drawer">
                                 <div class="constrained-image-container">
-                                    <img src="projects/ai-customer-journey-leak-recovery/architecture-diagrams/AI Customer Journey Operations &amp; Recovery System - operational-data-architecture-diagram.png" alt="Scenario 01">
+                                    <img src="projects/ai-customer-journey-leak-recovery/automation-scenarios/01-leakage-detection-fow.png" alt="Scenario 01" class="lightbox-img">
                                 </div>
                             </div>
                         </div>
@@ -941,17 +941,56 @@
                             </div>
                             <div class="scenario-drawer">
                                 <div class="constrained-image-container">
-                                    <img src="projects/ai-customer-journey-leak-recovery/architecture-diagrams/AI Customer Journey Operations &amp; Recovery System - operational-data-architecture-diagram.png" alt="Scenario 02">
+                                    <img src="projects/ai-customer-journey-leak-recovery/automation-scenarios/02-ai-reasoning-engine.png" alt="Scenario 02" class="lightbox-img">
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Scenario 03 -->
                     <div class="scenario-card-item" id="scenario-card-2">
                         <div class="scenario-card-header" onclick="toggleScenarioCard(2)">
                             <div class="scenario-card-title-group">
                                 <span class="scenario-card-badge">SCENARIO 03</span>
+                                <h4>Recovery Execution Engine</h4>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="font-family: var(--font-mono, monospace); font-size: 11px; color: #3b82f6;">[ DESIGNED ]</span>
+                                <span class="btn btn-secondary" style="font-size: 11px; padding: 6px 12px;">VIEW BLUEPRINT +</span>
+                            </div>
+                        </div>
+                        <div class="scenario-card-content">
+                            <div class="scenario-info-grid">
+                                <div class="scenario-info-block">
+                                    <label>PURPOSE</label>
+                                    <p>Execute automated recovery actions for leads cleared by AI triage without requiring human intervention.</p>
+                                </div>
+                                <div class="scenario-info-block">
+                                    <label>INPUTS</label>
+                                    <p>AI approved outbound drafts and scheduling parameters.</p>
+                                </div>
+                                <div class="scenario-info-block">
+                                    <label>BUSINESS FUNCTION</label>
+                                    <p>Direct communication dispatch and status logging.</p>
+                                </div>
+                                <div class="scenario-info-block">
+                                    <label>OUTPUTS</label>
+                                    <p>Dispatched emails and updated CRM activity logs.</p>
+                                </div>
+                            </div>
+                            <div class="scenario-drawer">
+                                <div class="constrained-image-container">
+                                    <img src="projects/ai-customer-journey-leak-recovery/automation-scenarios/03-recovery-execution-engine.png" alt="Scenario 03" class="lightbox-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scenario 04 -->
+                    <div class="scenario-card-item" id="scenario-card-3">
+                        <div class="scenario-card-header" onclick="toggleScenarioCard(3)">
+                            <div class="scenario-card-title-group">
+                                <span class="scenario-card-badge">SCENARIO 04</span>
                                 <h4>Human Escalation &amp; Closed-Loop State Sync</h4>
                             </div>
                             <div style="display: flex; align-items: center; gap: 10px;">
@@ -980,7 +1019,85 @@
                             </div>
                             <div class="scenario-drawer">
                                 <div class="constrained-image-container">
-                                    <img src="projects/ai-customer-journey-leak-recovery/airtable-screenshots/01-customer-journey-records.png" alt="Scenario 03">
+                                    <img src="projects/ai-customer-journey-leak-recovery/automation-scenarios/04-escalation-magagement-engine.png" alt="Scenario 04" class="lightbox-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Scenario 05A -->
+                    <div class="scenario-card-item" id="scenario-card-4">
+                        <div class="scenario-card-header" onclick="toggleScenarioCard(4)">
+                            <div class="scenario-card-title-group">
+                                <span class="scenario-card-badge">SCENARIO 05A</span>
+                                <h4>Escalation Notification System</h4>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="font-family: var(--font-mono, monospace); font-size: 11px; color: #ef4444;">[ DESIGNED ]</span>
+                                <span class="btn btn-secondary" style="font-size: 11px; padding: 6px 12px;">VIEW BLUEPRINT +</span>
+                            </div>
+                        </div>
+                        <div class="scenario-card-content">
+                            <div class="scenario-info-grid">
+                                <div class="scenario-info-block">
+                                    <label>PURPOSE</label>
+                                    <p>Deliver immediate alerts across channels when critical accounts require manual intervention.</p>
+                                </div>
+                                <div class="scenario-info-block">
+                                    <label>INPUTS</label>
+                                    <p>Flagged high-priority escalation triggers.</p>
+                                </div>
+                                <div class="scenario-info-block">
+                                    <label>BUSINESS FUNCTION</label>
+                                    <p>Rapid response alerting for sales teams.</p>
+                                </div>
+                                <div class="scenario-info-block">
+                                    <label>OUTPUTS</label>
+                                    <p>Formatted Slack alerts and internal email notifications.</p>
+                                </div>
+                            </div>
+                            <div class="scenario-drawer">
+                                <div class="constrained-image-container">
+                                    <img src="projects/ai-customer-journey-leak-recovery/automation-scenarios/05-escalation-notification-engine.png" alt="Scenario 05A" class="lightbox-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Scenario 05B -->
+                    <div class="scenario-card-item" id="scenario-card-5">
+                        <div class="scenario-card-header" onclick="toggleScenarioCard(5)">
+                            <div class="scenario-card-title-group">
+                                <span class="scenario-card-badge">SCENARIO 05B</span>
+                                <h4>Outcome Evaluation Engine</h4>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="font-family: var(--font-mono, monospace); font-size: 11px; color: #10B981;">[ DESIGNED ]</span>
+                                <span class="btn btn-secondary" style="font-size: 11px; padding: 6px 12px;">VIEW BLUEPRINT +</span>
+                            </div>
+                        </div>
+                        <div class="scenario-card-content">
+                            <div class="scenario-info-grid">
+                                <div class="scenario-info-block">
+                                    <label>PURPOSE</label>
+                                    <p>Analyze recovery success rates and sync final journey status to the core CRM.</p>
+                                </div>
+                                <div class="scenario-info-block">
+                                    <label>INPUTS</label>
+                                    <p>Post-recovery interaction data (replies, bookings).</p>
+                                </div>
+                                <div class="scenario-info-block">
+                                    <label>BUSINESS FUNCTION</label>
+                                    <p>System performance analytics and master database reconciliation.</p>
+                                </div>
+                                <div class="scenario-info-block">
+                                    <label>OUTPUTS</label>
+                                    <p>Final status updates and system reporting metrics.</p>
+                                </div>
+                            </div>
+                            <div class="scenario-drawer">
+                                <div class="constrained-image-container">
+                                    <img src="projects/ai-customer-journey-leak-recovery/automation-scenarios/06-outcome-evaluation-engine.png" alt="Scenario 05B" class="lightbox-img">
                                 </div>
                             </div>
                         </div>
@@ -1002,7 +1119,7 @@
                     <!-- CARD 1: MASTER WRITTEN CASE STUDY PDF -->
                     <div class="documentation-vault-card">
                         <span style="font-family: var(--font-mono, monospace); font-size: 9px; color: #38bdf8; font-weight: 700;">[ ARCHITECTURE SPECIFICATION ]</span>
-                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; color: var(--text-pure); margin: 8px 0; font-weight: 600;">01 / Written System Case Study PDF</h4>
+                        <h4 style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; color: var(--text-pure); margin: 8px 0; font-weight: 600;">01 / Executive Case Study</h4>
                         <p style="font-size: 0.88rem; color: var(--text-silver); font-weight: 400; margin-bottom: 16px;">Full written technical documentation detailing state-machine logic, watchdog query criteria, and human-in-the-loop safeguards.</p>
                         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                             <a href="projects/ai-customer-journey-leak-recovery/case-study/ai-customer-journey-operations-&amp;-recovery-system.pdf" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 8px 16px;">Read Full Case Study</a>
@@ -1107,9 +1224,60 @@
     </div>
 
     <!-- Footer -->
-    <footer class="section border-top" style="padding: 56px 0 48px;">
-        <div class="container-standard text-center">
-            <p style="color: var(--text-muted); font-size: 13px;">&copy; 2026 Nitin Mishra. All Rights Reserved.</p>
+    <footer class="section border-top" style="padding: 56px 0 48px; margin-left: auto; margin-right: auto;">
+        <div class="container-nav-align footer-responsive">
+            <div class="footer-nav-grid">
+                <div class="footer-brand-wrap">
+                    <a href="index.html" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
+                        <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
+                            <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img" loading="lazy">
+                        </div>
+                        Nitin Mishra
+                    </a>
+                    <p class="footer-desc" style="color: var(--text-muted); font-size: 14px; max-width: 360px; margin-bottom: 1.25rem;">Structured workflow systems for operational clarity and scalable lead management.</p>
+                    <div>
+                        <a href="mailto:NitinSystems@outlook.com" class="direct-email-pill">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--system-blue);">
+                                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                            </svg>
+                            <span>NitinSystems@outlook.com</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-nav-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html#home">Home Overview</a></li>
+                        <li><a href="systems-library.html">Systems Library</a></li>
+                        <li><a href="index.html#process">Process Breakdown</a></li>
+                        <li><a href="about.html">About Nitin</a></li>
+                        <li><a href="index.html#contact">Contact &amp; Audit</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom-bar">
+                <div class="footer-copyright-wrap">
+                    <p style="color: var(--text-muted); font-size: 13px; margin: 0;">&copy; 2026 Nitin Mishra. All Rights Reserved.</p>
+                </div>
+                
+                <div class="footer-legal-links">
+                    <a class="privacy-modal-trigger">Privacy Policy</a>
+                    <span style="color: rgba(255,255,255,0.2);">•</span>
+                    <a class="terms-modal-trigger">Terms of Service</a>
+                </div>
+
+                <div class="back-to-top-wrap">
+                    <a href="#top" class="back-to-top-btn" title="Scroll back to top">
+                        <span>Back to top</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m18 15-6-6-6 6"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -1130,12 +1298,18 @@
             
             const isAlreadyActive = targetCard.classList.contains('active');
             
-            // Close all cards
-            allCards.forEach(card => card.classList.remove('active'));
+            // Close all cards and reset buttons
+            allCards.forEach(card => {
+                card.classList.remove('active');
+                const btn = card.querySelector('.btn');
+                if (btn) btn.innerText = 'VIEW BLUEPRINT +';
+            });
             
-            // If it wasn't active, open it
+            // If it wasn't active, open it and change button
             if (!isAlreadyActive) {
                 targetCard.classList.add('active');
+                const targetBtn = targetCard.querySelector('.btn');
+                if (targetBtn) targetBtn.innerText = 'CLOSE BLUEPRINT -';
             }
         }
 

@@ -550,7 +550,8 @@ function initIntakeForm() {
             
             // Redirect after 400ms
             setTimeout(() => {
-                window.location.href = 'thank-you';
+                trackLeadSubmission();
+                window.location.href = 'thank-you.html';
             }, 400);
         } catch (error) {
             console.error('Submission failed:', error);
@@ -814,6 +815,7 @@ function openCalModal(e) {
     if (e && e.stopPropagation) {
         e.stopPropagation();
     }
+    trackMeetingClick();
     const modal = document.getElementById('customCalModal');
     if (!modal) {
         window.open('https://cal.com/nitinmishra/30min', '_blank');
@@ -873,4 +875,28 @@ function initLightbox() {
             document.body.style.overflow = 'hidden';
         });
     });
+}
+
+
+/* ==========================================================================
+   ANALYTICS & CONVERSION TRACKING
+   ========================================================================== */
+function trackLeadSubmission() {
+    if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', {
+            event_category: 'Lead Capture',
+            event_label: 'Project Details Form Submit'
+        });
+        console.log('[Analytics] Lead Submission Tracked');
+    }
+}
+
+function trackMeetingClick() {
+    if (typeof gtag === 'function') {
+        gtag('event', 'book_meeting_clicked', {
+            event_category: 'Consultation',
+            event_label: 'Cal.com Booking Opened'
+        });
+        console.log('[Analytics] Meeting Click Tracked');
+    }
 }

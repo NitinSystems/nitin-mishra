@@ -3,59 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Nitin Mishra | Systems Thinking & Operational Philosophy</title>
+    
+    <!-- SEO / AEO / GEO Infrastructure -->
+    <title>About Nitin Mishra | Automation Systems Specialist & Technical Partner</title>
     <meta name="description" content="Learn about Nitin Mishra's systems thinking approach, operational philosophy, and how structured CRM architecture reduces operational friction.">
-    <link rel="canonical" href="about.html">
+    <link rel="canonical" href="https://nitin-mishra.netlify.app/about.html">
 
     <!-- Social / Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nitin-mishra.netlify.app/about.html">
-    <meta property="og:title" content="About Nitin Mishra | Systems Thinking">
+    <meta property="og:title" content="About Nitin Mishra | Automation Systems Specialist & Technical Partner">
     <meta property="og:description" content="Learn about Nitin Mishra's systems thinking approach, operational philosophy, and how structured CRM architecture reduces operational friction.">
     <meta property="og:image" content="https://nitin-mishra.netlify.app/assets/images/wine-suit-image.png">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="About Nitin Mishra | Systems Thinking">
-    <meta name="twitter:description" content="Operational philosophy and structured CRM architecture.">
+    <meta name="twitter:title" content="About Nitin Mishra | Automation Systems Specialist & Technical Partner">
+    <meta name="twitter:description" content="Learn about Nitin Mishra's systems thinking approach, operational philosophy, and how structured CRM architecture reduces operational friction.">
     <meta name="twitter:image" content="https://nitin-mishra.netlify.app/assets/images/wine-suit-image.png">
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "@id": "https://nitin-mishra.netlify.app/#person",
-      "name": "Nitin Mishra",
-      "jobTitle": "Automation Systems Specialist",
-      "url": "https://nitin-mishra.netlify.app/",
-      "sameAs": ["https://www.linkedin.com/in/nitinmishra-me"]
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://nitin-mishra.netlify.app/#person",
+          "name": "Nitin Mishra",
+          "jobTitle": "Automation Systems Specialist",
+          "url": "https://nitin-mishra.netlify.app/",
+          "sameAs": ["https://www.linkedin.com/in/nitinmishra-me"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://nitin-mishra.netlify.app/#website",
+          "url": "https://nitin-mishra.netlify.app/",
+          "name": "Nitin Mishra | Operational Systems Portfolio",
+          "publisher": {"@id": "https://nitin-mishra.netlify.app/#person"}
+        }
+      ]
     }
-    </script>    
+    </script>
     <!-- Favicon Infrastructure -->
     <link rel="shortcut icon" type="image/png" href="assets/icons/nitin_mishra_favicon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/nitin_mishra_favicon.png">
     <link rel="apple-touch-icon" href="assets/icons/nitin_mishra_favicon.png">
 
-    <!-- Google Fonts -->
+    <!-- Preconnect & Google Font Loading Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=optional" rel="stylesheet">
 
+    <!-- Master Stylesheet -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Page Specific Trust Refinements -->
+    
+    <!-- Contact Section Refinement Overrides -->
     <style>
+        #contact {
+            position: relative;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(28, 78, 216, 0.07) 0%, rgba(2, 3, 7, 0) 70%),
+                var(--bg-primary) !important;
+        }
+        
+        .intake-card-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(11, 17, 36, 0.5) 0%, rgba(7, 10, 24, 0.7) 100%);
+            border: 1px solid rgba(28, 78, 216, 0.2);
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(28, 78, 216, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            text-align: center;
+        }
+
+        .intake-card-wrapper .section-header {
+            max-width: 100% !important;
+            margin: 0 auto 32px auto !important;
+            padding: 0 !important;
+            text-align: center !important;
+        }
+
+        .intake-card-wrapper .section-header h2 {
+            font-size: 2.25rem;
+            line-height: 1.25;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .intake-card-wrapper .section-header p {
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: var(--text-silver);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Form styling overrides for SaaS level aesthetics */
+        #contact .operational-form {
+            gap: 16px;
+            margin-top: 0;
+        }
+
+        #contact .form-group {
+            margin-bottom: 0;
+        }
+
+        #contact .form-group input,
+        #contact .form-group textarea,
+        #contact .form-group select {
+            background: rgba(4, 6, 15, 0.7) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 8px !important;
+            padding: 12px 16px !important;
+            color: var(--text-pure, #ffffff) !important;
+            font-size: 0.95rem !important;
+            font-family: inherit !important;
+            box-sizing: border-box !important;
+            width: 100% !important;
+            transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        #contact .form-group select {
+            padding-right: 40px !important;
+        }
+
+        #contact .form-group input:hover,
+        #contact .form-group textarea:hover,
+        #contact .form-group select:hover {
+            border-color: rgba(28, 78, 216, 0.35) !important;
+            background: rgba(255, 255, 255, 0.02) !important;
+        }
+
+        #contact .form-group input:focus,
+        #contact .form-group textarea:focus,
+        #contact .form-group select:focus {
+            background: rgba(4, 6, 15, 0.9) !important;
+            border-color: var(--system-blue) !important;
+            box-shadow: 0 0 0 4px rgba(28, 78, 216, 0.2) !important;
+            outline: none !important;
+        }
+
+        #contact #intakeSubmitBtn {
+            padding: 14px 20px !important;
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            letter-spacing: -0.01em !important;
+            border-radius: 8px !important;
+            background: var(--system-blue) !important;
+            color: #ffffff !important;
+            border: none !important;
+            cursor: pointer !important;
+            box-shadow: 0 4px 12px rgba(28, 78, 216, 0.25) !important;
+            transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        #contact #intakeSubmitBtn:hover {
+            background: #2563eb !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 6px 20px rgba(28, 78, 216, 0.45) !important;
+        }
+
+        #contact #intakeSubmitBtn:active {
+            transform: translateY(1px) !important;
+        }
+
+        /* Mobile responsiveness overrides for contact section */
         @media (max-width: 768px) {
-            .social-links {
-                flex-direction: row !important;
-                gap: 24px !important;
-                flex-wrap: wrap;
+            .intake-card-wrapper {
+                padding: 32px 20px !important;
+                border-radius: 12px !important;
+                border-color: rgba(28, 78, 216, 0.15) !important;
+            }
+
+            .intake-card-wrapper .section-header {
+                margin-bottom: 24px !important;
+            }
+
+            .intake-card-wrapper .section-header h2 {
+                font-size: 1.75rem !important;
+            }
+
+            .intake-card-wrapper .section-header p {
+                font-size: 0.95rem !important;
+            }
+
+            #contact .form-group input,
+            #contact .form-group textarea,
+            #contact .form-group select {
+                padding: 10px 14px !important;
+                font-size: 0.9rem !important;
+            }
+
+            #contact #intakeSubmitBtn {
+                padding: 12px 16px !important;
+                font-size: 0.95rem !important;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Global Glow System -->
     <div class="glow-background">
         <div class="glow-orb glow-top-right"></div>
         <div class="glow-orb glow-bottom-left"></div>
@@ -132,225 +286,96 @@
             </div>
         </div>
     </nav>
-
-    <main> <!-- Offset for sticky navigation -->
-        
-        <!-- SECTION 1 - PERSONAL INTRO HERO -->
-        <section class="about-section" id="about-hero">
-            <div class="container-standard">
-                <div class="about-grid-split" style="align-items: flex-start; gap: 56px;">
-                    <!-- LEFT COLUMN: Profile ID -->
-                    <div class="about-profile-card reveal-on-load" style="display: flex; flex-direction: column; gap: 16px; max-width: 280px; width: 100%;">
-                        <div class="about-hero-img-wrap" style="width: 100%; aspect-ratio: 4/5;">
-                            <img src="assets/images/wine-suit-image.png" alt="Nitin Mishra" class="about-hero-img">
-                        </div>
-                        
-                        <!-- De-bulked Name & Title -->
-                        <div class="profile-card-info" style="display: flex; flex-direction: column; gap: 4px;">
-                            <h3 style="font-size: 1.3rem; font-weight: 500; color: var(--text-pure); margin: 0; letter-spacing: 0.01em;">Nitin Mishra</h3>
-                            <p style="color: var(--system-blue); font-size: 0.75rem; font-weight: 500; margin: 0; letter-spacing: 0.06em; text-transform: uppercase;">Automation Systems Specialist</p>
-                        </div>
-                        
-                        <!-- Socials (Text + Icon) -->
-                        <div class="profile-card-socials" style="display: flex; gap: 8px; margin-top: 4px;">
-                            <a href="https://www.linkedin.com/in/nitinmishra-me" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 0; font-size: 12px; font-weight: 500;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                                </svg>
-                                LinkedIn
-                            </a>
-                            <a href="mailto:NitinSystems@outlook.com" class="btn btn-secondary" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 0; font-size: 12px; font-weight: 500;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
-                                Email
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- RIGHT COLUMN: Manifesto -->
-                    <div class="about-hero-content reveal-on-load reveal-delay-1" style="padding-top: 0; gap: 12px;">
-                        <div class="section-header" style="margin-bottom: 0;">
-                            <!-- Premium Capsule Badge -->
-                            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 100px; margin-bottom: 16px;">
-                                <span style="display: block; width: 6px; height: 6px; background: var(--system-blue); border-radius: 50%; box-shadow: 0 0 8px var(--system-blue);"></span>
-                                <span style="font-size: 0.85rem; font-weight: 600; color: var(--system-blue); text-transform: uppercase; letter-spacing: 0.1em;">Operational Profile</span>
-                            </div>
-                            <!-- De-bulked Headline -->
-                            <h2 class="text-blue" style="font-size: 1.85rem; font-weight: 500; line-height: 1.35; margin-top: 0; margin-bottom: 16px; letter-spacing: 0;">I Build Structured Automation Systems With Operational Clarity.</h2>
-                        </div>
-                        
-                        <p class="about-statement" style="font-size: 1rem; line-height: 1.6; font-weight: 400; color: var(--text-pure); margin-bottom: 0;">
-                            I design and build automation systems that eliminate manual bottlenecks.
-                        </p>
-                        
-                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; font-weight: 400; margin-bottom: 0;">
-                            I didn't start by learning tools. I started by noticing how broken workflows compound over time. When leads go untracked and follow-ups fail, teams lose critical context.
-                        </p>
-                        
-                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; font-weight: 400; margin-bottom: 16px;">
-                            That realization drove me to master CRM architecture, lifecycle logic, and operational automation.
-                        </p>
-                        
-                        <!-- Structured highlights -->
-                        <div class="about-highlight-list" style="margin-top: 0; gap: 10px;">
-                            <div class="about-highlight-item" style="padding: 10px 16px; margin-bottom: 0; font-weight: 400; font-size: 0.85rem;">Leads go untracked</div>
-                            <div class="about-highlight-item" style="padding: 10px 16px; margin-bottom: 0; font-weight: 400; font-size: 0.85rem;">Follow-ups break</div>
-                            <div class="about-highlight-item" style="padding: 10px 16px; margin-bottom: 0; font-weight: 400; font-size: 0.85rem;">Manual handling reliance</div>
-                            <div class="about-highlight-item" style="padding: 10px 16px; margin-bottom: 0; font-weight: 400; font-size: 0.85rem;">Context loss between apps</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 2 - WHY SYSTEMS -->
-        <section class="about-section" id="about-why-systems" style="background: var(--bg-secondary); border-top: 1px solid var(--border-dim); border-bottom: 1px solid var(--border-dim);">
-            <div class="container-standard">
-                <div class="about-grid-split">
-                    <!-- Left Side: Explanation -->
-                    <div class="reveal-on-scroll">
-                        <div class="section-header">
-                            <span class="section-badge">Operational Friction</span>
-                            <h2>Why Businesses Lose Momentum</h2>
-                            <p style="margin-top: 12px;">Capturing leads properly, organizing workflows, reducing manual breakdowns, improving follow-up continuity, and helping businesses move from reactive handling toward more structured operations.</p>
-                        </div>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">
-                            Most of the systems I build are focused on solving real, compounding operational friction. I design solutions that bridge lead movement, CRM pipelines, and automated follow-ups so that no prospect falls through the cracks due to team fatigue or administrative friction.
-                        </p>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
-                            By mapping exact lifecycle pathways, we turn fragmented day-to-day handling into structured, repeatable operational flows.
-                        </p>
-                    </div>
-                    
-                    <!-- Right Side: Subtle Architectural Visual (Friction Pipeline) -->
-                    <div class="about-friction-panel reveal-on-scroll" style="transition-delay: 0.2s;">
-                        <div class="blueprint-grid"></div>
-                        <div class="blueprint-coordinates">
-                            <span class="coord-tag">FLOW_ERR_04</span>
-                            <span class="coord-tag">MANUAL_HANDLING_GAP</span>
-                        </div>
-                        
-                        <div class="about-friction-paths">
-                            <div class="about-friction-line segment-1"></div>
-                            <div class="about-friction-line segment-2"></div>
-                            
-                            <!-- Asynchronous signal flow & breakdown signals -->
-                            <div class="about-friction-packet active-flow"></div>
-                            <div class="about-friction-packet broken-flow"></div>
-                        </div>
-                        
-                        <div class="about-friction-pipeline">
-                            <!-- Node 1 -->
-                            <div class="about-friction-node">
-                                <span class="node-badge-micro">STAGE_01</span>
-                                <span class="node-title-micro" style="font-size: 10px;">Inbound Lead</span>
-                            </div>
-                            
-                            <!-- Node 2: Breakpoint -->
-                            <div class="about-friction-node breakpoint">
-                                <span class="node-badge-micro">MANUAL_DELAY</span>
-                                <span class="node-title-micro" style="font-size: 10px; color: #f87171;">Workflow Break</span>
-                            </div>
-                            
-                            <!-- Node 3 -->
-                            <div class="about-friction-node" style="opacity: 0.4;">
-                                <span class="node-badge-micro">STAGE_03</span>
-                                <span class="node-title-micro" style="font-size: 10px;">Context Sync</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3 - SYSTEMS PHILOSOPHY -->
-        <section class="about-section" id="about-philosophy">
-            <div class="container-standard">
-                <div class="section-header text-center reveal-on-scroll" style="max-width: 800px; margin: 0 auto 48px auto;">
-                    <span class="section-badge" style="display: block; margin: 0 auto 16px auto;">Operational Philosophy</span>
-                    <h2>Structure is the Only Thing that Scales</h2>
-                </div>
+<main>
+    <section class="about-section" id="about-hero" style="padding-top: 170px; padding-bottom: 96px; min-height: 100vh; display: flex; align-items: flex-start;">
+        <div class="container-standard">
+            
+            <div class="about-grid-split" style="align-items: flex-start; gap: 64px;">
                 
-                <!-- Premium visual Centerpiece Standalone Quote -->
-                <div class="about-quote-container reveal-on-scroll">
-                    <p class="about-centerquote">
-                        “Good systems should feel clear, reliable, scalable, and operationally calm - not complicated for the sake of looking advanced.”
-                    </p>
-                    <div class="about-quote-author">Nitin Mishra - Automation Systems Specialist</div>
+                <!-- LEFT COLUMN: Image -->
+                <div class="about-profile-card reveal-on-load" style="display: flex; flex-direction: column; gap: 16px; max-width: 300px; width: 100%;">
+                    <div class="about-hero-img-wrap" style="width: 100%; aspect-ratio: 4/5;">
+                        <img src="assets/images/wine-suit-image.png" alt="Nitin Mishra" class="about-hero-img" style="border-radius: 12px;">
+                    </div>
+                    <div class="profile-card-info" style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px; text-align: center;">
+                        <h3 style="font-size: 1.35rem; font-weight: 500; color: var(--text-pure); margin: 0; font-family: 'Outfit', sans-serif;">Nitin Mishra</h3>
+                        <span style="font-size: 0.85rem; color: var(--system-blue); font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;">Automation Systems Specialist</span>
+                    </div>
                 </div>
+
+                <!-- RIGHT COLUMN: Headline & Story together (Saves vertical space) -->
+                <div style="display: flex; flex-direction: column;">
+                    <!-- Delay 1: Label & Headline -->
+                    <div class="reveal-on-load reveal-delay-1">
+                        <span class="category-heading" style="margin-bottom: 16px; display: inline-block;">// THE FOUNDATION</span>
+                        <h1 style="font-family: 'Outfit', sans-serif; font-size: 2.75rem; font-weight: 500; color: var(--text-pure); line-height: 1.15; margin-bottom: 32px;">
+                            I build structured systems so your team can <span style="color: var(--system-blue);">focus on growth.</span>
+                        </h1>
+                    </div>
+                    
+                    <!-- Delay 2: Story Paragraphs -->
+                    <div class="reveal-on-load reveal-delay-2">
+                        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px;">
+                            Most businesses lose momentum not from a lack of vision, but due to fragmented internal processes and manual administrative friction.
+                        </p>
+                        
+                        <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px;">
+                            I operate as your technical partner to audit your workflows, identify operational bottlenecks, and build reliable automation infrastructure. The goal is to bridge lead movement, CRM pipelines, and automated follow-ups so no prospect falls through the cracks.
+                        </p>
+                    </div>
+
+                    <!-- Delay 3: Quote -->
+                    <div class="reveal-on-load reveal-delay-3" style="padding: 24px 32px; border-left: 3px solid var(--system-blue); background: rgba(10, 132, 255, 0.05); border-radius: 0 12px 12px 0; margin-top: 32px;">
+                        <p style="color: var(--text-pure); font-size: 1.05rem; font-style: italic; margin: 0; line-height: 1.6;">
+                            "I handle the technical heavy lifting so you and your team can get back to driving the business forward."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- THE 3 PILLARS -->
+    <section class="section border-top" style="padding-top: 80px; padding-bottom: 80px; background: rgba(6, 9, 24, 0.3);">
+        <div class="container-standard">
+            
+            <div class="section-header reveal-on-scroll">
+                <h2>How I Work</h2>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; margin-top: 48px;">
                 
-                <!-- Supporting details split into two structural UI cards -->
-                <div class="about-grid-cardstack reveal-on-scroll" style="transition-delay: 0.1s;">
-                    <div class="about-card">
-                        <span class="about-card-badge">Practical Execution</span>
-                        <h3 class="about-card-title">Believable Systems Over Hype</h3>
-                        <p class="about-card-text">
-                            I don’t position myself as a guru, agency empire, or enterprise consultant. I prefer structured thinking, practical implementation, believable systems, operational clarity, and long-term credibility over complex, overengineered software structures.
-                        </p>
+                <div class="reveal-on-scroll" style="background: rgba(255,255,255,0.02); padding: 32px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.1s;">
+                    <div style="color: var(--system-blue); margin-bottom: 20px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    
-                    <div class="about-card">
-                        <span class="about-card-badge">Lifecycle Integration</span>
-                        <h3 class="about-card-title">Continuity and Integrity</h3>
-                        <p class="about-card-text">
-                            Today, I focus on building structured lead capture, qualification, routing, follow-up, and lifecycle systems designed to reduce operational chaos and improve continuity across your CRM and automation tech stack.
-                        </p>
-                    </div>
+                    <h3 style="margin-bottom: 12px; font-size: 1.25rem;">Clear Communication</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">No unnecessary technical jargon. I map out exactly how your system functions, how it handles data, and how it impacts your operations in a clear, professional manner.</p>
                 </div>
-            </div>
-        </section>
 
-        <!-- SECTION 4 - CURRENT BUILD DIRECTION -->
-        <section class="about-section" id="about-focus" style="border-top: 1px solid var(--border-dim);">
-            <div class="container-standard">
-                <div class="about-grid-split">
-                    <!-- Left Side: Intentional Growth Statement -->
-                    <div class="reveal-on-scroll">
-                        <div class="section-header">
-                            <span class="section-badge">Build Direction</span>
-                            <h2>Current Focus &amp; Growth</h2>
-                        </div>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">
-                            I’m still actively growing toward deeper systems design and operational maturity. Good systems should grow organically and scale securely as service businesses and B2B environments expand.
-                        </p>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
-                            My background combines automation workflows, CRM thinking, intake systems, operational structure, frontend systems, lifecycle logic, and implementation-focused problem solving.
-                        </p>
+                <div class="reveal-on-scroll" style="background: rgba(255,255,255,0.02); padding: 32px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.2s;">
+                    <div style="color: var(--system-blue); margin-bottom: 20px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
-                    
-                    <!-- Right Side: Focus Cards Stack -->
-                    <div class="reveal-on-scroll" style="display: flex; flex-direction: column; gap: 16px; transition-delay: 0.1s;">
-                        <div class="about-card">
-                            <span class="about-card-badge">01 // Frameworks</span>
-                            <h3 class="about-card-title" style="margin-bottom: 6px;">Reusable Automation Modules</h3>
-                            <p class="about-card-text" style="font-size: 13px;">
-                                Developing reusable automation frameworks that can scale across service businesses and B2B environments.
-                            </p>
-                        </div>
-                        
-                        <div class="about-card">
-                            <span class="about-card-badge">02 // Documentation</span>
-                            <h3 class="about-card-title" style="margin-bottom: 6px;">Portfolio Systems &amp; Mapping</h3>
-                            <p class="about-card-text" style="font-size: 13px;">
-                                Building portfolio-grade systems and documenting workflows to systematically refine operational thinking.
-                            </p>
-                        </div>
-                        
-                        <div class="about-card">
-                            <span class="about-card-badge">03 // Platforms</span>
-                            <h3 class="about-card-title" style="margin-bottom: 6px;">Platform Stack Integration</h3>
-                            <p class="about-card-text" style="font-size: 13px;">
-                                Integrating tools like Make.com, Zapier, HubSpot, GoHighLevel, Airtable, HTML/CSS/JS workflows, webhook systems, and AI-assisted environments.
-                            </p>
-                        </div>
-                    </div>
+                    <h3 style="margin-bottom: 12px; font-size: 1.25rem;">System Reliability</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">Every automation is engineered with fail-safes and error routing. The focus is on building resilient architecture that runs continuously without requiring constant manual babysitting.</p>
                 </div>
-            </div>
-        </section>
 
-        <!-- SECTION 5 - OPERATIONAL AUTHORITY & CREDENTIAL VAULT -->
-        <section class="section bg-secondary" id="authority" style="border-top: 1px solid var(--border-dim);">
+                <div class="reveal-on-scroll" style="background: rgba(255,255,255,0.02); padding: 32px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); transition-delay: 0.3s;">
+                    <div style="color: var(--system-blue); margin-bottom: 20px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3 style="margin-bottom: 12px; font-size: 1.25rem;">Direct Accountability</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">As a solo specialist, you work directly with the architect building your system. No account managers, no communication gaps—just fast, accurate execution.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Operational Authority Vault -->
+    <section class="section bg-secondary" id="authority" style="border-top: 1px solid var(--border-dim);">
             <div class="container-standard">
                 <div class="section-header reveal-on-scroll">
                     <span class="section-badge">Credentials</span>
@@ -499,29 +524,20 @@
                 </div>
             </div>
         </section>
-    </main>
-
-    <!-- 10. Footer -->
-    <footer class="section border-top" style="padding: 56px 0 48px; margin-left: auto; margin-right: auto;">
+    
+</main>
+<footer class="section border-top" style="padding: 56px 0 48px; margin-left: auto; margin-right: auto;">
         <div class="container-nav-align footer-responsive">
             <div class="footer-nav-grid">
                 <div class="footer-brand-wrap">
                     <a href="index.html" class="footer-brand footer-logo" style="margin-bottom: 1.25rem;">
                         <div class="nm-logo-wrapper" style="display: flex; align-items: center; justify-content: center;">
-                            <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img">
+                            <img src="logo/nitin_mishra_master_logo.png" alt="NM Logo" class="nm-monogram-img" loading="lazy">
                         </div>
                         Nitin Mishra
                     </a>
                     <p class="footer-desc" style="color: var(--text-muted); font-size: 14px; max-width: 360px; margin-bottom: 1.25rem;">Structured workflow systems for operational clarity and scalable lead management.</p>
-                    <div>
-                        <a href="mailto:NitinSystems@outlook.com" class="direct-email-pill">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--system-blue);">
-                                <rect width="20" height="16" x="2" y="4" rx="2"/>
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                            </svg>
-                            <span>NitinSystems@outlook.com</span>
-                        </a>
-                    </div>
+                    
                 </div>
 
                 <div class="footer-nav-col">
@@ -533,8 +549,23 @@
                         <li><a href="about.html">About Nitin</a></li>
                         <li><a href="index.html#contact">Contact &amp; Audit</a></li>
                     </ul>
+                    </div>
+
+                    <div class="footer-nav-col">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li>
+                                <a href="https://www.linkedin.com/in/nitinmishra-me" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 8px;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                    LinkedIn
+                                </a>
+                            </li>
+                            <li><a href="mailto:NitinSystems@outlook.com">NitinSystems@outlook.com</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
             <div class="footer-bottom-bar">
                 <div class="footer-copyright-wrap">
@@ -542,9 +573,9 @@
                 </div>
                 
                 <div class="footer-legal-links">
-                    <a href="index.html#privacy">Privacy Policy</a>
+                    <a href="privacy.html" style="color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.2s ease;">Privacy Policy</a>
                     <span style="color: rgba(255,255,255,0.2);">•</span>
-                    <a href="index.html#terms">Terms of Service</a>
+                    <a href="terms.html" style="color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.2s ease;">Terms of Service</a>
                 </div>
 
                 <div class="back-to-top-wrap">
@@ -559,6 +590,111 @@
         </div>
     </footer>
 
+    <!-- System Inspection Modal Overlay -->
+    <div class="system-modal" id="systemModal" aria-hidden="true">
+        <div class="system-modal-backdrop" id="modalBackdrop"></div>
+        <div class="system-modal-container">
+            <div class="system-modal-header">
+                <div class="system-modal-title-group">
+                    <span class="system-modal-badge">Systems Archive</span>
+                    <h2 id="modalTitle">Automated Lead Routing System</h2>
+                    <p id="modalDesc">System blueprint inspection.</p>
+                </div>
+                <button class="system-modal-close" id="modalClose" aria-label="Close Inspection">[ Close ]</button>
+            </div>
+            <div class="system-modal-content">
+                <div class="system-modal-viewport">
+                    <img id="modalViewportImg" src="" alt="System Viewport" class="modal-viewport-img">
+                </div>
+                <div class="system-modal-sidebar">
+                    <span class="system-sidebar-label">Supporting Infrastructure Assets</span>
+                    <div class="system-thumbnail-grid" id="modalThumbnailGrid">
+                        <!-- Thumbnails generated dynamically by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Duplicate Inquiry Modal Popup (Fail-Open Verification System) -->
+    <div id="inquiryModal" class="inquiry-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="inquiryModalTitle">
+        <div class="inquiry-modal-backdrop"></div>
+        <div class="inquiry-modal-container">
+            <div class="inquiry-modal-timestamp" id="modalTimestamp">Matched Inquiry Detected</div>
+            <h3 id="inquiryModalTitle">We Notice You Recently Requested an Audit</h3>
+            <p class="inquiry-modal-text">
+                Our system detected a submission from this email address within the last 24 hours. Your request is already prioritized in Nitin’s audit queue.
+            </p>
+            <div class="inquiry-modal-actions">
+                <button type="button" id="modalSubmitBtn" class="btn btn-primary btn-full">Update My Request</button>
+                <button type="button" id="modalEmailBtn" class="btn btn-secondary btn-full">Email Me Directly</button>
+                <button type="button" id="modalCancelBtn" class="btn btn-secondary btn-full cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal Window -->
+    <div id="privacyModal" class="legal-modal-overlay" aria-hidden="true" role="dialog">
+        <div class="legal-modal-backdrop"></div>
+        <div class="legal-modal-container">
+            <div class="legal-modal-header">
+                <h2>Privacy Policy</h2>
+                <button type="button" class="legal-modal-close">[ Close ]</button>
+            </div>
+            <div class="legal-modal-body">
+                <p><strong>Effective Date:</strong> January 1, 2026 | <strong>Entity:</strong> Nitin Mishra | <strong>Owner:</strong> Nitin Mishra</p>
+                
+                <h3>1. Overview &amp; Commitment</h3>
+                <p>At <strong>Nitin Mishra</strong>, your privacy and data confidentiality are taken with complete seriousness. This Privacy Policy outlines how information collected across all web pages, intake forms, sales landing pages, and direct email inquiries under this domain is handled.</p>
+
+                <h3>2. Information We Collect</h3>
+                <p>We collect minimal, high-intent operational information necessary to evaluate your automation needs:</p>
+                <ul>
+                    <li><strong>Contact Information:</strong> Full Name, Work Email Address.</li>
+                    <li><strong>Operational Context:</strong> Business Type / Industry, Primary System Need, Current Software Stack (HubSpot, Make.com, GoHighLevel, Airtable, etc.), and operational bottleneck descriptions.</li>
+                </ul>
+
+                <h3>3. How Your Information Is Used</h3>
+                <p>Information submitted via intake forms, audit request pages, or direct email is used <strong>exclusively</strong> to review your operational workflow gaps, prepare personalized system diagnostic audits, and communicate directly regarding system implementation engagements with Nitin Mishra.</p>
+
+                <h3>4. 100% Data Confidentiality Guarantee</h3>
+                <p><strong>Direct Access Only:</strong> All submitted data is reviewed exclusively by Nitin Mishra. No junior staff, external agencies, or third parties have access to your submission.</p>
+                <p><strong>No Selling or Sharing:</strong> We <strong>never</strong> sell, rent, trade, or share your business data, contact email, or operational information with any third party under any circumstances.</p>
+
+                <h3>5. Cookies &amp; Security</h3>
+                <p>This website uses minimal, non-intrusive performance analytics to understand page load performance. If you wish to request complete deletion of your intake submission, email Nitin Mishra directly at <a href="mailto:NitinSystems@outlook.com" style="color: var(--system-blue);">NitinSystems@outlook.com</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal Window -->
+    <div id="termsModal" class="legal-modal-overlay" aria-hidden="true" role="dialog">
+        <div class="legal-modal-backdrop"></div>
+        <div class="legal-modal-container">
+            <div class="legal-modal-header">
+                <h2>Terms of Service</h2>
+                <button type="button" class="legal-modal-close">[ Close ]</button>
+            </div>
+            <div class="legal-modal-body">
+                <p><strong>Effective Date:</strong> January 1, 2026 | <strong>Entity:</strong> Nitin Mishra | <strong>Owner:</strong> Nitin Mishra</p>
+                
+                <h3>1. Acceptance of Terms</h3>
+                <p>By accessing or using any web page, landing page, or service presented under this domain by <strong>Nitin Mishra</strong>, you agree to comply with and be bound by these Terms of Service.</p>
+
+                <h3>2. Purpose of Site &amp; Intellectual Property</h3>
+                <p><strong>Informational &amp; Service Scope:</strong> All content, case studies, system architecture diagrams, sales offers, technical documentation, and visual workflows presented across this website are for demonstration, educational, and service consulting presentation purposes.</p>
+                <p><strong>Intellectual Property Rights:</strong> All text, graphics, system design blueprints, logos, and custom code on this site are the intellectual property of Nitin Mishra. Unauthorized reproduction or commercial redistribution without explicit written consent is prohibited.</p>
+
+                <h3>3. Service Scope &amp; Client Engagements</h3>
+                <p>Submitting an intake form or requesting a system audit does not automatically create a formal client-consultant relationship. All official consulting engagements and implementation deliverables are governed by separate, mutually executed Master Services Agreements (MSA).</p>
+
+                <h3>4. Limitation of Liability</h3>
+                <p>While every effort is made to maintain 100% uptime and accurate system information, this website and its contents are provided "as is." Nitin Mishra is not liable for indirect decisions made based on informational blueprints prior to entering a formal consulting agreement.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fresh Interaction Engine -->
     <script src="script.js"></script>
 
     <!-- BULLETPROOF INLINE CALENDAR MODAL CONTAINER (PLACED DIRECTLY AT BODY ROOT LEVEL) -->

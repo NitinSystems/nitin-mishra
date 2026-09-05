@@ -661,7 +661,7 @@ function initIntakeForm() {
 
             if (!isValidDate || diffHours <= DUPLICATE_THRESHOLD_HOURS) {
                 // Duplicate inquiry within 24 hours (or invalid date): show modal
-                modalLastSubmissionDate.textContent = isValidDate ? lastDate.toLocaleString() : 'N/A';
+                if (modalLastSubmissionDate) { modalLastSubmissionDate.textContent = isValidDate ? lastDate.toLocaleString() : 'N/A'; }
                 modal.style.display = 'flex';
                 
                 // Track focus

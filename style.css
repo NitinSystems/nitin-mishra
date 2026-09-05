@@ -16,7 +16,7 @@
     --bg-secondary: #040612;
     --bg-surface: #0B1124;
     --bg-navbar: #070911;
-    --system-blue: #1C4ED8;
+    --system-blue: #3B82F6;
     
     --text-pure: #FFFFFF;
     --text-main: #FFFFFF;
@@ -3075,7 +3075,7 @@ textarea.input-premium {
 
 .about-grid-split {
     display: grid;
-    grid-template-columns: 32fr 68fr; /* Shrunk image column to make it professional */
+    grid-template-columns: 1fr 1fr; /* Shrunk image column to make it professional */
     gap: 64px;
     align-items: center;
 }
